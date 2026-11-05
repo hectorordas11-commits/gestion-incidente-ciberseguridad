@@ -1,0 +1,28 @@
+# No publicar secretos ni datos del laboratorio
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+*password*
+*secret*
+# Máquinas virtuales y discos
+*.vdi
+*.vmdk
+*.vbox
+*.ova
+*.ovf
+*.vhd
+*.vhdx
+# Capturas masivas, archivos de memoria y volcados no revisados
+*.dmp
+*.raw
+*.mem
+*.pcap
+*.pcapng
+# Temporales
+.DS_Store
+Thumbs.db
+__pycache__/
+*.tmp

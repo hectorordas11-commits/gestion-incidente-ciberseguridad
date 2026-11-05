@@ -1,0 +1,12 @@
+# Informe final en PDF
+
+La entrega definitiva incluirá:
+1. Portada e índice.
+2. Introducción y descripción del caso.
+3. Desarrollo de los seis apartados del enunciado.
+4. Capturas reales de las pruebas y herramientas utilizadas.
+5. Resultados y limitaciones.
+6. Conclusiones.
+7. Bibliografía y anexos con vínculos al repositorio.
+
+**Estado:** pendiente. No existe todavía un informe final ni resultados verificados.
