@@ -1,23 +1,46 @@
-# Práctica 00 · Preparación y validación del laboratorio
+# Práctica 00 · Preparación del laboratorio
 
-**Estado:** pendiente. No se han ejecutado pruebas.
+**Estado: pendiente de realizar. No hay capturas ni resultados obtenidos.**
 
-## Objetivo
-Preparar dos máquinas virtuales Windows/Linux conectadas a una red de laboratorio controlada para investigaciones posteriores.
+## 1. Objetivo
+Preparar y documentar las máquinas virtuales Windows y Linux en VirtualBox, con una red segura para las prácticas del incidente.
 
-## Pasos previstos
-1. Anotar versiones de VirtualBox, Windows y Linux.
-2. Comprobar y documentar adaptadores de red; priorizar red interna aislada para experimentos.
-3. Registrar IP privada de cada VM (Windows: `ipconfig`; Linux: `ip -br addr`).
-4. Verificar conectividad solo entre las VMs si la política de firewall lo permite; verificar que no existe salida no deseada a Internet.
-5. Crear instantáneas iniciales en VirtualBox.
-6. Guardar capturas anonimizadas con fecha y descripción en `evidencias/capturas/`.
-7. Completar la plantilla de práctica.
+## 2. Entorno y herramientas
+- VirtualBox (versión: pendiente).
+- Windows (versión: pendiente).
+- Linux (distribución y versión: pendiente).
 
-## Evidencias pendientes
-- Capturas de configuración de VirtualBox.
-- Versiones y red de cada VM.
-- Resultado de conectividad y comprobación del aislamiento.
-- Identificación de instantáneas.
+## 3. Procedimiento previsto
+1. Identificar y registrar los recursos de las dos máquinas.
+2. Configurar red privada; verificar que no se usa modo puente durante la simulación.
+3. Comprobar las direcciones IP de las máquinas con los siguientes comandos.
+4. Verificar conectividad entre máquinas y ausencia de salida de red no deseada.
+5. Guardar instantáneas iniciales.
 
-**Advertencia:** una red *solo anfitrión* también conecta con el host; una *red interna* limita normalmente el intercambio a VMs conectadas a ella. Revisar la topología real antes de cualquier simulación.
+### Windows: conocer configuración IP
+```powershell
+ipconfig
+```
+**Captura:** pendiente (guardar en `capturas/` y mostrarla aquí).
+
+**Resultado e interpretación:** pendientes.
+
+### Linux: conocer configuración IP
+```bash
+ip -br addr
+```
+**Captura:** pendiente (guardar en `capturas/` y mostrarla aquí).
+
+**Resultado e interpretación:** pendientes.
+
+## 4. Comprobaciones y evidencias
+- Captura de adaptadores en VirtualBox: pendiente.
+- Captura de configuración de red de Windows: pendiente.
+- Captura de configuración de red de Linux: pendiente.
+- Comprobación de conectividad/aislamiento: pendiente.
+- Instantáneas y fecha de creación: pendientes.
+
+## 5. Conclusión
+Pendiente de realizar la práctica.
+
+> Una red «solo anfitrión» puede conectar con el host; una «red interna» normalmente limita la comunicación a las máquinas virtuales conectadas a ella. Verificaremos la configuración real antes de hacer pruebas.

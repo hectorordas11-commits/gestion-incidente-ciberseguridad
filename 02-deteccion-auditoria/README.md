@@ -1,9 +1,12 @@
 # 02 · Detección y auditoría (20 %)
 
-## Objetivos
-Clasificar incidente y severidad; identificar activos potencialmente afectados; proponer EDR, antivirus, firewall, IDS/SIEM; examinar logs del SO, antivirus, firewall y red; realizar OSINT pasivo sobre indicadores; completar ficha del incidente.
+## Qué haremos
+Clasificar el ataque y su gravedad; identificar sistemas afectados; describir monitorización y herramientas (antivirus, firewall, logs, EDR, IDS/SIEM); analizar registros; investigar IP y dominios mediante OSINT pasivo.
 
-## Pruebas previstas
-PowerShell (Get-WinEvent, Get-NetTCPConnection, procesos), herramientas Linux y consultas OSINT autorizadas. Documentar siempre resultados y límites de interpretación.
+## Documentos
+- [Ficha del incidente](ficha-incidente.md).
+- Prácticas futuras de Windows, Linux, logs y OSINT.
 
-**Estado:** pendiente de pruebas.
+**Organización:** comando, explicación, captura y resultado aparecerán juntos en el Markdown de cada práctica; imágenes en `capturas/` de esta carpeta.
+
+**Estado:** pendiente. No hay resultados reales todavía.

@@ -1,13 +1,13 @@
 # 03 · Investigación y análisis (20 %)
 
-## Objetivos
-- Identificar y preservar evidencias de correo, adjunto, equipos y red.
-- Investigar cabeceras de un correo simulado, archivo inocuo y conexiones controladas.
-- Reconstruir línea temporal basada en registros.
-- Documentar cadena de custodia y calcular SHA-256 antes/después de copiar archivos.
-- Separar observaciones, hipótesis y conclusiones.
+## Qué haremos
+Identificar y preservar evidencias, analizar correo y adjunto inocuo de prueba, revisar conexiones, construir cronología y documentar cadena de custodia.
 
-## Base de clase
-Adaptar con cuidado el script forense PowerShell de los apuntes del profesor. No ejecutar pruebas en equipos ajenos.
+## Documentos
+- [Práctica SHA-256](practica-hash.md), **aún no realizada**.
+- [Registro de cadena de custodia](cadena-custodia.csv), actualmente sin evidencias.
+- Prácticas forenses por preparar, basadas en el script de PowerShell de los apuntes.
 
-**Estado:** pendiente de pruebas.
+**Organización:** cada práctica contendrá comando, explicación, captura real y resultado juntos. Imágenes en `capturas/` de este apartado. Scripts extensos se guardarán junto a la práctica que los utiliza.
+
+**Estado:** pendiente.

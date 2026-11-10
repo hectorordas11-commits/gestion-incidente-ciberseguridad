@@ -1,13 +1,13 @@
 # 01 · Prevención y concienciación (15 %)
 
-## Objetivos
-- Identificar activos, amenazas, vulnerabilidades y riesgos del caso.
-- Definir normas para puestos de trabajo: actualizaciones, mínimo privilegio, MFA, bloqueo, USB, copias, antivirus.
-- Preparar un plan de concienciación medible para 100 empleados.
-- Crear cartel antiphishing y guía de buenas prácticas.
-- Explicar cifrado simétrico y asimétrico, hash, certificados, firmas, PKI y Diffie-Hellman.
+## Qué haremos
+- Identificar amenazas, vulnerabilidades, activos y riesgos del caso.
+- Establecer normas de seguridad para los puestos de trabajo.
+- Diseñar un plan medible de concienciación para 100 empleados.
+- Crear un cartel antiphishing y una guía de buenas prácticas.
+- Explicar cifrado simétrico/asimétrico, hash, certificados, firmas, PKI y Diffie-Hellman.
 
-## Evidencias previstas
-Cartel final, guía, tabla de riesgos, calendario de formación y, cuando se ejecute, prueba de hash/certificado.
+## Cómo se presentará
+La explicación de cada prueba, comando, captura y resultado irá **en el documento de esa práctica**. Las imágenes quedarán en `capturas/` de este apartado. No habrá una carpeta global de evidencias.
 
-**Estado:** pendiente de desarrollo.
+**Estado:** pendiente. No hay resultados reales todavía.

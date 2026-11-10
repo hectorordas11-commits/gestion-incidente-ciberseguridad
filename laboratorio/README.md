@@ -1,16 +1,19 @@
 # Laboratorio VirtualBox
 
-**Entorno disponible:** dos máquinas virtuales, Windows y Linux, gestionadas con VirtualBox.
+**Plataforma prevista:** Windows y Linux en máquinas virtuales VirtualBox, de uso exclusivo para este trabajo.
 
-## Diseño inicial
-Windows: equipo investigado, procesos, eventos y PowerShell.
-Linux: observación de red y análisis de tráfico controlado.
-Red: *red interna* o *solo anfitrión* según el objetivo; documentar y verificar aislamiento. No habilitar adaptador puente para las simulaciones.
+## Función de cada máquina
+- **Windows:** puesto de trabajo investigado; procesos, eventos, antivirus y PowerShell.
+- **Linux:** análisis de red y tráfico controlado.
+- **Red:** preferentemente una red interna aislada durante las simulaciones (configuración y comprobación pendientes).
+
+## Documentación
+Cada práctica documenta su explicación, comandos y capturas en este mismo apartado.
+
+- [Práctica 00: preparación de máquinas y red](practica-00.md)
+- Las capturas de la Práctica 00 se guardarán aquí: `laboratorio/capturas/`.
 
 ## Seguridad
-- Tomar instantáneas antes de prácticas.
-- Utilizar archivos inocuos y datos de prueba.
-- Documentar configuración de adaptadores, direcciones IP privadas y conectividad.
-- No publicar detalles sensibles de la red doméstica.
+Tomar instantáneas, usar datos de prueba, comprobar el aislamiento antes de generar tráfico y no utilizar red en modo puente durante los ejercicios. No publicar datos sensibles del equipo anfitrión.
 
-Continuar con [Práctica 00](practica-00.md).
+**Estado:** laboratorio por preparar y verificar.

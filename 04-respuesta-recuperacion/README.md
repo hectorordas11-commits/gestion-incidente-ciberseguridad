@@ -1,14 +1,11 @@
 # 04 · Respuesta y recuperación (20 %)
 
-## Procedimiento a desarrollar
-1. Activar respuesta y preservar evidencias volátiles según prioridad.
-2. Aislar endpoints y bloquear comunicaciones identificadas.
-3. Deshabilitar cuentas y revocar sesiones/tokens comprometidos.
-4. Eliminar mecanismos de persistencia y corregir el vector inicial.
-5. Restaurar desde copias fiables y verificar sistemas antes de reconectar.
-6. Monitorizar recurrencia y mejorar controles.
+## Qué haremos
+- Diseñar las fases de contención, erradicación, recuperación y seguimiento.
+- Explicar aislamiento de equipos, bloqueo de IP/dominios, revocación de credenciales y restauración.
+- Comprobar una regla de firewall de laboratorio sobre tráfico inocuo.
+- Aplicar anticipación, resistencia, recuperación y evolución de la ciberresiliencia.
 
-## Ciberresiliencia
-Explicar anticipación, resistencia, recuperación y evolución con decisiones del caso.
+**Organización:** documentaremos comando, explicación, captura y resultado en cada práctica; capturas en esta carpeta, dentro de `capturas/`.
 
-**Estado:** pendiente de validación práctica.
+**Estado:** pendiente de pruebas.
