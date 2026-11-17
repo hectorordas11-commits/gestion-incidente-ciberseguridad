@@ -14,12 +14,12 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 
 | Apartado | Documento principal | Qué contiene | Estado |
 |---|---|---|---|
-| 1 | [Prevención, concienciación y criptografía](01-prevencion/README.md) | Principios, riesgos, plan de formación, guía y cartel, criptografía, Defender y firewall | Prevención y práctica CMS documentadas; cartel gráfico pendiente |
+| 1 | [Prevención, concienciación y criptografía](01-prevencion/README.md) | Principios, riesgos, plan de formación, guía y cartel, criptografía, Defender y firewall | Prevención, práctica CMS y cartel gráfico documentados |
 | 2 | [Detección y auditoría](02-deteccion-auditoria/README.md) | Clasificación, activos, eventos, conexiones, antivirus y ficha INC-2026-001 | Auditoría práctica y explicación de OSINT/tráfico integradas; no hay indicadores externos del caso |
-| 3 | [Investigación y evidencias](03-investigacion/README.md) | Correo simulado, adjunto, SHA-256, cadena de custodia, cronología y límites forenses | Correo simulado, integridad, custodia, cronología y análisis de límites documentados |
+| 3 | [Investigación y evidencias](03-investigacion/README.md) | Correo simulado, adjunto, SHA-256, cadena de custodia, cronología y límites forenses | Correo simulado, integridad, custodia y recopilación forense con capturas 30–32 |
 | 4 | [Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Playbook de contención, erradicación, recuperación y ciberresiliencia | Procedimiento desarrollado; falta práctica técnica |
-| 5 | [Notificación y CERT/CSIRT](05-notificacion/README.md) | Aviso interno, criterios AEPD/RGPD, valoración de riesgo y equipos de respuesta | Análisis y modelos preparados; escenario sin brecha confirmada |
-| 6 | [Simulación de reunión](06-simulacion/README.md) | Roles, cuatro novedades, decisiones, responsables y acta | Ejercicio de mesa redactado y señalado como simulado |
+| 5 | [Notificación y CERT/CSIRT](05-notificacion/README.md) | Aviso interno, criterios AEPD/RGPD, valoración de riesgo y equipos de respuesta | Criterios RGPD, borradores de aviso y CERT/CSIRT revisados; sin comunicaciones reales |
+| 6 | [Simulación de reunión](06-simulacion/README.md) | Roles, cuatro novedades, decisiones, responsables y acta | Ejercicio de mesa completo: cuatro novedades, acta, decisiones y evaluación |
 
 ## Documentos complementarios y evidencias
 
@@ -30,10 +30,10 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 
 Los capítulos reúnen todo el contenido; los archivos Markdown que duplicaban su contenido se han eliminado. Se conservan por separado únicamente las evidencias, los datos de custodia y la documentación técnica específica del laboratorio.
 
-**Estado de las capturas:** se han incorporado las evidencias numeradas **01–29** (la práctica 28 consta de dos imágenes), todas en las carpetas `capturas/` correspondientes. No hace falta renombrarlas ni volver a subirlas.
+**Estado de las capturas:** se han incorporado las evidencias numeradas **01–32** (la práctica 28 consta de dos imágenes), todas en las carpetas `capturas/` correspondientes. No hace falta renombrarlas ni volver a subirlas.
 
 ## Qué queda por hacer para entregar el proyecto
 
-La documentación está organizada como un informe, pero **no debe confundirse con todas las prácticas terminadas**: los apartados 2 y 3 tienen revisión y documentación suficiente de las pruebas realmente ejecutadas, aunque no existe un indicador malicioso concreto con el que demostrar OSINT o exfiltración. Todavía habrá que comprobar el apartado de respuesta en la red aislada, maquetar el cartel gráfico y producir el PDF final. Las nuevas pruebas se añadirán en el capítulo al que correspondan, con sus comandos, capturas y resultados verdaderos.
+La documentación está organizada como un informe, pero **no debe confundirse con todas las prácticas terminadas**: los apartados 1, 2 y 3 cuentan con prácticas y documentación, y los apartados 5 y 6 tienen los análisis y modelos educativos preparados, aunque no existe un indicador malicioso concreto con el que demostrar OSINT o exfiltración. Todavía habrá que realizar y documentar la práctica del apartado 4, revisar la coherencia global del informe y producir el PDF final. Las nuevas pruebas se añadirán en el capítulo al que correspondan, con sus comandos, capturas y resultados verdaderos.
 
 **Seguridad:** trabajar únicamente en máquinas virtuales y con archivos inocuos; no subir contraseñas, datos personales reales ni ejecutables peligrosos.
