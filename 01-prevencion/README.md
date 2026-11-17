@@ -233,7 +233,7 @@ Get-FileHash "C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt" -Algorithm
 
 ![Comprobación de hashes idénticos](../03-investigacion/capturas/13-verificacion-integridad-sha256.png)
 
-Los hashes coincidieron. La práctica se explica con más detalle en [integridad de evidencias](../03-investigacion/practica-hash.md).
+Los hashes coincidieron. La práctica se explica con más detalle en [integridad de evidencias](../03-investigacion/README.md#3-integridad-del-adjunto-sha-256).
 
 #### 5. Firmas digitales
 
