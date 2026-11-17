@@ -1,4 +1,7 @@
-# 01 · Prevención y concienciación: capítulo completo
+# 01 · Prevención, concienciación y criptografía
+
+**Orden de lectura:** principios y medidas de seguridad → plan de formación → guía para empleados → cartel antiphishing → criptografía y certificados → evidencias técnicas de Defender, firewall y cifrado → conclusión. Las prácticas complementan las propuestas del trabajo; el laboratorio no equivale a una implantación empresarial real.
+
 
 > **Caso ficticio:** empresa de aproximadamente cien personas. Los apartados de política y formación son propuestas; las capturas de Windows y la comprobación SHA-256 son pruebas reales del laboratorio.
 
@@ -154,7 +157,7 @@ Estas señales justifican **verificar** la petición y comunicar la sospecha. El
 
 **Si un correo te mete prisa, dedica un momento a comprobarlo. Avisar a tiempo también es una medida de seguridad.**
 
-## 4. Cartel antiphishing (texto listo para maquetar)
+## 4. Cartel antiphishing para la plantilla
 
 **Material de concienciación diseñado para una empresa ficticia de unos cien empleados.** Este archivo recoge el texto definitivo del cartel para poder utilizarlo en la intranet, enviarlo por correo o convertirlo posteriormente en una imagen imprimible.
 
@@ -185,6 +188,10 @@ El cartel se centra en el vector de entrada del caso: un correo que aparenta pro
 **Formato recomendado:** A4 vertical, tipografía grande, contraste alto, cuatro acciones visibles y un canal corporativo real de aviso cuando la empresa lo defina. **No inventamos un teléfono ni una dirección de contacto.**
 
 **Estado:** texto del cartel preparado; versión gráfica imprimible pendiente de maquetación.
+
+**Cartel antiphishing elaborado:** se ha preparado una versión gráfica para concienciar frente a correos urgentes que suplantan a Recursos Humanos. Recuerda verificar el remitente, desconfiar de adjuntos inesperados, confirmar por otro canal y avisar si ya se abrió un archivo sospechoso.
+
+![Cartel antiphishing: comprobaciones antes de abrir un adjunto de RR. HH.](capturas/cartel-antiphishing.png)
 
 ## 5. Criptografía y certificados
 
@@ -380,11 +387,7 @@ La operación de cifrado y descifrado ha funcionado en el laboratorio. A diferen
 
 Con el ejercicio he podido comprobar el estado inicial de algunas protecciones de Windows y verificar la integridad del adjunto ficticio mediante SHA-256. La prevención en la empresa depende también de personas formadas, controles de acceso, actualización de equipos, protección del correo y una manera clara de avisar.
 
-**Cartel antiphishing elaborado:** se ha preparado una versión gráfica para concienciar frente a correos urgentes que suplantan a Recursos Humanos. Recuerda verificar el remitente, desconfiar de adjuntos inesperados, confirmar por otro canal y avisar si ya se abrió un archivo sospechoso.
-
-![Cartel antiphishing: comprobaciones antes de abrir un adjunto de RR. HH.](capturas/cartel-antiphishing.png)
-
-El cartel es un material de formación diseñado para el caso; no se afirma que la formación se haya impartido realmente ni que exista una PKI empresarial. La demostración de cifrado y descifrado CMS y sus cuatro capturas ya están documentadas.
+El cartel incluido en el punto 4 es un material diseñado para este caso; no se afirma que la formación se haya impartido realmente ni que exista una PKI empresarial. La demostración de cifrado y descifrado CMS y sus cuatro capturas ya están documentadas.
 
 ### Fuentes consultadas
 
