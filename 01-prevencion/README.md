@@ -297,11 +297,90 @@ Los tres perfiles —`Domain`, `Private` y `Public`— aparecieron habilitados (
 
 Estas comprobaciones corresponden al **estado inicial del laboratorio**, no al funcionamiento de la empresa del enunciado.
 
-## 7. Conclusión del apartado
+## 7. Práctica de cifrado y descifrado con un certificado de laboratorio
+
+### 7.1. Objetivo y entorno
+
+Para complementar la práctica del hash SHA-256, realicé una demostración de **cifrado y descifrado de un mensaje de texto** desde PowerShell, en la misma máquina virtual Windows 11. Se empleó exclusivamente información ficticia, con un certificado autofirmado del usuario actual.
+
+La finalidad es distinguir **integridad mediante hash** de **confidencialidad mediante cifrado**. En esta práctica, CMS protege un mensaje para el certificado destinatario; no se trata de cifrar el disco, enviar un correo real ni desplegar una PKI corporativa.
+
+### 7.2. Comprobación de los comandos disponibles — captura 16
+
+```powershell
+Get-Command Protect-CmsMessage, Unprotect-CmsMessage |
+    Select-Object Name, CommandType
+```
+
+**Resultado observado:** aparecieron `Protect-CmsMessage` y `Unprotect-CmsMessage` como comandos de tipo `Cmdlet`. Se comprobó su disponibilidad, no el funcionamiento del cifrado todavía.
+
+**Evidencia:** `capturas/16-comprobacion-comandos-cifrado.png` (pendiente de incorporar a GitHub).
+
+### 7.3. Creación del certificado — captura 17
+
+```powershell
+$cert = New-SelfSignedCertificate `
+    -Subject "CN=Laboratorio-Cifrado" `
+    -CertStoreLocation "Cert:\CurrentUser\My" `
+    -KeyAlgorithm RSA `
+    -KeyLength 2048 `
+    -KeyUsage KeyEncipherment, DataEncipherment `
+    -Type DocumentEncryptionCert
+
+$cert | Select-Object Subject, Thumbprint, NotAfter
+```
+
+**Resultado observado:** se creó el certificado `CN=Laboratorio-Cifrado`, con clave RSA de 2048 bits y caducidad **17/11/2027**. Se almacenó en el almacén de certificados personal del usuario actual. Un certificado autofirmado sirve para este laboratorio, pero no equivale a un certificado de confianza pública.
+
+**Evidencia:** `capturas/17-creacion-certificado-cifrado.png` (pendiente de incorporar a GitHub).
+
+### 7.4. Cifrado del mensaje con CMS — captura 18
+
+```powershell
+$mensaje = "Documento confidencial de prueba. Practica de cifrado del incidente."
+
+$mensaje | Protect-CmsMessage -To $cert |
+    Set-Content "C:\Laboratorio\mensaje_cifrado.txt"
+
+Get-Content "C:\Laboratorio\mensaje_cifrado.txt"
+```
+
+**Resultado observado:** se generó un bloque con las marcas `-----BEGIN CMS-----` y `-----END CMS-----`, almacenado en el fichero `C:\Laboratorio\mensaje_cifrado.txt`. Su contenido no muestra el texto original directamente. No se publica el bloque completo, porque no hace falta para explicar el procedimiento.
+
+**Evidencia:** `capturas/18-mensaje-cifrado-cms.png` (pendiente de incorporar a GitHub).
+
+### 7.5. Descifrado y verificación — captura 19
+
+```powershell
+$descifrado = Unprotect-CmsMessage -Path "C:\Laboratorio\mensaje_cifrado.txt"
+
+$descifrado
+
+$descifrado -eq $mensaje
+```
+
+**Resultado real:**
+
+```text
+Documento confidencial de prueba. Practica de cifrado del incidente.
+True
+```
+
+La comparación `True` demuestra que se recuperó el **mismo texto original** al descifrar el mensaje con las credenciales criptográficas disponibles en el equipo. No demuestra por sí sola la seguridad de toda una infraestructura de correo ni la identidad de usuarios remotos.
+
+**Evidencia:** `capturas/19-descifrado-mensaje-cms.png` (pendiente de incorporar a GitHub).
+
+### 7.6. Resultado y aprendizaje
+
+La operación de cifrado y descifrado ha funcionado en el laboratorio. A diferencia de SHA-256, que produce una huella para verificar integridad, el cifrado permite recuperar el texto original si se dispone del material criptográfico adecuado. El certificado y su clave privada deben protegerse; en un caso real sería necesario aplicar políticas de emisión, custodia, renovación y revocación.
+
+**Nota de documentación:** las capturas 16 a 19 han sido obtenidas durante la práctica y revisadas en la conversación, pero todavía deben subirse a la carpeta `01-prevencion/capturas/` para que aparezcan en el repositorio.
+
+## 8. Conclusión del apartado
 
 Con el ejercicio he podido comprobar el estado inicial de algunas protecciones de Windows y verificar la integridad del adjunto ficticio mediante SHA-256. La prevención en la empresa depende también de personas formadas, controles de acceso, actualización de equipos, protección del correo y una manera clara de avisar.
 
-**Pendiente:** versión gráfica imprimible del cartel. No se ha impartido la formación ni implantado una PKI o sistema de cifrado empresarial. Si se requiere una demostración adicional de cifrado se añadirá después de realizarla.
+**Pendiente:** versión gráfica imprimible del cartel. No se ha impartido la formación ni implantado una PKI o sistema de cifrado empresarial. La demostración de cifrado y descifrado CMS ya se ha realizado; faltan por incorporar sus cuatro capturas al repositorio.
 
 ### Fuentes consultadas
 
