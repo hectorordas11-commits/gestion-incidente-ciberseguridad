@@ -224,7 +224,67 @@ El temario de investigación distingue **recopilación**, **preservación**, **a
 
 Antes de alterar o eliminar información, el investigador debe identificar la fuente, anotar quién la recopila y cuándo, conservar una copia cuando corresponda, calcular su hash y registrar cada acceso o transferencia. Las fuentes más volátiles (procesos y conexiones activas) pueden cambiar rápidamente. La prioridad de preservar evidencias debe coordinarse con la contención cuando exista riesgo para la organización.
 
-## 7. Hipótesis contrastadas y conclusión del apartado
+## 7. Recopilación automatizada de evidencias en PowerShell (capturas 30–32)
+
+Para complementar la preservación del adjunto, ejecuté en la máquina virtual Windows 11 un script de recopilación forense basado en la práctica de los apuntes. Este ejercicio documenta **información del estado del equipo**, no una adquisición forense completa ni evidencias de que el phishing del escenario se haya producido realmente.
+
+### 7.1. Ejecución y ubicación — captura 30
+
+El archivo `C:\Laboratorio\recopilacion_forense_profesor.ps1` estaba presente. PowerShell bloqueó inicialmente su ejecución por la política de ejecución de scripts. Para realizar la práctica se usó `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force`, que modifica la política **solo para la sesión actual**, y se ejecutó el script desde `C:\Laboratorio`.
+
+```powershell
+Set-Location "C:\Laboratorio"
+.\recopilacion_forense_profesor.ps1
+```
+
+![Captura 30: ejecución del script de recopilación](capturas/30-recopilacion-forense-powershell.png)
+
+La consola mostró los diez pasos previstos: sistema, usuarios, procesos, conexiones TCP, puertos UDP, servicios, interfaces, caché DNS, eventos de seguridad y cálculo SHA-256. Terminó con el mensaje **«Investigación terminada»** e indicó la carpeta `C:\Laboratorio\Evidencias_20261117_124707`.
+
+El mensaje de finalización confirma que el script llegó al final, pero por sí solo no garantiza que cada fuente contenga registros.
+
+### 7.2. Verificación de los archivos generados — captura 31
+
+```powershell
+Get-ChildItem "C:\Laboratorio\Evidencias_20261117_124707" -File |
+    Select-Object Name, Length |
+    Format-Table -AutoSize
+```
+
+![Captura 31: archivos creados y tamaños](capturas/31-archivos-recopilacion-forense.png)
+
+| Archivo | Tamaño observado |
+|---|---:|
+| `sistema.txt` | 25.604 bytes |
+| `usuarios.txt` | 5.512 bytes |
+| `procesos.csv` | 46.269 bytes |
+| `conexiones.csv` | 855 bytes |
+| `puertos_udp.csv` | 2.263 bytes |
+| `servicios.csv` | 19.344 bytes |
+| `interfaces.txt` | 3.170 bytes |
+| `dns.csv` | **0 bytes** |
+| `eventos.csv` | 357.107 bytes |
+| `hashes.txt` | 2.214 bytes |
+
+Se generaron **diez archivos**. Nueve tenían contenido y `dns.csv` estaba vacío. `hashes.txt` fue creado y tiene contenido, pero **no se han examinado individualmente ni vuelto a calcular los hashes** para comprobarlos de forma independiente.
+
+### 7.3. Comprobación de la caché DNS — captura 32
+
+```powershell
+Get-DnsClientCache | Measure-Object
+```
+
+![Captura 32: la consulta de caché DNS devuelve cero entradas](capturas/32-comprobacion-cache-dns.png)
+
+La salida mostró `Count : 0`. Por tanto, en la **consulta de comprobación** no había entradas devueltas por la caché DNS, lo que es coherente con el tamaño cero del CSV. No permite asegurar que la caché estuviera vacía en todo momento ni que el equipo nunca haya resuelto dominios.
+
+### 7.4. Preservación y límites
+
+Los ficheros originales de esta recopilación **se conservan dentro de la máquina virtual**. En GitHub solo se incorporan las capturas necesarias para acreditar la ejecución y el resultado, evitando publicar datos sobre cuentas, procesos, configuración de red y eventos.
+
+La recopilación constituye una **instantánea parcial** del sistema; los comandos pueden observar información que cambia con el tiempo. No sustituye a una imagen forense de disco o memoria, ni acredita por sí sola la causa o los efectos del incidente ficticio.
+
+## 8. Hipótesis contrastadas y conclusión del apartado
 
 | Hipótesis del escenario | Resultado de nuestra práctica |
 |---|---|
@@ -233,6 +293,6 @@ Antes de alterar o eliminar información, el investigador debe identificar la fu
 | Se produjo una conexión exterior para extraer datos | **No demostrado**; no se obtuvieron destinos o tráfico malicioso |
 | Se preservó sin alterar el contenido del adjunto | **Comprobado en el alcance de la práctica** mediante copia, hash coincidente y registro EV-001 |
 
-En conclusión, se completó un **ejercicio educativo de análisis de correo, preservación, integridad y custodia inicial**, con cronología y valoración de límites. El propósito no era ejecutar malware ni fabricar una fuga de datos. La adquisición forense completa, el análisis de memoria y la captura de paquetes se explican como técnicas que podrían utilizarse **si el incidente real lo justificase**, no como actividades ejecutadas o exigencias pendientes de esta simulación.
+En conclusión, se completó un **ejercicio educativo de análisis de correo, preservación, integridad, custodia inicial y recopilación automatizada de datos del sistema**, con cronología y valoración de límites. El propósito no era ejecutar malware ni fabricar una fuga de datos. La adquisición forense completa, el análisis de memoria y la captura de paquetes se explican como técnicas que podrían utilizarse **si el incidente real lo justificase**, no como actividades ejecutadas o exigencias pendientes de esta simulación.
 
 **Material de clase utilizado:** «3. Investigación de los incidentes de ciberseguridad»: recopilación de evidencias digitales, físicas y externas, cadena de custodia, análisis de logs, disco, memoria y red, y construcción de la línea temporal. [Temario](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/) · [Bibliografía](../FUENTES.md).
