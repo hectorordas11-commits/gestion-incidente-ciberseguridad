@@ -16,7 +16,7 @@ Se propone preservar el correo, el equipo y los registros; revisar el alcance co
 
 **Estado:** borrador educativo; no enviado a ninguna persona ni organismo.
 
-## 2. ¿Cuándo debe notificarse una brecha a la AEPD?
+## 2. Cuándo notificar una brecha de datos personales
 
 Una *violación de seguridad de los datos personales* puede afectar a su confidencialidad, integridad o disponibilidad. No todos los ciberincidentes constituyen necesariamente una brecha de datos personales.
 
@@ -31,7 +31,7 @@ Fuentes oficiales revisadas:
 - [AEPD: comunicación de brechas a personas interesadas](https://www.aepd.es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/comunicacion-de-brechas-de-datos).
 - [AEPD: qué es una brecha de datos](https://www.aepd.es/preguntas-frecuentes/2-tus-obligaciones-como-responsable-del-tratamiento/11-brechas-de-datos-personales/FAQ-0232-que-es-una-violacion-de-seguridad-de-los-datos-brecha-de-datos-personales).
 
-## 3. Valoración de riesgo en el escenario
+## 3. Valoración del riesgo en el escenario
 
 | Pregunta | Estado en el caso | Qué debemos averiguar |
 |---|---|---|
@@ -44,36 +44,7 @@ Fuentes oficiales revisadas:
 
 **Decisión provisional:** investigar con urgencia y activar la valoración del responsable del tratamiento; **no presentar una notificación ficticia como si hubiera sido presentada realmente**. Si se confirma una brecha con riesgo, preparar la notificación a la autoridad competente dentro del plazo aplicable, aun cuando la información inicial deba completarse posteriormente.
 
-## 4. Contenido de una posible notificación a la autoridad
-
-El borrador debería recoger, hasta donde se conozca:
-
-1. Naturaleza de la brecha y hechos comprobados.
-2. Categorías y número aproximado de personas y registros afectados.
-3. Datos de contacto del delegado de protección de datos o punto de contacto.
-4. Consecuencias probables para las personas.
-5. Medidas adoptadas y previstas para contener y mitigar los efectos.
-6. Fecha de conocimiento, motivos de cualquier retraso y datos por completar.
-
-Si procede informar a los afectados, habría que utilizar lenguaje claro, indicar riesgos, contacto y medidas de protección, sin alarmismo ni afirmaciones sin comprobar.
-
-## 5. CERT y CSIRT: funciones y comparación
-
-Un **CERT** o **CSIRT** es un equipo especializado que apoya en prevención, detección, análisis, coordinación y respuesta ante incidentes. Su función es diferente de la autoridad de protección de datos: el CERT/CSIRT ofrece apoyo técnico y coordinación; la AEPD supervisa el cumplimiento de las obligaciones relativas a datos personales.
-
-| Equipo | Ámbito orientativo | Relevancia para el caso |
-|---|---|---|
-| **INCIBE-CERT** | Ciudadanía, empresas privadas y otros operadores de su ámbito | Referencia adecuada para una empresa privada española como la del ejercicio |
-| **CCN-CERT** | Administraciones públicas, sistemas clasificados y organizaciones de especial interés estratégico | Comparación relevante, pero no se asumiría que esta empresa ficticia pertenece a su ámbito |
-
-Para notificar un ciberincidente debe utilizarse el canal oficial y comprobar el ámbito del organismo, sin publicar en GitHub indicadores sensibles que puedan comprometer la investigación.
-
-Fuentes:
-- [Guía nacional de notificación y gestión de ciberincidentes](https://www.incibe.es/sites/default/files/contenidos/guias/doc/guia_nacional_notificacion_gestion_ciberincidentes.pdf).
-- [INCIBE-CERT: gestión de incidentes del sector privado](https://www.incibe.es/sites/default/files/contenidos/guias/doc/incibe-cert_gestion_ciberincidentes_sector_privado.pdf).
-- [CCN-CERT: ámbito y funciones](https://www.ccn-cert.cni.es/es/sobre-nosotros/faq.html).
-
-## 6. Árbol de decisión de notificación aplicado al caso
+## 4. Decisión sobre notificar: comprobaciones y plazos
 
 | Comprobación | Decisión que correspondería | Situación en el ejercicio |
 |---|---|---|
@@ -87,9 +58,22 @@ Fuentes:
 
 Esta valoración se aplica exclusivamente al RGPD. Si la organización estuviera sometida a otras obligaciones sectoriales de notificación, habría que analizarlas por separado; el enunciado no aporta datos para asumirlas.
 
-## 7. Modelos de comunicación preparados (NO ENVIADOS)
+## 5. Contenido exigible de la notificación
 
-### 7.1. Borrador de notificación a la AEPD
+El borrador debería recoger, hasta donde se conozca:
+
+1. Naturaleza de la brecha y hechos comprobados.
+2. Categorías y número aproximado de personas y registros afectados.
+3. Datos de contacto del delegado de protección de datos o punto de contacto.
+4. Consecuencias probables para las personas.
+5. Medidas adoptadas y previstas para contener y mitigar los efectos.
+6. Fecha de conocimiento, motivos de cualquier retraso y datos por completar.
+
+Si procede informar a los afectados, habría que utilizar lenguaje claro, indicar riesgos, contacto y medidas de protección, sin alarmismo ni afirmaciones sin comprobar.
+
+## 6. Modelos de comunicación preparados (no enviados)
+
+### 6.1. Borrador de notificación a la AEPD
 
 > **BORRADOR EDUCATIVO — NO PRESENTADO**
 >
@@ -113,7 +97,7 @@ Esta valoración se aplica exclusivamente al RGPD. Si la organización estuviera
 
 Este texto **no es una notificación cumplimentada ni demuestra que exista una brecha**. En una situación real se utilizaría el formulario de la sede electrónica de la autoridad de control competente, con los datos reales y verificables.
 
-### 7.2. Borrador de comunicación a personas afectadas
+### 6.2. Borrador de comunicación a personas afectadas
 
 > **BORRADOR CONDICIONAL — NO ENVIADO**
 >
@@ -125,7 +109,23 @@ Este texto **no es una notificación cumplimentada ni demuestra que exista una b
 
 **Uso condicionado:** esta plantilla solo se utilizaría, debidamente completada, cuando se confirmase una brecha que probablemente entrañase **alto riesgo** para las personas y resultase aplicable el artículo 34. No se enviaría esta versión genérica sin información suficiente para que el destinatario comprenda y pueda mitigar el riesgo.
 
-## 8. Seguimiento documental y comunicación con organismos
+## 7. CERT y CSIRT: funciones y comparación
+
+Un **CERT** o **CSIRT** es un equipo especializado que apoya en prevención, detección, análisis, coordinación y respuesta ante incidentes. Su función es diferente de la autoridad de protección de datos: el CERT/CSIRT ofrece apoyo técnico y coordinación; la AEPD supervisa el cumplimiento de las obligaciones relativas a datos personales.
+
+| Equipo | Ámbito orientativo | Relevancia para el caso |
+|---|---|---|
+| **INCIBE-CERT** | Ciudadanía, empresas privadas y otros operadores de su ámbito | Referencia adecuada para una empresa privada española como la del ejercicio |
+| **CCN-CERT** | Administraciones públicas, sistemas clasificados y organizaciones de especial interés estratégico | Comparación relevante, pero no se asumiría que esta empresa ficticia pertenece a su ámbito |
+
+Para notificar un ciberincidente debe utilizarse el canal oficial y comprobar el ámbito del organismo, sin publicar en GitHub indicadores sensibles que puedan comprometer la investigación.
+
+Fuentes:
+- [Guía nacional de notificación y gestión de ciberincidentes](https://www.incibe.es/sites/default/files/contenidos/guias/doc/guia_nacional_notificacion_gestion_ciberincidentes.pdf).
+- [INCIBE-CERT: gestión de incidentes del sector privado](https://www.incibe.es/sites/default/files/contenidos/guias/doc/incibe-cert_gestion_ciberincidentes_sector_privado.pdf).
+- [CCN-CERT: ámbito y funciones](https://www.ccn-cert.cni.es/es/sobre-nosotros/faq.html).
+
+## 8. Seguimiento documental y organismos
 
 El responsable del incidente debería mantener un registro de decisiones con **fecha y hora, evidencia en que se basa cada valoración, persona responsable, nivel de riesgo, medida y estado**. El responsable del tratamiento, asistido en su caso por su delegado de protección de datos, decide la notificación a la autoridad competente. INCIBE-CERT puede aportar apoyo técnico en su ámbito, pero **una comunicación a INCIBE-CERT no sustituye** la notificación de datos personales a la AEPD.
 
@@ -148,3 +148,4 @@ La obligación de comunicar no puede resolverse por intuición. Primero hay que 
 **Estado del apartado:** documentación y modelos revisados y preparados para el informe final; no exige capturas de PowerShell ni acreditar notificaciones reales.
 
 **Referencia docente:** [intercambio de información, notificación y equipos de respuesta](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
+
