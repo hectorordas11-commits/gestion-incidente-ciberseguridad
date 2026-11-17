@@ -31,7 +31,7 @@ winver
 Get-MpComputerStatus | Select-Object AMServiceEnabled, AntivirusEnabled, RealTimeProtectionEnabled, AntivirusSignatureLastUpdated
 ```
 
-![Comprobación del estado de Defender](capturas/03-estado-microsoft-defender.png)
+![Comprobación del estado de Defender](../01-prevencion/capturas/03-estado-microsoft-defender.png)
 
 Esta consulta sirve para verificar el servicio antivirus y la protección en tiempo real; no sustituye una prueba de detección. Se conserva la salida real en la captura, en lugar de atribuirle valores que no se han transcrito a este documento.
 
@@ -40,7 +40,7 @@ Esta consulta sirve para verificar el servicio antivirus y la protección en tie
 Get-NetFirewallProfile | Select-Object Name, Enabled, DefaultInboundAction, DefaultOutboundAction
 ```
 
-![Perfiles del firewall](capturas/04-estado-firewall-windows.png)
+![Perfiles del firewall](../01-prevencion/capturas/04-estado-firewall-windows.png)
 
 Los tres perfiles, **Domain, Private y Public**, estaban activados (`Enabled = True`). Los campos de acción predeterminada aparecían como `NotConfigured`; esto **no** equivale a que el tráfico esté permitido.
 
@@ -51,7 +51,7 @@ En una primera consulta recibí un error de permisos. Al abrir PowerShell **como
 Get-WinEvent -ListLog Security | Select-Object LogName, IsEnabled, RecordCount, MaximumSizeInBytes
 ```
 
-![Registro Security habilitado](capturas/05-registro-seguridad-windows.png)
+![Registro Security habilitado](../02-deteccion-auditoria/capturas/05-registro-seguridad-windows.png)
 
 El registro `Security` estaba habilitado, con **14.327 eventos** y un tamaño máximo configurado de **20 MB**. El número de eventos es una observación puntual; cambia con el uso del sistema.
 
@@ -61,7 +61,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4624} -MaxEvents 5 |
     Select-Object TimeCreated, Id, Message
 ```
 
-![Eventos 4624](capturas/06-eventos-inicio-sesion.png)
+![Eventos 4624](../02-deteccion-auditoria/capturas/06-eventos-inicio-sesion.png)
 
 Se consultaron cinco eventos del 17/11/2026. El identificador 4624 registra autenticaciones correctas, incluidas algunas realizadas por servicios; no equivale siempre a un usuario entrando manualmente al equipo.
 
@@ -71,7 +71,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 5 |
     Select-Object TimeCreated, Id, Message
 ```
 
-![Eventos 4625](capturas/07-eventos-inicio-sesion-fallidos.png)
+![Eventos 4625](../02-deteccion-auditoria/capturas/07-eventos-inicio-sesion-fallidos.png)
 
 Aparecieron cuatro eventos de fechas anteriores: tres del **30/10/2026** y uno del **26/10/2026**. No podemos considerarlos parte del incidente simulado, creado semanas después.
 
@@ -82,7 +82,7 @@ Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625} -MaxEvents 1 |
     Format-List TimeCreated, Id, Message
 ```
 
-![Detalle de un evento 4625](capturas/08-detalle-evento-4625.png)
+![Detalle de un evento 4625](../02-deteccion-auditoria/capturas/08-detalle-evento-4625.png)
 
 El evento del 30/10/2026 mostró un inicio de sesión de **tipo 2**, cuenta `ciberseguridad`, estado `0xC000006D` y subestado `0xC000006A` (contraseña incorrecta). La dirección registrada era `127.0.0.1`, de bucle local. **No hay base para afirmar que se tratara de un ataque externo.**
 
@@ -102,7 +102,7 @@ Get-NetTCPConnection |
     Format-Table -AutoSize
 ```
 
-![Conexiones y puertos TCP](capturas/09-conexiones-tcp-windows.png)
+![Conexiones y puertos TCP](../02-deteccion-auditoria/capturas/09-conexiones-tcp-windows.png)
 
 Se observaron puertos en escucha, entre ellos **135 (RPC), 139 (NetBIOS), 445 (SMB)** y **5040**, y una dirección local `10.10.10.30`. SMB resulta relevante porque el enunciado menciona accesos a recursos compartidos, pero un puerto en escucha **no prueba** una intrusión.
 
