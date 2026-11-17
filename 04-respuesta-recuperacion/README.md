@@ -2,6 +2,8 @@
 
 > **Estado:** procedimiento preparado para el incidente ficticio. Las medidas de contención **todavía no se han ejecutado** en la máquina virtual; no hay capturas prácticas de este apartado.
 
+**Orden de lectura:** alcance y prioridades de respuesta → procedimiento o playbook → medidas de contención → práctica de laboratorio aún pendiente → erradicación y recuperación → ciberresiliencia → comprobaciones pendientes. En este capítulo se distingue lo planificado de lo realmente ejecutado; no se presentan capturas ni restauraciones ficticias.
+
 ## 1. Objetivo y criterios de actuación
 
 Después de que un trabajador abra el adjunto del supuesto mensaje de Recursos Humanos, el enunciado describe alertas antivirus, conexiones externas anómalas y posibles accesos a carpetas compartidas. La prioridad inicial es detener una posible propagación y conservar pruebas sin perjudicar innecesariamente a la empresa.
