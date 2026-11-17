@@ -87,13 +87,7 @@ Start-MpScan -ScanType CustomScan -ScanPath "C:\Laboratorio\Actualizacion_RRHH.t
 
 La consulta siguiente tampoco devolvió detecciones. Se buscaron eventos **1000** y **1001** en el canal operativo de Defender y no se encontraron registros del día **17/11/2026**; por tanto **no quedó verificada la finalización del análisis en ese canal**. No se presenta como una prueba superada de detección de malware.
 
-## 7. Qué falta por comprobar
-Para asociar con fundamento la actividad de red a una exfiltración real harían falta conexiones, destinos, marcas temporales y volúmenes de tráfico coherentes, además de contrastarlos con el incidente. El análisis OSINT de una IP y la captura de tráfico del laboratorio aún no se han realizado.
-
-
----
-
-## 8. Ficha inicial del incidente INC-2026-001
+## 7. Ficha inicial del incidente INC-2026-001
 
 **Caso de clase. No es un incidente real confirmado en el laboratorio.**
 
@@ -148,11 +142,11 @@ Preservar las evidencias antes de alterarlas, valorar el aislamiento del equipo,
 
 **Pendiente:** IP sospechosa concreta, cronología completa, alcance de los datos, correlación de eventos y decisiones de contención ejecutadas.
 
-## 9. Ampliación práctica: puertos, procesos y firma digital (capturas 20–24)
+## 8. Puertos, procesos y firma digital (capturas 20–24)
 
 Esta ampliación se realizó en Windows 11 con PowerShell para observar el tráfico TCP del equipo, identificar un puerto de escucha y verificar el ejecutable asociado. **No se utilizó malware y no se ha identificado una conexión con el incidente ficticio.** Los identificadores de proceso y el estado de las conexiones son temporales; lo que aparece corresponde al momento de cada consulta.
 
-### 9.1. Conexiones TCP establecidas — captura 20
+### 8.1. Conexiones TCP establecidas — captura 20
 
 ```powershell
 Get-NetTCPConnection -State Established -ErrorAction SilentlyContinue |
@@ -164,7 +158,7 @@ Get-NetTCPConnection -State Established -ErrorAction SilentlyContinue |
 
 La consulta **no devolvió filas**. Significa que no se observaron conexiones TCP en estado `Established` en ese instante, no que la máquina carezca de conexión a Internet ni que esté libre de amenazas.
 
-### 9.2. Puertos TCP en escucha — captura 21
+### 8.2. Puertos TCP en escucha — captura 21
 
 ```powershell
 Get-NetTCPConnection -State Listen |
@@ -179,7 +173,7 @@ Se observaron, entre otros, **135** (RPC), **139** (servicios NetBIOS), **445** 
 
 El puerto **445** es relevante para el contexto del escenario porque se mencionan carpetas compartidas, pero un puerto en escucha no demuestra acceso indebido. El puerto **42050** llamó la atención para comprobar su proceso propietario.
 
-### 9.3. Relación entre puerto 42050 y PID 2704 — captura 22
+### 8.3. Relación entre puerto 42050 y PID 2704 — captura 22
 
 ```powershell
 Get-NetTCPConnection -State Listen -LocalPort 42050 |
@@ -193,7 +187,7 @@ Get-Process -Id 2704 |
 
 El resultado vinculó **`::1:42050`** con el PID **2704**, pero el segundo comando no mostró el proceso en aquella salida. `::1` es la dirección de bucle local IPv6: esa escucha estaba limitada al propio equipo, no expuesta directamente a la red.
 
-### 9.4. Identificación del proceso y servicio — captura 23
+### 8.4. Identificación del proceso y servicio — captura 23
 
 ```powershell
 Get-Process -Id 2704 -ErrorAction SilentlyContinue |
@@ -208,7 +202,7 @@ Get-CimInstance Win32_Service |
 
 La nueva comprobación permitió identificar el proceso **`OneDrive.Sync.Service`**, con una ruta dentro de `C:\Users\ciberseguridad\AppData\Local\Microsoft\OneDrive\...`. No apareció una fila adicional de servicio de Windows en la consulta realizada; por tanto, **se identificó el proceso, no un servicio registrado mediante esa consulta**.
 
-### 9.5. Verificación de la firma digital — captura 24
+### 8.5. Verificación de la firma digital — captura 24
 
 ```powershell
 $proceso = Get-Process -Id 2704 -ErrorAction SilentlyContinue
@@ -223,13 +217,13 @@ if ($proceso -and $proceso.Path) {
 
 La firma del ejecutable mostró el estado **`Valid`** y el firmante **`Microsoft Corporation`**. Junto con la ruta observada y la escucha en `::1`, el conjunto es **compatible con un componente legítimo de OneDrive**. Una firma digital válida respalda la autenticidad e integridad del binario verificado, pero no garantiza que todo comportamiento de ese proceso o de su entorno sea seguro.
 
-### 9.6. Conclusión técnica de esta ampliación
+### 8.6. Conclusión técnica de esta ampliación
 
 El análisis permitió seguir una secuencia útil de auditoría: **puerto → PID → proceso → ruta → firma digital**. No se encontró una conexión exterior sospechosa ni evidencias que relacionen el puerto 42050 con el phishing del escenario. El resultado se documenta como una comprobación real de un componente del equipo, sin atribuirle actividad maliciosa.
 
-## 10. Revisión de recursos compartidos SMB (capturas 25–27)
+## 9. Recursos compartidos SMB (capturas 25–27)
 
-### 10.1. Recursos compartidos configurados — captura 25
+### 9.1. Recursos compartidos configurados — captura 25
 
 ```powershell
 Get-SmbShare |
@@ -241,7 +235,7 @@ Get-SmbShare |
 
 El resultado mostró los recursos administrativos habituales **`ADMIN$`** (ruta `C:\WINDOWS`), **`C$`** (ruta `C:\`) e **`IPC$`** (para comunicación entre procesos). No se observaron recursos compartidos adicionales en ese momento. Su presencia no demuestra accesos indebidos ni permite reconstruir sesiones anteriores.
 
-### 10.2. Sesiones SMB activas — captura 26
+### 9.2. Sesiones SMB activas — captura 26
 
 ```powershell
 Get-SmbSession |
@@ -253,7 +247,7 @@ Get-SmbSession |
 
 La consulta no devolvió filas. **No se observaron sesiones SMB activas en ese instante.** Este comando no recupera sesiones que ya finalizaron.
 
-### 10.3. Archivos abiertos mediante SMB — captura 27
+### 9.3. Archivos abiertos mediante SMB — captura 27
 
 ```powershell
 Get-SmbOpenFile |
@@ -265,15 +259,15 @@ Get-SmbOpenFile |
 
 Tampoco aparecieron resultados. Por tanto, **no se observaron archivos abiertos por clientes SMB** en ese momento.
 
-### 10.4. Valoración técnica
+### 9.4. Valoración técnica
 
 Las consultas 25–27 aportan una imagen del estado actual del servicio de archivos: recursos administrativos presentes, sin sesiones ni archivos SMB abiertos observados. **No prueban ni descartan accesos históricos**, y no permiten concluir que los intentos de acceso a compartidos descritos en el escenario hayan ocurrido en nuestra máquina virtual. Para reconstruir accesos pasados harían falta eventos y registros adecuados de los equipos y servidores afectados, además de correlacionar usuarios y tiempos.
 
-## 11. Comprobación de la auditoría de recursos compartidos (capturas 28 y 29)
+## 10. Auditoría de recursos compartidos (capturas 28–29)
 
 Tras comprobar que en el momento de la consulta no había sesiones ni archivos SMB abiertos, revisé si Windows estaba configurado para conservar registros de accesos a recursos compartidos. La comprobación se efectuó **sin cambiar las políticas de auditoría**.
 
-### 11.1. Estado de las subcategorías de auditoría — captura 28
+### 10.1. Estado de las subcategorías de auditoría — captura 28
 
 Se intentó consultar la categoría mediante `auditpol /get /category:"Acceso a objetos"`, pero el sistema devolvió el error **0x00000057 (parámetro incorrecto)**. Para consultar la configuración real utilicé:
 
@@ -287,7 +281,7 @@ auditpol /get /category:*
 
 Dentro de **Acceso a objetos**, las subcategorías **Sistema de archivos**, **Recurso compartido de archivos** y **Recurso compartido de archivos detallado** figuraban como `Sin auditoría`. Esto supone una limitación para reconstruir determinados accesos a recursos compartidos utilizando esos eventos.
 
-### 11.2. Consulta de eventos de acceso — captura 29
+### 10.2. Consulta de eventos de acceso — captura 29
 
 ```powershell
 Get-WinEvent -FilterHashtable @{
@@ -302,13 +296,13 @@ Get-WinEvent -FilterHashtable @{
 
 La consulta no mostró eventos de los tipos **5140** (acceso a recurso compartido de red) ni **5145** (comprobación detallada de acceso). Dado que la auditoría correspondiente está desactivada, **la ausencia de estos eventos no demuestra que nunca hayan ocurrido accesos**. Solo indica que no se encontraron registros de esos identificadores en la consulta realizada.
 
-### 11.3. Conclusión de la comprobación SMB
+### 10.3. Conclusión de la comprobación SMB
 
 El sistema tiene recursos administrativos compartidos, pero en las consultas no se observaron sesiones, archivos abiertos ni eventos de auditoría SMB 5140/5145. No se puede atribuir un acceso indebido al escenario ficticio con esos resultados. Para investigar accesos pasados en un entorno real haría falta disponer de auditoría pertinente habilitada con anterioridad y correlacionar eventos de clientes y servidores.
 
-## 12. OSINT y análisis de tráfico aplicados al escenario
+## 11. OSINT, monitorización y análisis de tráfico
 
-### 12.1. Investigación en fuentes abiertas (OSINT)
+### 11.1. Investigación en fuentes abiertas (OSINT)
 
 OSINT consiste en recopilar, contrastar y documentar información disponible legítimamente en fuentes públicas. En un incidente de phishing permitiría investigar una dirección IP remota, un dominio del remitente o indicadores facilitados por el antivirus, una vez que se disponga de ellos.
 
@@ -318,7 +312,7 @@ Siguiendo el método de los apuntes de auditoría, el proceso sería: **definir 
 
 Tampoco debe confundirse reputación con prueba: que una IP aparezca en una lista de amenazas no demostraría por sí solo su participación en este incidente.
 
-### 12.2. Análisis de tráfico y herramientas de monitorización
+### 11.2. Análisis de tráfico y herramientas de monitorización
 
 En el material docente se distinguen **logs**, **SIEM** (centralización y correlación), **IDS/IPS** (detección y, en IPS, posible bloqueo), **EDR** (actividad del equipo), **NDR** (visibilidad de red) y **SOAR** (automatización de procedimientos). Son herramientas que podrían utilizarse según los recursos de la empresa; **no están desplegadas ni verificadas en este laboratorio**.
 
@@ -326,7 +320,7 @@ En Windows consultamos las conexiones TCP y los procesos propietarios. Es una ob
 
 **Conclusión:** no hay tráfico externo malicioso confirmado que pueda presentarse como hallazgo de la práctica. No añadimos capturas artificiales ni se necesita instalar una herramienta nueva solo para ilustrar el concepto.
 
-### 12.3. Limitaciones y mejoras de auditoría
+### 11.3. Limitaciones y mejoras de auditoría
 
 La consulta de `auditpol` mostró que la auditoría de acceso a recursos compartidos estaba deshabilitada. Por ello, la ausencia de eventos 5140 y 5145 no permite reconstruir accesos antiguos. En una empresa convendría definir previamente qué registros conservar, limitar su acceso, sincronizar los relojes y comprobar periódicamente las políticas de auditoría.
 
@@ -334,6 +328,12 @@ Las conclusiones de este capítulo se basan en las capturas reales y no en una s
 
 **Temario utilizado:** «2. Auditoría de incidentes de ciberseguridad»: taxonomía, controles de detección, investigación en fuentes abiertas, clasificación, valoración, documentación y seguimiento inicial.
 
+## 12. Limitaciones y comprobaciones no efectuadas
+Para asociar con fundamento la actividad de red a una exfiltración real harían falta conexiones, destinos, marcas temporales y volúmenes de tráfico coherentes, además de contrastarlos con el incidente. El análisis OSINT de una IP y la captura de tráfico del laboratorio aún no se han realizado.
+
+
+---
 
 ## 13. Conclusión del apartado
 La auditoría permitió comprobar autenticaciones, procesos, puertos, firmas digitales y configuración de auditoría de los recursos compartidos. He preparado también la ficha de clasificación y severidad provisional INC-2026-001. En conjunto, los resultados constituyen una **línea base del laboratorio** y no demuestran por sí solos una infección ni una fuga de información. La ausencia de un indicador externo verificable limita la aplicación práctica de OSINT y el análisis retrospectivo del tráfico; estas limitaciones quedan documentadas en lugar de inventar hallazgos.
+
