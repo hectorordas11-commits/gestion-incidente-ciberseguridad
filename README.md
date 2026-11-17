@@ -28,7 +28,7 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 - [Bibliografía y fuentes](FUENTES.md).
 - [Preparación del informe final en PDF](informe-final/README.md).
 
-También se conservan los archivos de desarrollo del plan, guía, cartel y prácticas como **anexos**. No es necesario abrirlos para entender los capítulos principales.
+Los capítulos reúnen todo el contenido; los archivos Markdown que duplicaban su contenido se han eliminado. Se conservan por separado únicamente las evidencias, los datos de custodia y la documentación técnica específica del laboratorio.
 
 **Estado de las capturas:** las **15 imágenes originales están incorporadas al repositorio**, en las carpetas `capturas/` correspondientes. No hace falta renombrarlas ni volver a subirlas.
 
