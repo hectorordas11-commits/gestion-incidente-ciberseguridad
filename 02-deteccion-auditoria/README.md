@@ -142,9 +142,9 @@ Preservar las evidencias antes de alterarlas, valorar el aislamiento del equipo,
 
 #### 6. Evidencias documentadas
 - [Auditoría inicial de Windows](../laboratorio/practica-00.md).
-- [Análisis del correo](../03-investigacion/practica-correo.md).
-- [Integridad SHA-256](../03-investigacion/practica-hash.md).
-- [Registro de custodia EV-001](../03-investigacion/practica-custodia.md).
+- [Investigación: análisis del correo](../03-investigacion/README.md#2-análisis-del-correo-y-adjunto-simulados).
+- [Investigación: SHA-256](../03-investigacion/README.md#3-integridad-del-adjunto-sha-256).
+- [Investigación: cadena de custodia](../03-investigacion/README.md#4-cadena-de-custodia-de-la-copia-ev-001).
 
 **Pendiente:** IP sospechosa concreta, cronología completa, alcance de los datos, correlación de eventos y decisiones de contención ejecutadas.
 
