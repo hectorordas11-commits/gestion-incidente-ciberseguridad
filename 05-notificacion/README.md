@@ -73,8 +73,78 @@ Fuentes:
 - [INCIBE-CERT: gestión de incidentes del sector privado](https://www.incibe.es/sites/default/files/contenidos/guias/doc/incibe-cert_gestion_ciberincidentes_sector_privado.pdf).
 - [CCN-CERT: ámbito y funciones](https://www.ccn-cert.cni.es/es/sobre-nosotros/faq.html).
 
-## 6. Conclusión
+## 6. Árbol de decisión de notificación aplicado al caso
+
+| Comprobación | Decisión que correspondería | Situación en el ejercicio |
+|---|---|---|
+| ¿Hay indicios de incidente de seguridad? | Activar la respuesta interna y preservar evidencias. | Sí, el escenario refiere phishing y alertas, sin atribuir esos hechos a la VM. |
+| ¿Existe una violación de seguridad de datos personales? | Determinar si hubo destrucción, pérdida, alteración, acceso o divulgación no autorizados de datos personales. | **No confirmado**. |
+| ¿La brecha supone un riesgo probable para los derechos y libertades? | Si se confirma la brecha y existe riesgo, notificar sin dilación indebida a la autoridad competente; cuando sea posible, dentro de las 72 h desde que se tiene constancia. | No puede decidirse con los datos suministrados. |
+| ¿Es probable que el riesgo sea alto? | Además, comunicarlo sin dilación indebida a los afectados, salvo las excepciones legales aplicables. | Pendiente de conocer datos, volumen, medidas y posibles consecuencias. |
+| ¿Se descarta el riesgo? | Documentar las razones, incluso si no resulta obligatorio notificar. | Tampoco puede descartarse. |
+
+**Punto de partida del plazo:** no es automáticamente el momento en que el trabajador abrió el correo ni el de la simulación. Debe registrarse cuándo el responsable del tratamiento llegó a tener constancia de una brecha de datos personales. Si la información es incompleta, el artículo 33.4 del RGPD permite proporcionarla por fases sin dilación indebida.
+
+Esta valoración se aplica exclusivamente al RGPD. Si la organización estuviera sometida a otras obligaciones sectoriales de notificación, habría que analizarlas por separado; el enunciado no aporta datos para asumirlas.
+
+## 7. Modelos de comunicación preparados (NO ENVIADOS)
+
+### 7.1. Borrador de notificación a la AEPD
+
+> **BORRADOR EDUCATIVO — NO PRESENTADO**
+>
+> **Responsable del tratamiento:** empresa ficticia del supuesto; identificación y datos de contacto por completar.
+>
+> **Referencia interna:** INC-2026-001.
+>
+> **Fecha de conocimiento de la brecha:** por determinar si se confirma.
+>
+> **Descripción provisional:** se está investigando un correo que aparentaba proceder de Recursos Humanos y la posible actividad posterior sobre sistemas de la empresa. Se han planteado indicios de acceso a recursos compartidos y posible salida de datos, aún sin confirmación.
+>
+> **Categorías y número de personas y registros afectados:** pendientes de verificar.
+>
+> **Consecuencias probables:** por determinar según naturaleza y exposición de los datos; podrían existir riesgos para la confidencialidad y para las personas.
+>
+> **Medidas:** recopilación y preservación de evidencias; evaluación del alcance y de las medidas de contención. No constan actuaciones técnicas reales sobre los sistemas de la empresa ficticia.
+>
+> **Contacto del delegado de protección de datos u otro punto de contacto:** por completar.
+>
+> **Datos pendientes y ampliaciones:** se comunicarían utilizando el canal oficial que corresponda, si concurre la obligación de notificar.
+
+Este texto **no es una notificación cumplimentada ni demuestra que exista una brecha**. En una situación real se utilizaría el formulario de la sede electrónica de la autoridad de control competente, con los datos reales y verificables.
+
+### 7.2. Borrador de comunicación a personas afectadas
+
+> **BORRADOR CONDICIONAL — NO ENVIADO**
+>
+> Asunto: Información de seguridad sobre sus datos personales
+>
+> Le informamos de que estamos investigando un incidente de seguridad que, si se confirma la afectación de sus datos personales y el riesgo correspondiente, podría requerir una comunicación individual. Los hechos, categorías de datos, posibles consecuencias y medidas de protección se indicarían solo cuando estén contrastados.
+>
+> Se facilitaría un punto de contacto real para resolver dudas y recomendaciones concretas para reducir los posibles daños. La empresa comunicaría también las medidas adoptadas o previstas para abordar la brecha.
+
+**Uso condicionado:** esta plantilla solo se utilizaría, debidamente completada, cuando se confirmase una brecha que probablemente entrañase **alto riesgo** para las personas y resultase aplicable el artículo 34. No se enviaría esta versión genérica sin información suficiente para que el destinatario comprenda y pueda mitigar el riesgo.
+
+## 8. Seguimiento documental y comunicación con organismos
+
+El responsable del incidente debería mantener un registro de decisiones con **fecha y hora, evidencia en que se basa cada valoración, persona responsable, nivel de riesgo, medida y estado**. El responsable del tratamiento, asistido en su caso por su delegado de protección de datos, decide la notificación a la autoridad competente. INCIBE-CERT puede aportar apoyo técnico en su ámbito, pero **una comunicación a INCIBE-CERT no sustituye** la notificación de datos personales a la AEPD.
+
+En este proyecto **no se han enviado correos, comunicaciones a afectados, avisos a CERT ni notificaciones oficiales**. Solo se han preparado modelos y criterios para el supuesto.
+
+### Fuentes oficiales para esta decisión
+
+- [Reglamento (UE) 2016/679, artículos 33 y 34 (EUR-Lex)](https://eur-lex.europa.eu/eli/reg/2016/679/oj/spa).
+- [AEPD: notificación de brechas de datos personales](https://www.aepd.es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/brechas-de-datos-personales-notificacion).
+- [AEPD: comunicación a personas afectadas](https://www.aepd.es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/comunicacion-de-brechas-de-datos).
+- [AEPD: herramienta Asesora Brecha](https://www.aepd.es/guias-y-herramientas/herramientas/asesora-brecha).
+- [AEPD: herramienta Comunica-Brecha RGPD](https://www.aepd.es/guias-y-herramientas/herramientas/comunica-brecha-rgpd).
+- [INCIBE-CERT: gestión de ciberincidentes del sector privado](https://www.incibe.es/sites/default/files/contenidos/guias/doc/incibe-cert_gestion_ciberincidentes_sector_privado.pdf).
+- [CCN-CERT: ámbito y funciones](https://www.ccn-cert.cni.es/es/sobre-nosotros/faq.html).
+
+## 9. Conclusión
 
 La obligación de comunicar no puede resolverse por intuición. Primero hay que determinar si existe brecha de datos personales, su alcance y el riesgo para los interesados, sin dejar transcurrir los plazos cuando proceda notificar. Este ejercicio presenta **modelos y análisis**, no notificaciones realizadas.
+
+**Estado del apartado:** documentación y modelos revisados y preparados para el informe final; no exige capturas de PowerShell ni acreditar notificaciones reales.
 
 **Referencia docente:** [intercambio de información, notificación y equipos de respuesta](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
