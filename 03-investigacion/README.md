@@ -2,7 +2,7 @@
 
 ## 1. Alcance y forma de trabajo
 
-## Objetivo
+### Objetivo
 Reunir y analizar evidencias sin confundir la simulación del laboratorio con un incidente real. El caso del profesor plantea un correo de phishing, un adjunto potencialmente malicioso, conexiones externas sospechosas y posible exfiltración.
 
 En este capítulo se presentan seguidas las prácticas que se realizaron realmente en Windows 11: correo simulado, integridad SHA-256 y cadena de custodia. **El adjunto es texto inocuo y no se ha generado ninguna infección.**
