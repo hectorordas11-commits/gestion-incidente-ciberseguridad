@@ -87,7 +87,16 @@ El enunciado indica que se ha abierto un adjunto de un correo que aparentaba pro
 
 **Resultado del ejercicio:** se consensúa una respuesta priorizada sobre el papel. **Ninguna decisión se ha ejecutado en los sistemas de una empresa real**. Las prácticas realizadas en la VM pertenecen a otros apartados del trabajo y no prueban por sí solas el supuesto ataque.
 
-## 8. Evaluación del ejercicio
+## 8. Resumen de decisiones
+
+| Tema | Decisión adoptada en la simulación | Responsable | Estado |
+|---|---|---|---|
+| Segundo equipo | Ampliar análisis y contener si procede | Seguridad / Sistemas | Acción simulada |
+| Posible exfiltración | Preservar tráfico y activar evaluación de privacidad | Seguridad / Privacidad | Acción simulada |
+| Posible persistencia | Revisar mecanismos y preparar restauración confiable | Sistemas | Acción simulada |
+| Presión de dirección | Recuperar por prioridades, con validación | Dirección / Sistemas | Acción simulada |
+
+## 9. Evaluación del ejercicio
 
 | Criterio | Observación |
 |---|---|
@@ -99,15 +108,6 @@ El enunciado indica que se ha abierto un adjunto de un correo que aparentaba pro
 | Comunicación | Se evitó confirmar públicamente exfiltraciones o medidas que no se hubieran verificado. |
 
 **Aspectos a mejorar en un ejercicio real:** aportar logs ficticios preparados con horarios y datos consistentes, establecer tiempos objetivo de respuesta y recuperación, introducir un facilitador que entregue las novedades y medir cómo cambian las decisiones. Estos elementos **no se han puesto en práctica** aquí.
-
-## 9. Resumen de decisiones
-
-| Tema | Decisión adoptada en la simulación | Responsable | Estado |
-|---|---|---|---|
-| Segundo equipo | Ampliar análisis y contener si procede | Seguridad / Sistemas | Acción simulada |
-| Posible exfiltración | Preservar tráfico y activar evaluación de privacidad | Seguridad / Privacidad | Acción simulada |
-| Posible persistencia | Revisar mecanismos y preparar restauración confiable | Sistemas | Acción simulada |
-| Presión de dirección | Recuperar por prioridades, con validación | Dirección / Sistemas | Acción simulada |
 
 ## 10. Conclusión personal
 
