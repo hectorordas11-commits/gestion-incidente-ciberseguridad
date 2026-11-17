@@ -380,7 +380,11 @@ La operación de cifrado y descifrado ha funcionado en el laboratorio. A diferen
 
 Con el ejercicio he podido comprobar el estado inicial de algunas protecciones de Windows y verificar la integridad del adjunto ficticio mediante SHA-256. La prevención en la empresa depende también de personas formadas, controles de acceso, actualización de equipos, protección del correo y una manera clara de avisar.
 
-**Pendiente:** versión gráfica imprimible del cartel. No se ha impartido la formación ni implantado una PKI o sistema de cifrado empresarial. La demostración de cifrado y descifrado CMS y sus cuatro capturas ya están documentadas.
+**Cartel antiphishing elaborado:** se ha preparado una versión gráfica para concienciar frente a correos urgentes que suplantan a Recursos Humanos. Recuerda verificar el remitente, desconfiar de adjuntos inesperados, confirmar por otro canal y avisar si ya se abrió un archivo sospechoso.
+
+![Cartel antiphishing: comprobaciones antes de abrir un adjunto de RR. HH.](capturas/cartel-antiphishing.png)
+
+El cartel es un material de formación diseñado para el caso; no se afirma que la formación se haya impartido realmente ni que exista una PKI empresarial. La demostración de cifrado y descifrado CMS y sus cuatro capturas ya están documentadas.
 
 ### Fuentes consultadas
 
