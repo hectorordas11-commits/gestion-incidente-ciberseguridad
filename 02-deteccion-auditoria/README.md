@@ -148,10 +148,89 @@ Preservar las evidencias antes de alterarlas, valorar el aislamiento del equipo,
 
 **Pendiente:** IP sospechosa concreta, cronología completa, alcance de los datos, correlación de eventos y decisiones de contención ejecutadas.
 
-## 9. Resultado y asuntos todavía no comprobados
+## 9. Ampliación práctica: puertos, procesos y firma digital (capturas 20–24)
+
+Esta ampliación se realizó en Windows 11 con PowerShell para observar el tráfico TCP del equipo, identificar un puerto de escucha y verificar el ejecutable asociado. **No se utilizó malware y no se ha identificado una conexión con el incidente ficticio.** Los identificadores de proceso y el estado de las conexiones son temporales; lo que aparece corresponde al momento de cada consulta.
+
+### 9.1. Conexiones TCP establecidas — captura 20
+
+```powershell
+Get-NetTCPConnection -State Established -ErrorAction SilentlyContinue |
+    Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, State, OwningProcess |
+    Format-Table -AutoSize
+```
+
+![Captura 20: consulta de conexiones TCP establecidas sin resultados](capturas/20-conexiones-tcp-establecidas.png)
+
+La consulta **no devolvió filas**. Significa que no se observaron conexiones TCP en estado `Established` en ese instante, no que la máquina carezca de conexión a Internet ni que esté libre de amenazas.
+
+### 9.2. Puertos TCP en escucha — captura 21
+
+```powershell
+Get-NetTCPConnection -State Listen |
+    Select-Object LocalAddress, LocalPort, State, OwningProcess |
+    Sort-Object LocalPort |
+    Format-Table -AutoSize
+```
+
+![Captura 21: lista de puertos TCP en escucha y PID](capturas/21-puertos-tcp-escucha.png)
+
+Se observaron, entre otros, **135** (RPC), **139** (servicios NetBIOS), **445** (SMB), **5040** y **42050**, además de puertos altos del sistema. En la misma auditoría, el puerto 5040 se había relacionado con `CDPSvc`.
+
+El puerto **445** es relevante para el contexto del escenario porque se mencionan carpetas compartidas, pero un puerto en escucha no demuestra acceso indebido. El puerto **42050** llamó la atención para comprobar su proceso propietario.
+
+### 9.3. Relación entre puerto 42050 y PID 2704 — captura 22
+
+```powershell
+Get-NetTCPConnection -State Listen -LocalPort 42050 |
+    Select-Object LocalAddress, LocalPort, OwningProcess
+
+Get-Process -Id 2704 |
+    Select-Object Id, ProcessName, Path
+```
+
+![Captura 22: puerto 42050 asociado al PID 2704](capturas/22-identificacion-proceso-puerto-42050.png)
+
+El resultado vinculó **`::1:42050`** con el PID **2704**, pero el segundo comando no mostró el proceso en aquella salida. `::1` es la dirección de bucle local IPv6: esa escucha estaba limitada al propio equipo, no expuesta directamente a la red.
+
+### 9.4. Identificación del proceso y servicio — captura 23
+
+```powershell
+Get-Process -Id 2704 -ErrorAction SilentlyContinue |
+    Select-Object Id, ProcessName, Path
+
+Get-CimInstance Win32_Service |
+    Where-Object { $_.ProcessId -eq 2704 } |
+    Select-Object Name, DisplayName, State, ProcessId
+```
+
+![Captura 23: identificación de OneDrive.Sync.Service](capturas/23-comprobacion-proceso-servicio-42050.png)
+
+La nueva comprobación permitió identificar el proceso **`OneDrive.Sync.Service`**, con una ruta dentro de `C:\Users\ciberseguridad\AppData\Local\Microsoft\OneDrive\...`. No apareció una fila adicional de servicio de Windows en la consulta realizada; por tanto, **se identificó el proceso, no un servicio registrado mediante esa consulta**.
+
+### 9.5. Verificación de la firma digital — captura 24
+
+```powershell
+$proceso = Get-Process -Id 2704 -ErrorAction SilentlyContinue
+
+if ($proceso -and $proceso.Path) {
+    Get-AuthenticodeSignature -FilePath $proceso.Path |
+        Select-Object Status, @{Name="Firmante";Expression={$_.SignerCertificate.Subject}}
+}
+```
+
+![Captura 24: firma digital válida de Microsoft Corporation](capturas/24-verificacion-firma-digital-onedrive.png)
+
+La firma del ejecutable mostró el estado **`Valid`** y el firmante **`Microsoft Corporation`**. Junto con la ruta observada y la escucha en `::1`, el conjunto es **compatible con un componente legítimo de OneDrive**. Una firma digital válida respalda la autenticidad e integridad del binario verificado, pero no garantiza que todo comportamiento de ese proceso o de su entorno sea seguro.
+
+### 9.6. Conclusión técnica de esta ampliación
+
+El análisis permitió seguir una secuencia útil de auditoría: **puerto → PID → proceso → ruta → firma digital**. No se encontró una conexión exterior sospechosa ni evidencias que relacionen el puerto 42050 con el phishing del escenario. El resultado se documenta como una comprobación real de un componente del equipo, sin atribuirle actividad maliciosa.
+
+## 10. Resultado y asuntos todavía no comprobados
 
 La auditoría de Windows aporta una línea base: eventos y puertos observados no equivalen a una infección. Faltan comprobaciones de OSINT sobre un indicador concreto, análisis de tráfico y correlación con las alertas del escenario. Esas pruebas no deben considerarse realizadas.
 
 
-## 10. Conclusión del apartado
+## 11. Conclusión del apartado
 La auditoría muestra que se pueden consultar autenticaciones, servicios y puertos con herramientas nativas de Windows. Es una **línea base previa**: no demuestra por sí misma ni phishing ejecutado ni robo de información. La ficha inicial del incidente está incorporada al final de este mismo capítulo.
