@@ -112,7 +112,7 @@ Mediremos la participación, los aciertos en cuestionarios, el porcentaje de com
 
 La finalidad no es conseguir que nadie se equivoque nunca, sino disminuir la probabilidad de error y lograr que un aviso temprano permita actuar antes de que el problema se propague. En el caso planteado, una verificación independiente de la supuesta petición de Recursos Humanos habría sido una barrera importante.
 
-**Referencia de temario:** [Incidentes de ciberseguridad, material del profesor](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/), bloque 1: prevención, principios de seguridad, equipos y formación.
+**Referencia de temario:** [Incidentes de ciberseguridad, material de clase](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/), bloque 1: prevención, principios de seguridad, equipos y formación.
 
 ## 3. Guía práctica para los empleados
 
