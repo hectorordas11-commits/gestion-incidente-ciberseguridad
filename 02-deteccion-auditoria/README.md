@@ -1,7 +1,7 @@
 # 02 · Detección y auditoría
 
 ## 1. Qué estamos investigando
-En el caso del profesor, un empleado abre un adjunto de un correo aparentemente enviado por Recursos Humanos. Después aparecen alertas antivirus, conexiones hacia una IP no habitual, intentos de acceder a recursos compartidos y la posibilidad de que se hayan extraído datos personales de clientes.
+En el escenario planteado, un empleado abre un adjunto de un correo aparentemente enviado por Recursos Humanos. Después aparecen alertas antivirus, conexiones hacia una IP no habitual, intentos de acceder a recursos compartidos y la posibilidad de que se hayan extraído datos personales de clientes.
 
 **Clasificación provisional del caso:** phishing con posible malware, compromiso de un equipo, posibles accesos no autorizados y posible exfiltración. **Severidad inicial propuesta: alta**, por el riesgo sobre datos personales y sistemas internos; debe revisarse según las evidencias reales y el alcance confirmado.
 
@@ -102,7 +102,7 @@ Para asociar con fundamento la actividad de red a una exfiltración real harían
 | Identificador | INC-2026-001 |
 | Tipo | Phishing; posible ejecución de malware y acceso no autorizado |
 | Severidad provisional | **Alta**, pendiente de confirmar impacto y alcance |
-| Origen de la alerta | Escenario facilitado por el profesor |
+| Origen de la alerta | Escenario ficticio de este trabajo |
 | Fecha y hora de detección real | No facilitadas en el enunciado |
 | Estado | Investigación simulada en desarrollo |
 | Responsable de documentación | Analista del laboratorio (rol de la práctica) |
