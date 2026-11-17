@@ -63,7 +63,7 @@ Get-Content "C:\Laboratorio\Evidencias\ficha_analisis_correo.txt"
 ![Ficha de análisis del correo](capturas/15-ficha-analisis-phishing.png)
 
 ### Conclusión
-La simulación permite identificar señales de ingeniería social y practicar la documentación de evidencias. No aporta cabeceras de correo reales, comportamiento de malware ni prueba de exfiltración. La integridad del adjunto se documenta en [SHA-256](practica-hash.md).
+La simulación permite identificar señales de ingeniería social y practicar la documentación de evidencias. No aporta cabeceras de correo reales, comportamiento de malware ni prueba de exfiltración. La integridad del adjunto se documenta en [SHA-256](#3-integridad-del-adjunto-sha-256).
 
 ## 3. Integridad del adjunto: SHA-256
 
@@ -113,7 +113,7 @@ Get-Item "C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt" |
 Se observaron **198 bytes**, fecha de creación de la copia **17/11/2026 10:29:54** y última modificación **17/11/2026 10:27:26**. La copia puede heredar la fecha de modificación del original mientras recibe una nueva fecha de creación.
 
 ### Conclusión
-La comparación SHA-256 respalda que no hubo cambios en el contenido entre el original y la copia verificada. Es una comprobación de integridad reproducible, pero **no acredita por sí sola el origen, la autenticidad ni toda la cadena de custodia**. El registro de movimientos se trata en [la práctica de custodia](practica-custodia.md).
+La comparación SHA-256 respalda que no hubo cambios en el contenido entre el original y la copia verificada. Es una comprobación de integridad reproducible, pero **no acredita por sí sola el origen, la autenticidad ni toda la cadena de custodia**. El registro de movimientos se trata en [la cadena de custodia de este capítulo](#4-cadena-de-custodia-de-la-copia-ev-001).
 
 ## 4. Cadena de custodia de la copia EV-001
 
