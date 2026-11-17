@@ -8,7 +8,7 @@ Para practicar los procedimientos he utilizado una máquina virtual Windows 11 P
 
 **Criterio fundamental:** los hechos del enunciado, las observaciones de laboratorio y las hipótesis se presentan por separado. No se inventan detecciones, accesos ni filtraciones.
 
-## Índice principal — seis capítulos completos
+## Índice principal — seis capítulos organizados
 
 Los **seis apartados** están organizados para leerse de principio a fin desde el documento principal de cada carpeta: explicación, decisiones, herramientas o prácticas, resultados y conclusión. Las prácticas realmente realizadas incluyen sus **capturas PNG** en el lugar correspondiente.
 
@@ -20,6 +20,8 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 | 4 | [Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Playbook de contención, erradicación, recuperación y ciberresiliencia | Procedimiento desarrollado; falta práctica técnica |
 | 5 | [Notificación y CERT/CSIRT](05-notificacion/README.md) | Aviso interno, criterios AEPD/RGPD, valoración de riesgo y equipos de respuesta | Criterios RGPD, borradores de aviso y CERT/CSIRT revisados; sin comunicaciones reales |
 | 6 | [Simulación de reunión](06-simulacion/README.md) | Roles, cuatro novedades, decisiones, responsables y acta | Ejercicio de mesa completo: cuatro novedades, acta, decisiones y evaluación |
+
+**Organización de la entrega:** cada capítulo sigue una secuencia de objetivos, actuaciones, evidencias y conclusiones. En el **apartado 3** las seis tareas del enunciado aparecen expresamente en su orden original; la cronología, el análisis complementario y la recopilación forense con capturas 30–32 se conservan como anexos, sin sustituir las respuestas requeridas. Los capítulos 1, 2 y 4–6 están ordenados por sus temas y fases de trabajo. El apartado 4 mantiene pendientes sus pruebas técnicas, que no se presentan como ejecutadas.
 
 ## Documentos complementarios y evidencias
 
