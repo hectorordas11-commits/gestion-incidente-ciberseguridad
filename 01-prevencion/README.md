@@ -1,4 +1,8 @@
-# 01 · Prevención y concienciación
+# 01 · Prevención y concienciación: capítulo completo
+
+> **Caso ficticio:** empresa de aproximadamente cien personas. Los apartados de política y formación son propuestas; las capturas de Windows y la comprobación SHA-256 son pruebas reales del laboratorio.
+
+## 1. Caso, principios de seguridad y medidas de protección
 
 ## Introducción
 
@@ -30,9 +34,242 @@ Además, hacen falta mecanismos de autenticación, autorización y trazabilidad 
 
 Se trata de **medidas recomendadas**, no de controles cuya implantación se haya comprobado en la empresa ficticia.
 
-La política de puestos de trabajo, el análisis de debilidades y un calendario de formación se desarrollan en el [plan de prevención y concienciación](plan-concienciacion.md).
+El plan detallado, la formación y las normas internas se incluyen a continuación.
 
-## 3. Pruebas realizadas en Windows 11
+## 2. Plan de prevención y formación de la plantilla
+
+#### 1. Punto de partida
+
+La empresa del caso tiene alrededor de cien empleados. El incidente comienza cuando una persona recibe un correo aparentemente enviado por Recursos Humanos y abre un documento adjunto. Este hecho demuestra por qué la seguridad no puede depender únicamente del antivirus: también hacen falta procedimientos claros y trabajadores capaces de identificar mensajes dudosos.
+
+El plan propuesto se basa en tres elementos: **personas, procesos y tecnología**. No consta que la empresa ficticia haya implantado estas medidas; son propuestas de mejora para el escenario.
+
+#### 2. Principios que queremos proteger
+
+| Principio | Qué significa | Riesgo del caso | Medida preventiva |
+|---|---|---|---|
+| Confidencialidad | Solo acceden a los datos las personas autorizadas | Posible fuga de datos de clientes | Permisos mínimos, cifrado y MFA |
+| Integridad | La información no se altera sin autorización | Modificación de documentos y registros | Control de cambios, hashes y copias |
+| Disponibilidad | El servicio sigue utilizable | Infección y parada de equipos | Copias, continuidad y restauración comprobada |
+
+A estos principios se suman la trazabilidad (saber quién hizo cada acción), la autenticidad (comprobar identidades) y el control de acceso.
+
+#### 3. Debilidades que debemos revisar
+
+**Humanas.** Abrir adjuntos inesperados, confiar en la autoridad aparente de Recursos Humanos, reutilizar contraseñas o no saber dónde comunicar un problema.
+
+**Técnicas.** Sistemas sin actualizar, protección desactivada, macros sin restricciones, accesos excesivos a carpetas compartidas, falta de segmentación y registros insuficientes.
+
+**Organizativas.** Ausencia de un protocolo de aviso, formación esporádica, responsables poco definidos, copias sin pruebas de restauración o falta de revisión de permisos.
+
+Estas son **posibles debilidades a evaluar**, no hallazgos demostrados en la empresa ficticia.
+
+#### 4. Política mínima para los puestos de trabajo
+
+1. **Cuentas y privilegios.** Cada persona utiliza una cuenta propia y acceso solo a los recursos necesarios; administración separada y justificada.
+2. **Identidades.** MFA en servicios compatibles, contraseñas robustas y gestor autorizado. No se comparten credenciales.
+3. **Actualizaciones.** Sistemas operativos, navegador, lector de documentos y antivirus actualizados.
+4. **Correo.** Filtrado de adjuntos, comprobaciones SPF/DKIM/DMARC cuando proceda y bloqueo de tipos de archivo de alto riesgo. Ningún filtro garantiza detectar el 100 % de los mensajes.
+5. **Aplicaciones.** Software autorizado, control de macros y bloqueo de ejecución de archivos desconocidos conforme a la política empresarial.
+6. **Dispositivos y USB.** Solo medios y periféricos permitidos; bloqueo de pantalla y cifrado de portátiles.
+7. **Red.** Firewall activo, segmentación, servicios innecesarios deshabilitados y carpetas compartidas limitadas por permisos.
+8. **Copias y recuperación.** Copias protegidas, retención definida y restauraciones de prueba.
+9. **Registros.** Auditoría habilitada y acceso restringido a logs.
+10. **Notificación.** Ante un correo sospechoso se avisa por un canal oficial; no se borra ni se reenvía indiscriminadamente.
+
+#### 5. Formación para aproximadamente cien empleados
+
+**Objetivo general:** que cualquier trabajador sepa reconocer señales habituales de phishing, sepa qué no debe hacer y conozca cómo avisar rápidamente.
+
+| Momento | Actividad | Público | Cómo comprobarla |
+|---|---|---|---|
+| Inicio | Sesión de 45 minutos: correo falso de RR. HH., enlaces, adjuntos, contraseñas y notificación | Toda la plantilla | Asistencia y cuestionario |
+| Semana siguiente | Guía breve por correo y cartel en zonas comunes o intranet | Toda la plantilla | Confirmar difusión |
+| Cada trimestre | Microformación de 10–15 minutos | Toda la plantilla | Preguntas de repaso |
+| Semestralmente | Simulación educativa de phishing, sin adjuntos peligrosos ni recogida de contraseñas | Usuarios autorizados por la organización | Porcentaje de aviso, dudas recurrentes y aprendizaje |
+| Anualmente | Repaso de procedimientos, mejoras y nuevas amenazas | Empleados y responsables | Encuesta y revisión del plan |
+
+### Adaptación por perfiles
+
+- **Personal general:** señales de phishing, enlaces, adjuntos y reporte.
+- **Recursos Humanos y Finanzas:** suplantación de responsables y solicitudes de cambios de datos o pagos.
+- **Administradores de sistemas:** privilegios, registros, accesos remotos, copias y respuesta inicial.
+- **Dirección:** criterios de escalado, decisiones y continuidad.
+
+### Indicadores para evaluar el plan
+
+Mediremos la participación, los aciertos en cuestionarios, el porcentaje de comunicaciones correctamente notificadas y el tiempo de aviso durante ejercicios. Se compararán resultados antes y después de la formación; **no se inventarán porcentajes**, porque todavía no hemos impartido el programa.
+
+##### 7. Respuesta ante un mensaje sospechoso
+
+1. No abrir el adjunto ni pulsar enlaces.
+2. Verificar la solicitud mediante un canal conocido, no respondiendo al propio mensaje.
+3. Comunicar la incidencia al canal interno de seguridad o soporte.
+4. Conservar el correo y seguir instrucciones; no eliminar pruebas ni intentar investigar por cuenta propia.
+5. Si el archivo ya se abrió, comunicarlo inmediatamente y seguir las indicaciones de contención del equipo técnico.
+
+### Conclusión
+
+La finalidad no es conseguir que nadie se equivoque nunca, sino disminuir la probabilidad de error y lograr que un aviso temprano permita actuar antes de que el problema se propague. En el caso planteado, una verificación independiente de la supuesta petición de Recursos Humanos habría sido una barrera importante.
+
+**Referencia de temario:** [Incidentes de ciberseguridad, material del profesor](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/), bloque 1: prevención, principios de seguridad, equipos y formación.
+
+## 3. Guía práctica para los empleados
+
+**Empresa ficticia del caso — Material de concienciación**
+
+### Antes de abrir un mensaje o archivo
+
+**1. Comprobar quién escribe.** El nombre visible puede ser «Recursos Humanos», pero eso no demuestra quién ha enviado realmente el mensaje. Hay que revisar la dirección y comprobar si se esperaba esa comunicación.
+
+**2. Desconfiar de la urgencia inesperada.** Mensajes como «antes de finalizar la jornada» pueden utilizar la presión para evitar que pensemos.
+
+**3. Revisar la petición.** Una actualización de nóminas, datos bancarios o contraseñas debería seguir los procedimientos habituales. Si el mensaje pide saltarse esos procedimientos, es una señal de alerta.
+
+**4. No abrir adjuntos inesperados.** Ni siquiera cuando tienen nombres aparentemente normales. Los ficheros comprimidos, ejecutables y documentos que piden habilitar contenido merecen especial atención.
+
+**5. Comprobar por otro canal.** Llamar a Recursos Humanos con el número que ya conocemos o consultar la intranet; no utilizar el teléfono ni el enlace proporcionado en el mensaje dudoso.
+
+### Si sospechas de phishing
+
+- No contestes, no sigas enlaces y no abras el adjunto.
+- Utiliza el canal corporativo de reporte o informa al equipo de soporte.
+- Indica cuándo lo recibiste, el remitente aparente, el asunto y si has abierto algo.
+- Conserva el mensaje siguiendo las instrucciones del personal responsable.
+
+### Si ya has abierto el archivo
+
+- Comunícalo **de inmediato**, aunque no haya aparecido ninguna alerta.
+- No borres mensajes ni archivos para «limpiar» el equipo.
+- No desactives el antivirus ni intentes arreglarlo por tu cuenta.
+- Sigue las instrucciones del equipo técnico sobre aislamiento, cambio de credenciales y revisión.
+
+### Ejemplo de nuestro laboratorio
+
+El correo ficticio creado durante la práctica aparenta proceder de `rrhh@empresa-ejemplo.invalid`, utiliza el asunto **«Actualización urgente de datos de empleado»** y pide abrir `Actualizacion_RRHH.txt`.
+
+Estas señales justifican **verificar** la petición y comunicar la sospecha. El archivo del laboratorio es deliberadamente inocuo; **no se ha enviado un ataque real**.
+
+### Mensaje final
+
+**Si un correo te mete prisa, dedica un momento a comprobarlo. Avisar a tiempo también es una medida de seguridad.**
+
+## 4. Cartel antiphishing (texto listo para maquetar)
+
+**Material de concienciación diseñado para una empresa ficticia de unos cien empleados.** Este archivo recoge el texto definitivo del cartel para poder utilizarlo en la intranet, enviarlo por correo o convertirlo posteriormente en una imagen imprimible.
+
+---
+
+### ¿RECURSOS HUMANOS TE PIDE ALGO URGENTE?
+
+### NO ABRAS EL ADJUNTO SIN COMPROBARLO
+
+**1. VERIFICA** quién envía realmente el mensaje.
+
+**2. DESCONFÍA** de una urgencia inesperada.
+
+**3. CONFIRMA** la petición por teléfono o por un canal conocido.
+
+**4. AVISA** al equipo de seguridad si algo no encaja.
+
+> **SI YA HAS ABIERTO EL ARCHIVO, INFÓRMALO CUANTO ANTES.**
+
+**Un minuto de comprobación puede evitar un incidente.**
+
+---
+
+### Justificación del diseño
+
+El cartel se centra en el vector de entrada del caso: un correo que aparenta proceder de Recursos Humanos. Utiliza una pregunta inicial para captar la atención y cuatro verbos fáciles de recordar. Evita culpar a la persona que cometió el error; lo importante es que comunique el incidente para reducir su impacto.
+
+**Formato recomendado:** A4 vertical, tipografía grande, contraste alto, cuatro acciones visibles y un canal corporativo real de aviso cuando la empresa lo defina. **No inventamos un teléfono ni una dirección de contacto.**
+
+**Estado:** texto del cartel preparado; versión gráfica imprimible pendiente de maquetación.
+
+## 5. Criptografía y certificados
+
+#### 1. Por qué importa en este caso
+
+El escenario incluye un posible acceso a información de clientes y un archivo que necesitamos conservar como evidencia. La criptografía ayuda a proteger la confidencialidad, verificar la integridad y comprobar determinadas identidades, aunque **no sustituye** a la formación y al control de accesos.
+
+#### 2. Cifrado simétrico
+
+Se usa una misma clave secreta para cifrar y descifrar datos. Por ejemplo, **AES** se utiliza habitualmente para proteger información almacenada o transmitida. Su ventaja es la eficiencia al trabajar con cantidades grandes de datos. Su dificultad principal consiste en gestionar y distribuir la clave sin exponerla.
+
+**Aplicación al caso:** cifrado de equipos portátiles, discos y copias de seguridad para reducir consecuencias si alguien obtiene acceso físico al dispositivo. La protección depende también de cómo se gestionen las claves.
+
+#### 3. Cifrado asimétrico
+
+Utiliza un par de claves, una pública y otra privada, con funciones distintas. Según el algoritmo y el protocolo, permite cifrar pequeñas piezas de información, establecer mecanismos de intercambio de claves o crear firmas digitales. No significa que todos los sistemas asimétricos sirvan indistintamente para cada uso.
+
+**Aplicación al caso:** comunicaciones autenticadas y servicios internos que utilizan claves públicas y certificados.
+
+#### 4. Diferencia entre cifrar, hacer hash y firmar
+
+| Técnica | Para qué sirve | ¿Se puede recuperar el texto original? | Ejemplo |
+|---|---|---|---|
+| Cifrado | Mantener información confidencial | Sí, con la clave adecuada | AES |
+| Hash criptográfico | Obtener una huella para comprobar integridad | No está diseñado para recuperar el original | SHA-256 |
+| Firma digital | Comprobar que la firma corresponde a la clave y que el contenido no ha cambiado | No es un mecanismo de cifrado del documento | Firma con clave privada |
+
+Un hash coincidente es una prueba sólida de igualdad de contenido en el contexto de la práctica, pero **no prueba por sí solo quién creó el archivo ni que no sea peligroso**.
+
+### Práctica real realizada con SHA-256
+
+En Windows 11 ejecuté:
+
+```powershell
+Get-FileHash -Path "C:\Laboratorio\Actualizacion_RRHH.txt" -Algorithm SHA256
+```
+
+![Hash SHA-256 del adjunto simulado](../03-investigacion/capturas/12-hash-sha256-adjunto.png)
+
+Después comparé el original y su copia:
+
+```powershell
+Get-FileHash "C:\Laboratorio\Actualizacion_RRHH.txt" -Algorithm SHA256
+Get-FileHash "C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt" -Algorithm SHA256
+```
+
+![Comprobación de hashes idénticos](../03-investigacion/capturas/13-verificacion-integridad-sha256.png)
+
+Los hashes coincidieron. La práctica se explica con más detalle en [integridad de evidencias](../03-investigacion/practica-hash.md).
+
+#### 5. Firmas digitales
+
+Una firma digital se crea utilizando una clave privada y puede verificarse mediante la clave pública correspondiente. Permite detectar cambios en el contenido firmado y verificar la relación con el titular de la clave, siempre que esa relación sea fiable. **No debe confundirse con insertar una imagen de una firma manuscrita.**
+
+En un correo empresarial, la firma y la validación de identidad pueden reforzar la confianza, aunque sigue siendo necesario revisar el contexto del mensaje.
+
+#### 6. Certificados digitales y PKI
+
+Un certificado digital relaciona datos de identidad con una clave pública. Una **PKI (infraestructura de clave pública)** establece los componentes y procedimientos que hacen posible emitir, validar y revocar certificados: autoridades de certificación, registros, políticas y mecanismos para comprobar la vigencia.
+
+Por ejemplo, cuando el navegador se conecta a un portal mediante HTTPS, valida el certificado del servidor dentro de una cadena de confianza. Un certificado válido del sitio **no significa** que cualquier documento que aparezca en él sea seguro.
+
+#### 7. Diffie-Hellman
+
+Diffie-Hellman permite que dos participantes acuerden un secreto compartido a través de un canal que puede ser observado. Los valores públicos no revelan directamente el secreto privado. Sus versiones modernas se utilizan en protocolos de comunicación segura.
+
+**Limitación:** Diffie-Hellman sin autenticación es vulnerable a un intermediario que suplante a uno de los extremos. Por eso se integra en protocolos que también verifican la identidad de los participantes.
+
+#### 8. Relación con las necesidades de la empresa
+
+| Necesidad | Mecanismo orientativo |
+|---|---|
+| Proteger portátiles y copias | Cifrado simétrico del almacenamiento |
+| Mantener comunicación segura con servicios | TLS, certificados y mecanismos criptográficos adecuados |
+| Comprobar que una evidencia no cambió | SHA-256 |
+| Verificar documentos firmados | Firma digital y validación de certificados |
+| Establecer secretos de sesión | Intercambio de claves autenticado |
+
+### Conclusión
+
+En esta práctica hemos **aplicado SHA-256**, pero los restantes mecanismos se han explicado teóricamente: no afirmamos haber configurado una PKI, firmado documentos o implantado cifrado corporativo. La idea clave es elegir cada mecanismo según el objetivo: confidencialidad, integridad o autenticidad.
+
+**Referencia docente:** [Incidentes de ciberseguridad, bloque 1](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
+
+## 6. Comprobaciones reales de Microsoft Defender y firewall
 
 Para comprobar parte de la protección de la máquina virtual `W11_Incidente`, utilicé PowerShell.
 
@@ -60,29 +297,13 @@ Los tres perfiles —`Domain`, `Private` y `Public`— aparecieron habilitados (
 
 Estas comprobaciones corresponden al **estado inicial del laboratorio**, no al funcionamiento de la empresa del enunciado.
 
-## 4. Formación y materiales para los empleados
+## 7. Conclusión del apartado
 
-En una empresa de unos cien trabajadores conviene combinar una sesión de inicio con recordatorios, materiales accesibles y simulaciones educativas. No basta con repartir normas: también hay que comprobar si las personas saben aplicarlas.
+Con el ejercicio he podido comprobar el estado inicial de algunas protecciones de Windows y verificar la integridad del adjunto ficticio mediante SHA-256. La prevención en la empresa depende también de personas formadas, controles de acceso, actualización de equipos, protección del correo y una manera clara de avisar.
 
-He preparado estos materiales:
+**Pendiente:** versión gráfica imprimible del cartel. No se ha impartido la formación ni implantado una PKI o sistema de cifrado empresarial. Si se requiere una demostración adicional de cifrado se añadirá después de realizarla.
 
-- [Plan de concienciación y política de puestos](plan-concienciacion.md): destinatarios, calendario, riesgos, medidas y evaluación.
-- [Guía rápida para reconocer el phishing](guia-antiphishing.md): instrucciones claras sobre qué hacer antes y después de abrir un mensaje sospechoso.
-- [Cartel antiphishing](cartel-antiphishing.md): mensaje breve orientado al caso de Recursos Humanos; el contenido está redactado y queda por maquetar una versión gráfica imprimible.
+## Bibliografía
 
-## 5. Criptografía aplicada a la seguridad
-
-En la [explicación de criptografía](criptografia.md) se desarrollan con ejemplos el cifrado simétrico y asimétrico, las funciones hash, las firmas digitales, los certificados, la PKI y Diffie-Hellman. También se explica cuándo corresponde utilizar cada mecanismo.
-
-La demostración realizada en el laboratorio ha sido el **cálculo y comparación de hashes SHA-256 del archivo ficticio y su copia**. Las pruebas y capturas completas están en [investigación](../03-investigacion/practica-hash.md).
-
-## 6. Conclusión
-
-Después de revisar el caso, considero que el error más importante no fue únicamente abrir un archivo, sino que la empresa debe tener suficientes barreras para que un único error humano no desemboque en un incidente grave. Formar a la plantilla, reducir privilegios, proteger los puestos, limitar accesos y facilitar el aviso temprano son medidas complementarias.
-
-**Estado del apartado:** redacción teórica, plan de formación, guía, texto del cartel y prácticas de Defender/firewall documentados. Queda pendiente transformar el cartel en una pieza visual definitiva y, si el profesor exige una demostración adicional de cifrado, realizarla y documentarla con resultados reales.
-
-## Referencias
-
-- [Material del profesor: Incidentes de ciberseguridad, bloque 1](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
-- [INCIBE — recursos de ciberseguridad](https://www.incibe.es/).
+- [Material docente de incidentes de ciberseguridad](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
+- [Fuentes del proyecto](../FUENTES.md).
