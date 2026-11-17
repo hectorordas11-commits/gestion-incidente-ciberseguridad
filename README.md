@@ -1,52 +1,36 @@
 # Gestión de un incidente de ciberseguridad
 
-**Trabajo práctico individual · En desarrollo**
+**Trabajo práctico individual · Documentación en curso · 17 de noviembre de 2026**
 
-Investigación y respuesta ante un incidente ficticio de phishing en una empresa de aproximadamente 100 empleados. El caso incluye ejecución de un adjunto malicioso, alertas antivirus, conexiones externas sospechosas, intentos de acceso a carpetas compartidas y una posible exposición de datos personales.
+El trabajo analiza un **incidente ficticio de phishing** en una empresa de aproximadamente cien empleados. Según el enunciado, una persona abrió un archivo adjunto, aparecieron alertas del antivirus, conexiones externas sospechosas, posibles accesos a carpetas compartidas y riesgo de exposición de datos personales de clientes.
 
-> **Alcance:** las pruebas se realizarán en VirtualBox con Windows y Linux, en un entorno autorizado y con archivos inocuos. Separaremos los **hechos del enunciado**, las **hipótesis** y los **resultados comprobados en el laboratorio**.
+Para comprobar los procedimientos he utilizado una máquina virtual con **Windows 11 Pro** y herramientas como **PowerShell, Microsoft Defender y el registro de eventos de Windows**. El correo y el adjunto de la práctica son **archivos inocuos creados expresamente para el laboratorio**.
 
-## Organización
+> **Criterio de trabajo:** diferencio los hechos que plantea el caso, las observaciones reales obtenidas en Windows y las hipótesis que todavía habría que comprobar. No presento eventos antiguos como indicios de una infección simulada.
 
-Cada actividad contiene **sus propias explicaciones, comandos, capturas y resultados**, para que pueda leerse de principio a fin sin buscar evidencias en carpetas ajenas.
+## Índice
 
-| Apartado | Contenido |
-|---|---|
-| [01 · Prevención](01-prevencion/README.md) | Riesgos, políticas, formación, cartel, criptografía y prácticas |
-| [02 · Detección y auditoría](02-deteccion-auditoria/README.md) | Clasificación, logs, monitorización, OSINT y ficha inicial |
-| [03 · Investigación](03-investigacion/README.md) | Correo, evidencias, análisis de red, SHA-256 y custodia |
-| [04 · Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Contención, firewall, credenciales, recuperación y ciberresiliencia |
-| [05 · Notificación](05-notificacion/README.md) | Comunicación interna, AEPD y CERT/CSIRT |
-| [06 · Simulación](06-simulacion/README.md) | Reunión y decisiones ante los cuatro cambios del caso |
-| [Laboratorio VirtualBox](laboratorio/README.md) | Preparación de Windows/Linux y Práctica 00 |
-| [Informe final](informe-final/README.md) | PDF técnico de entrega |
-| [Fuentes](FUENTES.md) | Apuntes y referencias |
+| Sección | Contenido | Situación |
+|---|---|---|
+| [Laboratorio y auditoría inicial](laboratorio/practica-00.md) | Identificación del equipo, Defender, firewall, registro de eventos, puertos y procesos | Pruebas realizadas |
+| [01 · Prevención](01-prevencion/README.md) | Riesgos, protección de puestos, formación, phishing, conceptos de criptografía | Redacción inicial y pruebas |
+| [02 · Detección y auditoría](02-deteccion-auditoria/README.md) | Severidad provisional, activos, autenticaciones y red | Redacción inicial y pruebas |
+| [Ficha inicial del incidente](02-deteccion-auditoria/ficha-incidente.md) | Hechos, hipótesis, riesgos y evidencias | Borrador fundamentado |
+| [03 · Investigación](03-investigacion/README.md) | Correo, adjunto, integridad y custodia | Prácticas realizadas |
+| [Análisis del correo](03-investigacion/practica-correo.md) | Simulación educativa del phishing | Documentado |
+| [Hash SHA-256](03-investigacion/practica-hash.md) | Huellas y comparación de copias | Documentado |
+| [Cadena de custodia](03-investigacion/practica-custodia.md) | Registro EV-001 | Documentado |
+| [04 · Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Contención, erradicación, recuperación y resiliencia | Pendiente de práctica |
+| [05 · Notificación](05-notificacion/README.md) | Comunicaciones, AEPD y CERT/CSIRT | Pendiente |
+| [06 · Simulación](06-simulacion/README.md) | Reunión ante cambios del escenario | Pendiente |
+| [Fuentes](FUENTES.md) | Apuntes y referencias | En elaboración |
+| [Informe final](informe-final/README.md) | Documento PDF con el trabajo completo | Pendiente |
 
-## Cómo documentamos cada práctica
+## Cómo se están organizando las pruebas
 
-En el archivo Markdown de la práctica se incluirán, en este orden:
+Cada práctica incluye su objetivo, los comandos realmente ejecutados, la interpretación de los resultados y las capturas correspondientes en la carpeta `capturas/` de su apartado. Las capturas 01–15 ya han sido recibidas y clasificadas por secciones; **sus imágenes originales aún deben incorporarse a GitHub para que los enlaces de las páginas se vean**.
 
-1. **Objetivo y relación con el incidente.**
-2. **Entorno y herramienta utilizada.**
-3. **Comando o procedimiento**, con una breve explicación.
-4. **Captura real** insertada inmediatamente después del comando (en la subcarpeta `capturas/` de esa misma actividad).
-5. **Resultado obtenido e interpretación**, dejando claro qué demuestra y qué no.
-6. **Conclusión** y, si procede, referencia a archivos adicionales como scripts `.ps1` o `.sh` y registros saneados.
+## Qué falta
+Todavía se deben realizar las prácticas de aislamiento y respuesta, preparar Ubuntu y comprobar la red aislada, ampliar el análisis OSINT y de tráfico, completar materiales de concienciación, notificaciones y reunión final, y redactar el PDF de entrega.
 
-Ejemplo de estructura de una práctica: [SHA-256 (plantilla por realizar)](03-investigacion/practica-hash.md).
-
-Los scripts largos se guardarán junto a la práctica que los utiliza. No se crearán scripts ni evidencias ficticias para rellenar carpetas.
-
-## Estado del trabajo
-
-- [x] Estructura inicial y reorganización por actividades.
-- [ ] Práctica 00: preparar y documentar el laboratorio.
-- [ ] Prevención y concienciación.
-- [ ] Detección y auditoría.
-- [ ] Investigación y análisis.
-- [ ] Respuesta y recuperación.
-- [ ] Notificación y CERT/CSIRT.
-- [ ] Simulación y defensa.
-- [ ] Entrega final PDF.
-
-**Seguridad:** no subir contraseñas, tokens, datos personales, malware, volcados de memoria, imágenes de discos virtuales ni logs sin revisar.
+**Seguridad y privacidad:** no publicar contraseñas, tokens, datos personales reales, ficheros maliciosos ni volcados sin revisar.
