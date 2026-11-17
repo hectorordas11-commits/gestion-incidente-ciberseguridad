@@ -1,1 +1,2 @@
 id_evidencia,descripcion,origen,fecha_hora_zona,responsable,metodo_adquisicion,sha256,ruta_almacenamiento,transferencia_fecha,entregado_por,recibido_por,accion_observaciones
+EV-001,Adjunto simulado copia de preservacion,C:\Laboratorio\Actualizacion_RRHH.txt,2026-11-17 10:32:22 Europe/Madrid,Analista del laboratorio,Copia con Copy-Item y verificacion Get-FileHash SHA256,E1975BCCD5F734C456C16DBFE3ECF775B2767540D5996409F252EF790440B481,C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt,,,,Registro educativo sin transferencias documentadas
