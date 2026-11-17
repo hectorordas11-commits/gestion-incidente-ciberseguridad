@@ -5,7 +5,7 @@ Antes de reproducir el incidente de phishing, preparé una máquina virtual con 
 
 **Entorno:** VirtualBox, máquina `W11_Incidente`, Windows 11 Pro, PowerShell. Fecha de las pruebas: **17/11/2026**. Nombre mostrado por Windows: `FERMENTADOR`. En este momento no se ha documentado todavía la instalación de Ubuntu ni el aislamiento definitivo de la red.
 
-> **Capturas:** las imágenes originales están conservadas en el ZIP local del laboratorio. Las rutas Markdown de este documento apuntan a `capturas/`; quedarán visibles en GitHub cuando se incorporen los archivos de imagen.
+> **Capturas:** las imágenes originales ya están incorporadas en las carpetas de evidencias del repositorio y aparecen enlazadas junto a cada práctica.
 
 ## Identificación del sistema
 Ejecuté:
