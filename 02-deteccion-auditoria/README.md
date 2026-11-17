@@ -958,10 +958,47 @@ Tampoco aparecieron resultados. Por tanto, **no se observaron archivos abiertos 
 
 Las consultas 25–27 aportan una imagen del estado actual del servicio de archivos: recursos administrativos presentes, sin sesiones ni archivos SMB abiertos observados. **No prueban ni descartan accesos históricos**, y no permiten concluir que los intentos de acceso a compartidos descritos en el escenario hayan ocurrido en nuestra máquina virtual. Para reconstruir accesos pasados harían falta eventos y registros adecuados de los equipos y servidores afectados, además de correlacionar usuarios y tiempos.
 
-## 11. Resultado y asuntos todavía no comprobados
+## 11. Comprobación de la auditoría de recursos compartidos (capturas 28 y 29)
+
+Tras comprobar que en el momento de la consulta no había sesiones ni archivos SMB abiertos, revisé si Windows estaba configurado para conservar registros de accesos a recursos compartidos. La comprobación se efectuó **sin cambiar las políticas de auditoría**.
+
+### 11.1. Estado de las subcategorías de auditoría — captura 28
+
+Se intentó consultar la categoría mediante `auditpol /get /category:"Acceso a objetos"`, pero el sistema devolvió el error **0x00000057 (parámetro incorrecto)**. Para consultar la configuración real utilicé:
+
+```powershell
+auditpol /get /category:*
+```
+
+![Captura 28: configuración de auditoría de acceso a objetos](capturas/28-configuracion-auditoria-objetos.png)
+
+![Captura 28, continuación: restantes categorías de auditoría](capturas/28-configuracion-auditoria-continuacion.png)
+
+Dentro de **Acceso a objetos**, las subcategorías **Sistema de archivos**, **Recurso compartido de archivos** y **Recurso compartido de archivos detallado** figuraban como `Sin auditoría`. Esto supone una limitación para reconstruir determinados accesos a recursos compartidos utilizando esos eventos.
+
+### 11.2. Consulta de eventos de acceso — captura 29
+
+```powershell
+Get-WinEvent -FilterHashtable @{
+    LogName = 'Security'
+    Id = 5140,5145
+} -MaxEvents 10 -ErrorAction SilentlyContinue |
+    Select-Object TimeCreated, Id, Message |
+    Format-List
+```
+
+![Captura 29: consulta sin eventos 5140 ni 5145](capturas/29-eventos-acceso-recursos-compartidos.png)
+
+La consulta no mostró eventos de los tipos **5140** (acceso a recurso compartido de red) ni **5145** (comprobación detallada de acceso). Dado que la auditoría correspondiente está desactivada, **la ausencia de estos eventos no demuestra que nunca hayan ocurrido accesos**. Solo indica que no se encontraron registros de esos identificadores en la consulta realizada.
+
+### 11.3. Conclusión de la comprobación SMB
+
+El sistema tiene recursos administrativos compartidos, pero en las consultas no se observaron sesiones, archivos abiertos ni eventos de auditoría SMB 5140/5145. No se puede atribuir un acceso indebido al escenario ficticio con esos resultados. Para investigar accesos pasados en un entorno real haría falta disponer de auditoría pertinente habilitada con anterioridad y correlacionar eventos de clientes y servidores.
+
+## 12. Resultado y asuntos todavía no comprobados
 
 La auditoría de Windows aporta una línea base: eventos y puertos observados no equivalen a una infección. Faltan comprobaciones de OSINT sobre un indicador concreto, análisis de tráfico y correlación con las alertas del escenario. Esas pruebas no deben considerarse realizadas.
 
 
-## 12. Conclusión del apartado
+## 13. Conclusión del apartado
 La auditoría muestra que se pueden consultar autenticaciones, servicios y puertos con herramientas nativas de Windows. Es una **línea base previa**: no demuestra por sí misma ni phishing ejecutado ni robo de información. La ficha inicial del incidente está incorporada al final de este mismo capítulo.
