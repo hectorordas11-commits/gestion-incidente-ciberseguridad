@@ -90,8 +90,6 @@ La consulta siguiente tampoco devolvió detecciones. Se buscaron eventos **1000*
 ## 7. Qué falta por comprobar
 Para asociar con fundamento la actividad de red a una exfiltración real harían falta conexiones, destinos, marcas temporales y volúmenes de tráfico coherentes, además de contrastarlos con el incidente. El análisis OSINT de una IP y la captura de tráfico del laboratorio aún no se han realizado.
 
-## Conclusión
-La auditoría muestra que se pueden consultar autenticaciones, servicios y puertos con herramientas nativas de Windows. Es una **línea base previa**: no demuestra por sí misma ni phishing ejecutado ni robo de información. La ficha inicial del incidente está incorporada al final de este mismo capítulo.
 
 ---
 
@@ -153,3 +151,7 @@ Preservar las evidencias antes de alterarlas, valorar el aislamiento del equipo,
 ## 9. Resultado y asuntos todavía no comprobados
 
 La auditoría de Windows aporta una línea base: eventos y puertos observados no equivalen a una infección. Faltan comprobaciones de OSINT sobre un indicador concreto, análisis de tráfico y correlación con las alertas del escenario. Esas pruebas no deben considerarse realizadas.
+
+
+## 10. Conclusión del apartado
+La auditoría muestra que se pueden consultar autenticaciones, servicios y puertos con herramientas nativas de Windows. Es una **línea base previa**: no demuestra por sí misma ni phishing ejecutado ni robo de información. La ficha inicial del incidente está incorporada al final de este mismo capítulo.
