@@ -14,7 +14,7 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 
 | Apartado | Documento principal | Qué contiene | Estado |
 |---|---|---|---|
-| 1 | [Prevención, concienciación y criptografía](01-prevencion/README.md) | Principios, riesgos, plan de formación, guía y cartel, criptografía, Defender y firewall | Redacción integrada; cartel gráfico y posible práctica adicional pendientes |
+| 1 | [Prevención, concienciación y criptografía](01-prevencion/README.md) | Principios, riesgos, plan de formación, guía y cartel, criptografía, Defender y firewall | Prevención y práctica CMS documentadas; cartel gráfico pendiente |
 | 2 | [Detección y auditoría](02-deteccion-auditoria/README.md) | Clasificación, activos, eventos, conexiones, antivirus y ficha INC-2026-001 | Auditoría práctica y explicación de OSINT/tráfico integradas; no hay indicadores externos del caso |
 | 3 | [Investigación y evidencias](03-investigacion/README.md) | Correo simulado, adjunto, SHA-256, cadena de custodia, cronología y límites forenses | Correo simulado, integridad, custodia, cronología y análisis de límites documentados |
 | 4 | [Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Playbook de contención, erradicación, recuperación y ciberresiliencia | Procedimiento desarrollado; falta práctica técnica |
@@ -30,7 +30,7 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 
 Los capítulos reúnen todo el contenido; los archivos Markdown que duplicaban su contenido se han eliminado. Se conservan por separado únicamente las evidencias, los datos de custodia y la documentación técnica específica del laboratorio.
 
-**Estado de las capturas:** las **15 imágenes originales están incorporadas al repositorio**, en las carpetas `capturas/` correspondientes. No hace falta renombrarlas ni volver a subirlas.
+**Estado de las capturas:** se han incorporado las evidencias numeradas **01–29** (la práctica 28 consta de dos imágenes), todas en las carpetas `capturas/` correspondientes. No hace falta renombrarlas ni volver a subirlas.
 
 ## Qué queda por hacer para entregar el proyecto
 
