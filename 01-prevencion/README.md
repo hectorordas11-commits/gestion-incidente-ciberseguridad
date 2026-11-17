@@ -1,65 +1,88 @@
 # 01 · Prevención y concienciación
 
-## 1. Contexto y riesgos
-El caso plantea un correo que parece proceder del departamento de Recursos Humanos de una empresa ficticia de aproximadamente cien empleados. Un trabajador abre un adjunto y después se observan alertas antivirus, conexiones de red no habituales, accesos a recursos compartidos y una posible exposición de datos personales.
+## Introducción
 
-Se trata de una combinación de **ingeniería social, riesgo de ejecución de malware, posible movimiento lateral y posible fuga de información**. Es importante separar lo que afirma el enunciado de lo que se ha demostrado en las máquinas virtuales.
+El incidente planteado en clase comienza con un correo que aparenta proceder de Recursos Humanos. Un empleado abre el archivo adjunto y después surgen alertas del antivirus, conexiones de red extrañas, intentos de acceso a carpetas compartidas y sospechas sobre una posible filtración de datos personales.
 
-## 2. Medidas preventivas propuestas
-Para reducir las posibilidades de que un correo así cause un incidente, propongo:
+Este caso sirve para explicar que la prevención no es solo instalar programas de seguridad: también importa **cómo trabajan las personas, qué normas existen y cómo se toman decisiones cuando aparece una señal de alerta**. He organizado el apartado siguiendo los conceptos del material docente: principios de seguridad, prevención, protección del puesto, concienciación y criptografía.
 
-1. Mantener Windows, navegadores y aplicaciones actualizados.
-2. Utilizar antivirus activo, firewall y protección en tiempo real.
-3. Trabajar con cuentas sin privilegios de administración salvo necesidad justificada.
-4. Aplicar autenticación multifactor, contraseñas robustas y permisos mínimos.
-5. Limitar el acceso a carpetas compartidas según las funciones de cada empleado.
-6. Filtrar adjuntos, enlaces y suplantaciones de remitente en el correo corporativo.
-7. Disponer de copias de seguridad verificadas y procedimientos de restauración.
-8. Facilitar un canal sencillo para avisar de mensajes sospechosos.
+## 1. Principios fundamentales
 
-## 3. Concienciación para cien empleados
-Una formación breve y recurrente es más útil que limitarse a una charla anual. Propongo una sesión inicial de 45 minutos con ejemplos de correos fraudulentos, recordatorios trimestrales y ejercicios simulados con fines educativos. La actividad debe medir, al menos, participación, capacidad de reconocer señales de alerta y notificación correcta; nunca debe utilizarse para señalar públicamente a los empleados.
+**Confidencialidad.** Los datos solo deben ser accesibles a las personas autorizadas. En el escenario, la información de los clientes es uno de los activos que más debemos proteger.
 
-**Guía de actuación ante un correo sospechoso:**
-- Comprobar con calma el remitente real y el contexto del mensaje.
-- Desconfiar de peticiones inesperadas y de la presión por actuar inmediatamente.
-- No abrir adjuntos ni introducir contraseñas desde enlaces dudosos.
-- Confirmar la petición con Recursos Humanos por un canal conocido.
-- Avisar al equipo de seguridad y conservar el mensaje sin manipularlo.
+**Integridad.** Los documentos y registros no pueden modificarse sin autorización. Para comprobar que el adjunto de laboratorio no cambió durante su copia se utilizó SHA-256.
 
-**Texto para el cartel antiphishing:**
+**Disponibilidad.** Los trabajadores deben poder seguir utilizando los servicios esenciales. La empresa necesita copias de seguridad, alternativas y procedimientos de recuperación ante una infección.
 
-> **¿Un mensaje urgente de Recursos Humanos? Compruébalo antes de abrir.**  
-> Verifica el remitente · No abras adjuntos inesperados · Confirma por otro canal · Informa a seguridad.
+Además, hacen falta mecanismos de autenticación, autorización y trazabilidad para relacionar las acciones con cuentas, servicios y momentos concretos.
 
-El cartel definitivo como pieza visual está pendiente de diseñar.
+## 2. Riesgos y medidas de prevención
 
-## 4. Criptografía relacionada con el incidente
-- **Cifrado simétrico:** la misma clave cifra y descifra (por ejemplo, AES). Es adecuado para proteger datos almacenados y transferencias voluminosas.
-- **Cifrado asimétrico:** utiliza claves pública y privada (por ejemplo, RSA o criptografía de curva elíptica). Permite ciertos mecanismos de intercambio de claves y firmas digitales.
-- **Hash criptográfico:** SHA-256 calcula una huella para verificar integridad; **no cifra** ni permite recuperar el contenido.
-- **Firma digital:** vincula una operación de firma con una clave privada y permite comprobar la integridad y autenticidad mediante la clave pública correspondiente.
-- **Certificados y PKI:** una infraestructura de clave pública relaciona identidades y claves públicas mediante certificados y autoridades de certificación.
-- **Diffie-Hellman:** permite acordar material secreto a través de un canal inseguro cuando se usa dentro de un protocolo correctamente autenticado; por sí solo no garantiza la identidad de los participantes.
+| Riesgo del caso | Posible consecuencia | Prevención propuesta |
+|---|---|---|
+| Suplantación aparente de Recursos Humanos | El empleado confía en un mensaje falso | Formación, verificación por otro canal y protección del correo |
+| Apertura de adjuntos | Ejecución de código malicioso | Filtrado, control de aplicaciones, actualizaciones y antivirus |
+| Cuentas comprometidas | Acceso indebido a servicios | MFA, permisos mínimos y gestión de contraseñas |
+| Movimiento por carpetas compartidas | Afectación de otros archivos o equipos | Segmentación y revisión de permisos SMB |
+| Conexiones hacia destinos sospechosos | Comunicación con infraestructura no autorizada | Monitorización, firewall y análisis de registros |
+| Acceso a datos de clientes | Riesgo de exposición de información personal | Cifrado, controles de acceso y procedimientos de notificación |
+| Interrupción de servicios | Pérdida de disponibilidad | Copias protegidas y pruebas de restauración |
 
-En nuestro laboratorio aplicamos **SHA-256** al adjunto ficticio. Puede consultarse el procedimiento real en [la práctica de integridad](../03-investigacion/practica-hash.md).
+Se trata de **medidas recomendadas**, no de controles cuya implantación se haya comprobado en la empresa ficticia.
 
-## 5. Comprobaciones prácticas de protección en Windows
-Durante la auditoría inicial ejecuté:
+La política de puestos de trabajo, el análisis de debilidades y un calendario de formación se desarrollan en el [plan de prevención y concienciación](plan-concienciacion.md).
+
+## 3. Pruebas realizadas en Windows 11
+
+Para comprobar parte de la protección de la máquina virtual `W11_Incidente`, utilicé PowerShell.
+
+### Microsoft Defender
 
 ```powershell
 Get-MpComputerStatus | Select-Object AMServiceEnabled, AntivirusEnabled, RealTimeProtectionEnabled, AntivirusSignatureLastUpdated
 ```
 
-![Estado de Microsoft Defender](capturas/03-estado-microsoft-defender.png)
+![Estado inicial de Microsoft Defender](capturas/03-estado-microsoft-defender.png)
+
+Este comando permite consultar el estado del servicio antivirus, la protección en tiempo real y la última actualización de firmas. La captura conserva la salida real de la práctica.
+
+En una comprobación posterior, `Get-MpThreatDetection` no devolvió detecciones. Se solicitó un análisis del adjunto inocuo, pero **no se encontró confirmación de su finalización en los eventos 1000 y 1001 del día de la prueba**. Por tanto, no lo presento como una prueba de detección efectiva de malware.
+
+### Firewall de Windows
 
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled, DefaultInboundAction, DefaultOutboundAction
 ```
 
-![Estado de los tres perfiles del firewall](capturas/04-estado-firewall-windows.png)
+![Estado de los perfiles del firewall de Windows](capturas/04-estado-firewall-windows.png)
 
-Los tres perfiles aparecieron habilitados. Las capturas representan el estado del equipo, **no una prueba de protección frente a cualquier amenaza**.
+Los tres perfiles —`Domain`, `Private` y `Public`— aparecieron habilitados (`True`). Las acciones predeterminadas figuraban como `NotConfigured`, lo que no significa que el firewall esté desactivado.
+
+Estas comprobaciones corresponden al **estado inicial del laboratorio**, no al funcionamiento de la empresa del enunciado.
+
+## 4. Formación y materiales para los empleados
+
+En una empresa de unos cien trabajadores conviene combinar una sesión de inicio con recordatorios, materiales accesibles y simulaciones educativas. No basta con repartir normas: también hay que comprobar si las personas saben aplicarlas.
+
+He preparado estos materiales:
+
+- [Plan de concienciación y política de puestos](plan-concienciacion.md): destinatarios, calendario, riesgos, medidas y evaluación.
+- [Guía rápida para reconocer el phishing](guia-antiphishing.md): instrucciones claras sobre qué hacer antes y después de abrir un mensaje sospechoso.
+- [Cartel antiphishing](cartel-antiphishing.md): mensaje breve orientado al caso de Recursos Humanos; el contenido está redactado y queda por maquetar una versión gráfica imprimible.
+
+## 5. Criptografía aplicada a la seguridad
+
+En la [explicación de criptografía](criptografia.md) se desarrollan con ejemplos el cifrado simétrico y asimétrico, las funciones hash, las firmas digitales, los certificados, la PKI y Diffie-Hellman. También se explica cuándo corresponde utilizar cada mecanismo.
+
+La demostración realizada en el laboratorio ha sido el **cálculo y comparación de hashes SHA-256 del archivo ficticio y su copia**. Las pruebas y capturas completas están en [investigación](../03-investigacion/practica-hash.md).
 
 ## 6. Conclusión
-La prevención combina configuraciones técnicas y hábitos de trabajo. En el escenario propuesto, detectar la presión y verificar la supuesta comunicación de Recursos Humanos antes de abrir el adjunto habría reducido el riesgo. Quedan por completar los materiales gráficos definitivos y cualquier prueba adicional específica de cifrado y certificados.
+
+Después de revisar el caso, considero que el error más importante no fue únicamente abrir un archivo, sino que la empresa debe tener suficientes barreras para que un único error humano no desemboque en un incidente grave. Formar a la plantilla, reducir privilegios, proteger los puestos, limitar accesos y facilitar el aviso temprano son medidas complementarias.
+
+**Estado del apartado:** redacción teórica, plan de formación, guía, texto del cartel y prácticas de Defender/firewall documentados. Queda pendiente transformar el cartel en una pieza visual definitiva y, si el profesor exige una demostración adicional de cifrado, realizarla y documentarla con resultados reales.
+
+## Referencias
+
+- [Material del profesor: Incidentes de ciberseguridad, bloque 1](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
+- [INCIBE — recursos de ciberseguridad](https://www.incibe.es/).
