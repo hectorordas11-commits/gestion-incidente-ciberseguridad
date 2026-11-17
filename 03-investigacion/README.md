@@ -196,12 +196,43 @@ Se generó un primer registro rastreable para la evidencia EV-001. Junto a los d
 
 La hora real del phishing del enunciado no se ha facilitado. No se debe convertir la cronología del laboratorio en una reconstrucción falsa del ataque.
 
-## 6. Otras evidencias necesarias en una investigación real
+## 6. Análisis de evidencias: qué se ha podido comprobar
 
-Sería necesario recoger, con autorización, el mensaje original con sus cabeceras, alertas antivirus, eventos relacionados en el tiempo, lista de procesos y servicios, conexiones y destinos externos, DNS, registros de los recursos compartidos y, según las circunstancias, una adquisición forense del equipo. Cada evidencia debería tener origen, responsable, fechas, ubicación, huella y registro de transferencias.
+El temario de investigación distingue **recopilación**, **preservación**, **análisis** y **construcción de una línea temporal**. En esta práctica hemos aplicado esos pasos a un adjunto simulado y a los registros disponibles, sin confundir el material educativo con la evidencia de una infección real.
 
-## 7. Conclusiones y limitaciones
+| Fuente | Evidencia real del laboratorio | Qué permite afirmar | Límite |
+|---|---|---|---|
+| Mensaje de prueba COR-001 | Archivo de texto de 480 bytes, remitente y asunto ficticios | Detectar señales de urgencia y suplantación aparente | No hay cabeceras SMTP ni un correo recibido realmente |
+| Adjunto simulado | Archivo `Actualizacion_RRHH.txt` de 198 bytes | Identificar y preservar el objeto estudiado | No es malware ni ha ejecutado código |
+| Hash SHA-256 | Huella idéntica en original y copia | Integridad del contenido comparado | No identifica al autor ni prueba inocuidad |
+| Cadena de custodia EV-001 | CSV y metadatos de la copia | Registro inicial de origen, fecha, ubicación y acción | No equivale a una custodia forense o judicial completa |
+| Logs y conexiones | Eventos 4624/4625, consultas TCP y SMB del apartado 2 | Establecer una línea base y observar procesos, sesiones y políticas | No correlacionan un ataque ni demuestran exfiltración |
 
-Se documentó el correo ficticio COR-001 y la copia EV-001; la coincidencia SHA-256 demuestra integridad del contenido comparado, pero no demuestra malware, acceso indebido ni exfiltración. Tampoco hay pruebas de movimiento lateral por el mero hecho de observar SMB en escucha. Las actividades de adquisición más amplia, tráfico y OSINT siguen pendientes.
+### 6.1. Cómo investigaría otras fuentes en un incidente real
 
-**Fuentes:** [material docente](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/) y [bibliografía](../FUENTES.md).
+**Registros y cuentas:** ordenaría los eventos por hora, equipo y usuario, identificaría el inicio de sesión y buscaría actividad posterior que tenga relación temporal. Los eventos 4625 de octubre de nuestra VM **no** pertenecen al phishing simulado.
+
+**Disco y archivos:** conservaría los metadatos y, si el alcance lo justifica, una imagen forense con su hash; no se ha realizado imagen completa de disco en este ejercicio.
+
+**Memoria y procesos:** si el equipo siguiera encendido y fuera importante conservar datos volátiles, planificaría su adquisición por personal autorizado antes de apagarlo. Tampoco se ha efectuado un volcado de memoria.
+
+**Red:** contrastaría conexiones, destinos, DNS, volumen y tiempos con los registros de seguridad; las consultas `Get-NetTCPConnection` realizadas son observaciones instantáneas, no capturas de paquetes. No disponemos de tráfico malicioso real.
+
+**Evidencias externas y OSINT:** si existiera un dominio o una IP verificable, consultaría fuentes públicas fiables, documentando fecha y origen del dato. En nuestro ejercicio no se ha identificado un indicador externo concreto para investigar: el dominio `.invalid` es ficticio.
+
+### 6.2. Orden de actuación y trazabilidad
+
+Antes de alterar o eliminar información, el investigador debe identificar la fuente, anotar quién la recopila y cuándo, conservar una copia cuando corresponda, calcular su hash y registrar cada acceso o transferencia. Las fuentes más volátiles (procesos y conexiones activas) pueden cambiar rápidamente. La prioridad de preservar evidencias debe coordinarse con la contención cuando exista riesgo para la organización.
+
+## 7. Hipótesis contrastadas y conclusión del apartado
+
+| Hipótesis del escenario | Resultado de nuestra práctica |
+|---|---|
+| Se ejecutó malware al abrir el adjunto | **No demostrado**; solo abrimos un archivo de texto inocuo |
+| Hubo movimiento lateral a recursos compartidos | **No demostrado**; los puertos en escucha no son prueba de acceso y no se observaron sesiones SMB activas |
+| Se produjo una conexión exterior para extraer datos | **No demostrado**; no se obtuvieron destinos o tráfico malicioso |
+| Se preservó sin alterar el contenido del adjunto | **Comprobado en el alcance de la práctica** mediante copia, hash coincidente y registro EV-001 |
+
+En conclusión, se completó un **ejercicio educativo de análisis de correo, preservación, integridad y custodia inicial**, con cronología y valoración de límites. El propósito no era ejecutar malware ni fabricar una fuga de datos. La adquisición forense completa, el análisis de memoria y la captura de paquetes se explican como técnicas que podrían utilizarse **si el incidente real lo justificase**, no como actividades ejecutadas o exigencias pendientes de esta simulación.
+
+**Material de clase utilizado:** «3. Investigación de los incidentes de ciberseguridad»: recopilación de evidencias digitales, físicas y externas, cadena de custodia, análisis de logs, disco, memoria y red, y construcción de la línea temporal. [Temario](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/) · [Bibliografía](../FUENTES.md).
