@@ -4,13 +4,13 @@
 
 ## 1. Caso, principios de seguridad y medidas de protección
 
-## Introducción
+### Introducción
 
 El incidente planteado en clase comienza con un correo que aparenta proceder de Recursos Humanos. Un empleado abre el archivo adjunto y después surgen alertas del antivirus, conexiones de red extrañas, intentos de acceso a carpetas compartidas y sospechas sobre una posible filtración de datos personales.
 
 Este caso sirve para explicar que la prevención no es solo instalar programas de seguridad: también importa **cómo trabajan las personas, qué normas existen y cómo se toman decisiones cuando aparece una señal de alerta**. He organizado el apartado siguiendo los conceptos del material docente: principios de seguridad, prevención, protección del puesto, concienciación y criptografía.
 
-## 1. Principios fundamentales
+### Principios fundamentales
 
 **Confidencialidad.** Los datos solo deben ser accesibles a las personas autorizadas. En el escenario, la información de los clientes es uno de los activos que más debemos proteger.
 
@@ -20,7 +20,7 @@ Este caso sirve para explicar que la prevención no es solo instalar programas d
 
 Además, hacen falta mecanismos de autenticación, autorización y trazabilidad para relacionar las acciones con cuentas, servicios y momentos concretos.
 
-## 2. Riesgos y medidas de prevención
+### Riesgos y medidas de prevención
 
 | Riesgo del caso | Posible consecuencia | Prevención propuesta |
 |---|---|---|
@@ -303,7 +303,7 @@ Con el ejercicio he podido comprobar el estado inicial de algunas protecciones d
 
 **Pendiente:** versión gráfica imprimible del cartel. No se ha impartido la formación ni implantado una PKI o sistema de cifrado empresarial. Si se requiere una demostración adicional de cifrado se añadirá después de realizarla.
 
-## Bibliografía
+### Fuentes consultadas
 
 - [Material docente de incidentes de ciberseguridad](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
 - [Fuentes del proyecto](../FUENTES.md).
