@@ -1,4 +1,4 @@
-# 06 · Simulación de reunión de respuesta ante el incidente (10 %)
+# 06 · Simulación de reunión de respuesta ante el incidente 
 
 ## 1. Objetivo, participantes y reglas
 
