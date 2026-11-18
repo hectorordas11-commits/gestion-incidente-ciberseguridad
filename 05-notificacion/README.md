@@ -1,4 +1,4 @@
-# 05 · Notificación, AEPD y organismos de respuesta (15 %)
+# 05 · Notificación, AEPD y organismos de respuesta
 
 ## 1. A quién informar dentro de la empresa
 
