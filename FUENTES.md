@@ -20,6 +20,3 @@
 8. CCN-CERT. [Preguntas frecuentes y ámbito de actuación](https://www.ccn-cert.cni.es/es/sobre-nosotros/faq.html). Atención a las Administraciones Públicas y organizaciones de especial interés estratégico.
 9. INCIBE. [Guía nacional de notificación y gestión de ciberincidentes](https://www.incibe.es/sites/default/files/contenidos/guias/doc/guia_nacional_notificacion_gestion_ciberincidentes.pdf). Referencia general para gestión y clasificación; debe contrastarse su alcance normativo aplicable al caso.
 
-## Criterio de uso
-
-Las fuentes legales y oficiales sustentan las **reglas generales** descritas. Los hechos concretos del supuesto proceden del enunciado y no pueden darse por acreditados con una fuente general. Los resultados del laboratorio están limitados a las capturas y archivos realmente generados en Windows.
