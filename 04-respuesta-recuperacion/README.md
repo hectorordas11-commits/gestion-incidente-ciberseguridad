@@ -1,6 +1,4 @@
-# 04 · Respuesta, recuperación y ciberresiliencia (20 %)
-
-> **Estado:** procedimiento preparado para el incidente ficticio. Las medidas de contención **todavía no se han ejecutado** en la máquina virtual; no hay capturas prácticas de este apartado.
+# 04 · Respuesta, recuperación y ciberresiliencia 
 
 **Orden de lectura:** alcance y prioridades de respuesta → procedimiento o playbook → medidas de contención → práctica de laboratorio aún pendiente → erradicación y recuperación → ciberresiliencia → comprobaciones pendientes. En este capítulo se distingue lo planificado de lo realmente ejecutado; no se presentan capturas ni restauraciones ficticias.
 
