@@ -1,7 +1,5 @@
 # 06 · Simulación de reunión de respuesta ante el incidente (10 %)
 
-> **Ejercicio de mesa ficticio.** Las intervenciones y decisiones de este documento representan distintos roles de una organización de cien personas. No constituyen un registro de una reunión empresarial real ni una prueba de infección en el laboratorio.
-
 ## 1. Objetivo, participantes y reglas
 
 La actividad simula una reunión de respuesta a partir del correo aparentemente enviado por Recursos Humanos y la apertura de su adjunto. El objetivo es comprobar cómo se tomarían decisiones técnicas, legales y organizativas cuando aparecen datos nuevos y presión por restaurar servicios.
