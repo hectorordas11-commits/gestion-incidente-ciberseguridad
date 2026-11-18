@@ -2,7 +2,7 @@
 
 **Fecha de revisión de las fuentes oficiales para los apartados 5 y 6:** 17/11/2026.
 
-## Material docente del trabajo
+## Material de trabajo
 
 - Apuntes facilitados para el proyecto: prevención y concienciación, criptografía, auditoría, investigación, respuesta, comunicación y simulación de incidentes. Se utilizan como guía temática del ejercicio.
 - Jesús Niño Camazón, [Incidentes de ciberseguridad](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/), material docente.
