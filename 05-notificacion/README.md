@@ -1,7 +1,5 @@
 # 05 · Notificación, AEPD y organismos de respuesta (15 %)
 
-> **Caso ficticio:** la posibilidad de una fuga de datos no significa que se haya producido una violación de seguridad de datos personales confirmada. Esta sección recoge las decisiones y modelos que corresponderían si la investigación aportase pruebas.
-
 ## 1. A quién informar dentro de la empresa
 
 El analista que detecta el incidente debe comunicarlo a su responsable de seguridad o al equipo de respuesta. A continuación deben coordinarse sistemas, dirección, asesoría jurídica y el delegado de protección de datos (si existe). La comunicación interna permite tomar decisiones y preservar pruebas; no debe incluir datos personales o técnicos sensibles que no sean necesarios para cada destinatario.
