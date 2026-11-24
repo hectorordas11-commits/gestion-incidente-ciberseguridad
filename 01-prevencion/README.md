@@ -1,6 +1,6 @@
 # 01 · Prevención, concienciación y criptografía
 
-**Orden de lectura:** principios y medidas de seguridad → plan de formación → guía para empleados → cartel antiphishing → criptografía y certificados → evidencias técnicas de Defender, firewall y cifrado → conclusión. Las prácticas complementan las propuestas del trabajo; el laboratorio no equivale a una implantación empresarial real.
+**Orden de lectura:** principios y medidas de seguridad → plan de formación → guía para empleados → cartel antiphishing → criptografía y certificados → evidencias técnicas de Defender, firewall y cifrado → conclusión. Las respuestas al enunciado aparecen primero y las prácticas técnicas después. El laboratorio no equivale a una implantación empresarial real.
 
 
 > **Caso ficticio:** empresa de aproximadamente cien personas. Los apartados de política y formación son propuestas; las capturas de Windows y la comprobación SHA-256 son pruebas reales del laboratorio.
@@ -43,19 +43,9 @@ El plan detallado, la formación y las normas internas se incluyen a continuaci�
 
 #### 1. Punto de partida
 
-La empresa del caso tiene alrededor de cien empleados. El incidente comienza cuando una persona recibe un correo aparentemente enviado por Recursos Humanos y abre un documento adjunto. Este hecho demuestra por qué la seguridad no puede depender únicamente del antivirus: también hacen falta procedimientos claros y trabajadores capaces de identificar mensajes dudosos.
+El plan propuesto se basa en **personas, procesos y tecnología**. Como la empresa ficticia no dispone de un procedimiento formal, estas medidas son propuestas de mejora, no actuaciones ya implantadas.
 
-El plan propuesto se basa en tres elementos: **personas, procesos y tecnología**. No consta que la empresa ficticia haya implantado estas medidas; son propuestas de mejora para el escenario.
-
-#### 2. Principios que queremos proteger
-
-| Principio | Qué significa | Riesgo del caso | Medida preventiva |
-|---|---|---|---|
-| Confidencialidad | Solo acceden a los datos las personas autorizadas | Posible fuga de datos de clientes | Permisos mínimos, cifrado y MFA |
-| Integridad | La información no se altera sin autorización | Modificación de documentos y registros | Control de cambios, hashes y copias |
-| Disponibilidad | El servicio sigue utilizable | Infección y parada de equipos | Copias, continuidad y restauración comprobada |
-
-A estos principios se suman la trazabilidad (saber quién hizo cada acción), la autenticidad (comprobar identidades) y el control de acceso.
+Los principios de confidencialidad, integridad y disponibilidad se han explicado en el punto anterior. En este plan los aplico a los permisos, las copias de seguridad, el cifrado y el control de cambios.
 
 #### 3. Debilidades que debemos revisar
 
@@ -103,7 +93,7 @@ Estas son **posibles debilidades a evaluar**, no hallazgos demostrados en la emp
 
 Mediremos la participación, los aciertos en cuestionarios, el porcentaje de comunicaciones correctamente notificadas y el tiempo de aviso durante ejercicios. Se compararán resultados antes y después de la formación; **no se inventarán porcentajes**, porque todavía no hemos impartido el programa.
 
-##### 7. Respuesta ante un mensaje sospechoso
+### Respuesta ante un mensaje sospechoso
 
 1. No abrir el adjunto ni pulsar enlaces.
 2. Verificar la solicitud mediante un canal conocido, no respondiendo al propio mensaje.
@@ -187,9 +177,7 @@ El cartel se centra en el vector de entrada del caso: un correo que aparenta pro
 
 **Formato recomendado:** A4 vertical, tipografía grande, contraste alto, cuatro acciones visibles y un canal corporativo real de aviso cuando la empresa lo defina. **No inventamos un teléfono ni una dirección de contacto.**
 
-**Estado:** texto del cartel preparado; versión gráfica imprimible pendiente de maquetación.
-
-**Cartel antiphishing elaborado:** se ha preparado una versión gráfica para concienciar frente a correos urgentes que suplantan a Recursos Humanos. Recuerda verificar el remitente, desconfiar de adjuntos inesperados, confirmar por otro canal y avisar si ya se abrió un archivo sospechoso.
+**Cartel elaborado:** además del texto, se ha incorporado una versión gráfica. Recuerda verificar el remitente, desconfiar de adjuntos inesperados, confirmar por otro canal y avisar si ya se abrió un archivo sospechoso.
 
 ![Cartel antiphishing: comprobaciones antes de abrir un adjunto de RR. HH.](capturas/cartel-antiphishing.png)
 
@@ -240,7 +228,7 @@ Get-FileHash "C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt" -Algorithm
 
 ![Comprobación de hashes idénticos](../03-investigacion/capturas/13-verificacion-integridad-sha256.png)
 
-Los hashes coincidieron. La práctica se explica con más detalle en [integridad de evidencias](../03-investigacion/README.md#3-integridad-del-adjunto-sha-256).
+Los hashes coincidieron. La práctica se explica con más detalle en [cálculo y comprobación de SHA-256](../03-investigacion/README.md#6-calcular-el-hash-sha-256-y-explicar-su-utilidad).
 
 #### 5. Firmas digitales
 
@@ -272,7 +260,7 @@ Diffie-Hellman permite que dos participantes acuerden un secreto compartido a tr
 
 ### Conclusión
 
-En esta práctica hemos **aplicado SHA-256**, pero los restantes mecanismos se han explicado teóricamente: no afirmamos haber configurado una PKI, firmado documentos o implantado cifrado corporativo. La idea clave es elegir cada mecanismo según el objetivo: confidencialidad, integridad o autenticidad.
+En el laboratorio hemos **aplicado SHA-256** y, como práctica complementaria, cifrado y descifrado un texto con CMS y un certificado autofirmado. Los demás mecanismos se han explicado teóricamente: no afirmo haber configurado una PKI corporativa ni firmado documentos. La idea clave es elegir cada mecanismo según el objetivo: confidencialidad, integridad o autenticidad.
 
 **Referencia docente:** [Incidentes de ciberseguridad, bloque 1](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
 
@@ -381,11 +369,11 @@ La comparación `True` demuestra que se recuperó el **mismo texto original** al
 
 La operación de cifrado y descifrado ha funcionado en el laboratorio. A diferencia de SHA-256, que produce una huella para verificar integridad, el cifrado permite recuperar el texto original si se dispone del material criptográfico adecuado. El certificado y su clave privada deben protegerse; en un caso real sería necesario aplicar políticas de emisión, custodia, renovación y revocación.
 
-**Evidencias:** las evidencias gráficas están incorporadas a `01-prevencion/capturas/` y muestran la salida real de los comandos.
+**Evidencias:** las imágenes están incorporadas a `01-prevencion/capturas/` y muestran la salida real de los comandos.
 
 ## 8. Conclusión del apartado
 
-Con el ejercicio he podido comprobar el estado inicial de algunas protecciones de Windows y verificar la integridad del adjunto ficticio mediante SHA-256. La prevención en la empresa depende también de personas formadas, controles de acceso, actualización de equipos, protección del correo y una manera clara de avisar.
+Con el ejercicio he comprobado el estado inicial de algunas protecciones de Windows y he relacionado la comprobación de integridad con el apartado de investigación. La prevención en la empresa depende también de personas formadas, controles de acceso, actualización de equipos, protección del correo y una manera clara de avisar.
 
 El cartel incluido en el punto 4 es un material diseñado para este caso; no se afirma que la formación se haya impartido realmente ni que exista una PKI empresarial. La demostración de cifrado y descifrado CMS y sus cuatro capturas ya están documentadas.
 
