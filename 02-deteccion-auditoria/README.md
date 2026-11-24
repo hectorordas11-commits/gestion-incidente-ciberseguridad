@@ -371,3 +371,42 @@ El resultado mostró la dirección **`10.10.10.30`**, el nombre de equipo **`fer
 
 La prueba verifica el uso básico de una herramienta de reconocimiento sobre **la propia IP del laboratorio**. Es útil para introducir el descubrimiento de dispositivos y las comprobaciones de conectividad, pero **no acredita una infección, un atacante, movimiento lateral ni exfiltración de datos**. Los hechos del enunciado permanecen separados de las observaciones obtenidas realmente en la máquina virtual.
 
+## Anexo E. Prácticas complementarias de OSINT: Wayback Machine y Shodan
+
+Estas dos consultas amplían el trabajo de **investigación en fuentes abiertas (OSINT)** del apartado 2. Se realizaron desde un navegador, utilizando información pública de ejemplo. No se ha identificado ningún indicador malicioso concreto del incidente del enunciado.
+
+### E.1. Consulta histórica con Wayback Machine
+
+Utilicé **Wayback Machine**, de Internet Archive, para consultar una versión archivada de una página web de Microsoft.
+
+![Página de Microsoft archivada en Wayback Machine](capturas/43_wayback_machine_microsoft.png)
+
+**Resultado observado:** la herramienta mostró una versión de la página de Microsoft guardada el **28 de junio de 2025**, con el contenido y el diseño que aparecían en esa captura.
+
+Wayback Machine puede ayudar a comprobar cómo era una página en una fecha anterior y a contrastar cambios históricos durante una investigación. La versión consultada es solo un ejemplo educativo: no está relacionada con el correo ficticio del supuesto ni demuestra actividad maliciosa.
+
+### E.2. Consulta de una IP pública con Shodan
+
+Utilicé **Shodan** para consultar la dirección IP pública **`8.8.8.8`**, correspondiente al servicio Google Public DNS.
+
+![Información de la IP 8.8.8.8 obtenida con Shodan](capturas/44_shodan_analisis_ip_google.png)
+
+En la captura aparecieron los siguientes datos:
+
+| Campo | Resultado mostrado |
+|---|---|
+| IP consultada | `8.8.8.8` |
+| Organización e ISP | Google LLC |
+| País y ciudad indicados | Estados Unidos, Mountain View |
+| ASN | `AS15169` |
+| Puertos mostrados | `53` y `443` |
+| Fecha de última observación indicada | 24/11/2026 |
+
+Shodan mostró información indexada sobre esa dirección, como nombres de host, datos de la organización y servicios. Los puertos son observaciones recogidas por Shodan, **no un escaneo activo que haya realizado yo**. La ubicación indicada tampoco demuestra la posición física exacta de un servidor.
+
+**Límite de la consulta:** que un servicio aparezca en Shodan no significa que sea vulnerable o malicioso. La IP `8.8.8.8` es un ejemplo público conocido y **no es la dirección del atacante del escenario ficticio**.
+
+### E.3. Conclusión de las consultas OSINT
+
+Con estas prácticas he comprobado dos usos distintos de OSINT: consultar el historial público de una página web e investigar la información que una plataforma tiene indexada sobre una IP. En un incidente real aplicaría estas técnicas a indicadores previamente obtenidos de registros y evidencias, contrastaría las fuentes y documentaría sus fechas y límites. Aquí las consultas solo demuestran el manejo de las herramientas, no la identificación del responsable del incidente.
+
