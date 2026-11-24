@@ -19,7 +19,7 @@ La [práctica 00 de laboratorio](laboratorio/practica-00.md) documenta la prepar
 | Apartado | Resumen |
 |---|---|
 | **1. [Prevención y concienciación](01-prevencion/README.md)** | Riesgos, normas de seguridad, formación, guía y cartel antiphishing, criptografía y práctica de cifrado con certificado. |
-| **2. [Detección y auditoría](02-deteccion-auditoria/README.md)** | Clasificación del incidente, activos afectados, eventos de Windows, conexiones, antivirus y ficha de incidente. Incluye prácticas con SMB, Angry IP Scanner, Wayback Machine y Shodan. |
+| **2. [Detección y auditoría](02-deteccion-auditoria/README.md)** | Clasificación del incidente, activos afectados, eventos de Windows, conexiones, antivirus y ficha de incidente. Incluye prácticas con SMB, Angry IP Scanner y Shodan. |
 | **3. [Investigación y evidencias](03-investigacion/README.md)** | Análisis de un correo simulado, preservación de pruebas, cálculo de SHA-256, cadena de custodia y recopilación de datos del sistema. |
 | **4. [Respuesta y recuperación](04-respuesta-recuperacion/README.md)** | Procedimiento de contención, erradicación y recuperación; práctica de aislamiento y reactivación de red en Windows y ciberresiliencia. |
 | **5. [Notificación](05-notificacion/README.md)** | Comunicación interna, valoración de una posible brecha de datos, criterios de la AEPD y funciones de CERT/CSIRT. |
@@ -27,9 +27,9 @@ La [práctica 00 de laboratorio](laboratorio/practica-00.md) documenta la prepar
 
 ## Prácticas y evidencias
 
-Las prácticas se explican dentro del apartado al que corresponden, con sus comandos, capturas y resultados. Se incluyen **44 evidencias numeradas (01–44)**, además del cartel antiphishing y una captura adicional de una comprobación.
+Las prácticas se explican dentro del apartado al que corresponden, con sus comandos, capturas y resultados. Se incluyen **43 evidencias numeradas (01–42 y 44)**, además del cartel antiphishing y una captura adicional de una comprobación.
 
-Entre las pruebas realizadas están la revisión de registros y servicios de Windows, el cálculo de **SHA-256**, el cifrado y descifrado de un mensaje, las consultas OSINT con **Wayback Machine y Shodan**, el reconocimiento limitado de la propia IP con **Angry IP Scanner** y el aislamiento temporal del adaptador de red.
+Entre las pruebas realizadas están la revisión de registros y servicios de Windows, el cálculo de **SHA-256**, el cifrado y descifrado de un mensaje, la consulta OSINT con **Shodan**, el reconocimiento limitado de la propia IP con **Angry IP Scanner** y el aislamiento temporal del adaptador de red.
 
 **Importante:** el incidente del enunciado es ficticio. Las comprobaciones del laboratorio son reales, pero **no se ha ejecutado malware ni confirmado un atacante o una filtración de datos**. Las IP públicas consultadas en OSINT son ejemplos educativos.
 
