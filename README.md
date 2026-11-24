@@ -36,7 +36,6 @@ Entre las pruebas realizadas están la revisión de registros y servicios de Win
 ## Documentación complementaria
 
 - [Preparación del laboratorio](laboratorio/practica-00.md).
-- [Registro de cadena de custodia (CSV)](03-investigacion/cadena-custodia.csv).
 - [Fuentes y bibliografía](FUENTES.md).
 - [Preparación del informe final en PDF](informe-final/README.md).
 
