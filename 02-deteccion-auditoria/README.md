@@ -98,7 +98,7 @@ La consulta siguiente tampoco devolvió detecciones. Se buscaron eventos **1000*
 | Severidad provisional | **Alta**, pendiente de confirmar impacto y alcance |
 | Origen de la alerta | Escenario ficticio de este trabajo |
 | Fecha y hora de detección real | No facilitadas en el enunciado |
-| Estado | Investigación simulada en desarrollo |
+| Estado del caso | Análisis documental completado; impacto real no verificable en el escenario |
 | Responsable de documentación | Analista del laboratorio (rol de la práctica) |
 
 #### 1. Información que aporta el enunciado
