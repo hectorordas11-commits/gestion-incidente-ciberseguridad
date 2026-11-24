@@ -1,6 +1,6 @@
 # 04 · Respuesta, recuperación y ciberresiliencia 
 
-**Orden de lectura:** alcance y prioridades de respuesta → procedimiento o playbook → medidas de contención → práctica de laboratorio aún pendiente → erradicación y recuperación → ciberresiliencia → comprobaciones pendientes. En este capítulo se distingue lo planificado de lo realmente ejecutado; no se presentan capturas ni restauraciones ficticias.
+**Orden de lectura:** alcance y prioridades de respuesta → procedimiento o playbook → medidas de contención → planificación de la práctica → erradicación y recuperación → ciberresiliencia → conclusión → práctica complementaria realizada. Se distingue lo planificado de lo ejecutado y no se presentan infecciones ni restauraciones de datos ficticias.
 
 ## 1. Objetivo y criterios de actuación
 
@@ -29,11 +29,11 @@ Los bloqueos de IP o dominio deben fundamentarse en indicadores comprobados: **e
 
 Si las credenciales pudieran haberse expuesto, se revisarán sesiones, tokens, privilegios y accesos recientes. En los recursos compartidos se contrastarán permisos y registros; el puerto 445 abierto por sí solo no justifica dar por confirmado el movimiento lateral.
 
-## 4. Práctica segura prevista en Windows 11
+## 4. Preparación de una práctica segura en Windows 11
 
-En la próxima práctica de la máquina `W11_Incidente` comprobaremos el estado de los adaptadores y del firewall con herramientas nativas. Antes de modificar la conectividad, hay que guardar el estado inicial y tener una instantánea de la máquina virtual.
+Para poner a prueba el procedimiento en `W11_Incidente`, se planteó comprobar el estado de los adaptadores y del firewall con herramientas nativas, guardar el estado inicial y crear una instantánea antes de modificar la conectividad. La ejecución y los resultados se documentan al final de este capítulo como práctica complementaria.
 
-**Consultas de partida (no se presentan como ejecutadas en este capítulo):**
+**Consultas previstas para la comprobación:**
 
 ```powershell
 Get-NetAdapter | Select-Object Name, Status, MacAddress
@@ -41,7 +41,7 @@ Get-NetFirewallProfile | Select-Object Name, Enabled
 Get-NetTCPConnection | Select-Object LocalAddress, LocalPort, RemoteAddress, RemotePort, State
 ```
 
-El ejercicio de aislamiento se realizará **solo en la red de laboratorio** y con un procedimiento para deshacerlo; se documentarán el comando realmente utilizado, la captura y la comprobación posterior. No se bloqueará una dirección arbitraria ni se probará con malware auténtico.
+El ejercicio de aislamiento se limitó a la máquina virtual del laboratorio y contempló un procedimiento para deshacerlo. No se bloqueó ninguna dirección arbitraria ni se utilizó malware auténtico. No todos los comandos anteriores se ejecutaron: las consultas realizadas se detallan con sus evidencias en el anexo.
 
 ## 5. Erradicación y recuperación: cómo comprobar que el servicio vuelve
 
@@ -60,6 +60,83 @@ Se deben priorizar los servicios de mayor impacto y acordar con dirección los t
 
 ## 7. Conclusión y comprobaciones pendientes
 
-El procedimiento propuesto combina rapidez con preservación de evidencias. **No se ha ejecutado todavía ningún aislamiento o restauración en la práctica**, por lo que este capítulo describe el plan que se pondrá a prueba posteriormente. Cuando hagamos las comprobaciones de laboratorio se insertarán en este mismo documento con comandos, capturas y análisis.
+El procedimiento propuesto combina rapidez con preservación de evidencias. En el laboratorio **sí se ha ejecutado y revertido un aislamiento del adaptador de red**; los resultados están documentados en la práctica complementaria siguiente. No se ha erradicado malware ni restaurado información desde una copia de seguridad, pues no había una infección real confirmada que justificase esas actuaciones.
 
 **Referencia docente:** [implementación de medidas, procedimientos, playbooks y ciberresiliencia](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
+
+## 8. Práctica complementaria: contención y recuperación de red en Windows 11
+
+Se utilizó la máquina virtual **`W11_Incidente`**, con Windows 11 Pro en VirtualBox, para realizar una simulación segura de aislamiento temporal de red. Se trabajó sobre el adaptador `Ethernet` y se verificó posteriormente su recuperación. **Son comprobaciones reales del laboratorio, no hechos del incidente ficticio ni una erradicación de malware.**
+
+### 8.1. Comprobación inicial del adaptador
+
+```powershell
+Get-NetAdapter | Select-Object Name, Status, MacAddress
+```
+
+![Estado inicial del adaptador Ethernet](capturas/36_estado_inicial_adaptadores_red.png)
+
+El adaptador `Ethernet` figuraba en estado **`Up`** y mostró la dirección MAC `08-00-27-5E-26-2D`. Este resultado sirvió como referencia antes de la contención.
+
+### 8.2. Estado inicial del firewall
+
+```powershell
+Get-NetFirewallProfile | Select-Object Name, Enabled
+```
+
+![Perfiles del firewall habilitados antes del aislamiento](capturas/37_estado_inicial_firewall.png)
+
+Los perfiles **Domain**, **Private** y **Public** devolvieron `True` en la propiedad `Enabled`. La comprobación refleja la configuración de los perfiles, no una prueba de que no existan amenazas.
+
+### 8.3. Punto de recuperación en VirtualBox
+
+![Instantánea de VirtualBox anterior al aislamiento](capturas/38_instantanea_antes_aislamiento.png)
+
+Antes de desactivar el adaptador se creó la instantánea **`Antes_aislamiento_apartado4`**, el 24/11/2026. Este punto de retorno reduce el riesgo de la práctica; **no equivale a restaurar archivos empresariales desde una copia verificada**.
+
+### 8.4. Aislamiento temporal del equipo
+
+Desde PowerShell, ejecutado como administrador dentro de la máquina virtual:
+
+```powershell
+Disable-NetAdapter -Name "Ethernet" -Confirm:$false
+```
+
+![Desactivación del adaptador Ethernet](capturas/39_aislamiento_red.png)
+
+El comando volvió al indicador de PowerShell sin mostrar errores. Para acreditar el cambio se realizó una consulta adicional del estado del adaptador.
+
+### 8.5. Verificación de la contención
+
+```powershell
+Get-NetAdapter -Name "Ethernet" | Select-Object Name, Status, MacAddress
+```
+
+![Adaptador Ethernet verificado como deshabilitado](capturas/40_verificacion_aislamiento_red.png)
+
+El adaptador apareció en estado **`Disabled`**, manteniendo la dirección MAC indicada inicialmente. Esto confirma la desactivación de la interfaz desde Windows durante la prueba; no se ha demostrado un incidente malicioso ni un aislamiento de toda una organización.
+
+### 8.6. Restauración del adaptador y verificación
+
+```powershell
+Enable-NetAdapter -Name "Ethernet" -Confirm:$false
+Get-NetAdapter -Name "Ethernet" | Select-Object Name, Status, MacAddress
+```
+
+![Restauración y comprobación del adaptador Ethernet](capturas/41_restauracion_adaptador_red.png)
+
+Tras habilitar de nuevo la interfaz, la consulta mostró **`Up`**, con la misma dirección MAC. Se recuperó el estado activo del adaptador; esta comprobación **no implica por sí sola que se haya verificado conectividad extremo a extremo o acceso a servicios externos**.
+
+### 8.7. Comprobación final del firewall
+
+```powershell
+Get-NetFirewallProfile | Select-Object Name, Enabled
+```
+
+![Perfiles del firewall habilitados después de la recuperación](capturas/42_verificacion_final_firewall.png)
+
+Los tres perfiles (**Domain**, **Private** y **Public**) seguían mostrando `Enabled = True`. Se constató que no quedaron deshabilitados tras la desactivación y reactivación del adaptador.
+
+### 8.8. Resultado y límites de la práctica
+
+La secuencia **estado inicial → instantánea → aislamiento → verificación → reactivación → comprobación final** permitió ejercitar una medida básica de contención reversible. No se realizó un análisis de eliminación de malware, una restauración de información desde copias, una prueba de acceso a aplicaciones empresariales ni una investigación de exfiltración. Estas tareas siguen descritas como actuaciones que corresponderían a un incidente real, sin atribuirles resultados no observados.
