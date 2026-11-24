@@ -142,11 +142,11 @@ Preservar las evidencias antes de alterarlas, valorar el aislamiento del equipo,
 
 **Pendiente:** IP sospechosa concreta, cronología completa, alcance de los datos, correlación de eventos y decisiones de contención ejecutadas.
 
-## 8. Puertos, procesos y firma digital (capturas 20–24)
+## 8. Puertos, procesos y firma digital
 
 Esta ampliación se realizó en Windows 11 con PowerShell para observar el tráfico TCP del equipo, identificar un puerto de escucha y verificar el ejecutable asociado. **No se utilizó malware y no se ha identificado una conexión con el incidente ficticio.** Los identificadores de proceso y el estado de las conexiones son temporales; lo que aparece corresponde al momento de cada consulta.
 
-### 8.1. Conexiones TCP establecidas — captura 20
+### 8.1. Conexiones TCP establecidas
 
 ```powershell
 Get-NetTCPConnection -State Established -ErrorAction SilentlyContinue |
@@ -154,11 +154,11 @@ Get-NetTCPConnection -State Established -ErrorAction SilentlyContinue |
     Format-Table -AutoSize
 ```
 
-![Captura 20: consulta de conexiones TCP establecidas sin resultados](capturas/20-conexiones-tcp-establecidas.png)
+![consulta de conexiones TCP establecidas sin resultados](capturas/20-conexiones-tcp-establecidas.png)
 
 La consulta **no devolvió filas**. Significa que no se observaron conexiones TCP en estado `Established` en ese instante, no que la máquina carezca de conexión a Internet ni que esté libre de amenazas.
 
-### 8.2. Puertos TCP en escucha — captura 21
+### 8.2. Puertos TCP en escucha
 
 ```powershell
 Get-NetTCPConnection -State Listen |
@@ -167,13 +167,13 @@ Get-NetTCPConnection -State Listen |
     Format-Table -AutoSize
 ```
 
-![Captura 21: lista de puertos TCP en escucha y PID](capturas/21-puertos-tcp-escucha.png)
+![lista de puertos TCP en escucha y PID](capturas/21-puertos-tcp-escucha.png)
 
 Se observaron, entre otros, **135** (RPC), **139** (servicios NetBIOS), **445** (SMB), **5040** y **42050**, además de puertos altos del sistema. En la misma auditoría, el puerto 5040 se había relacionado con `CDPSvc`.
 
 El puerto **445** es relevante para el contexto del escenario porque se mencionan carpetas compartidas, pero un puerto en escucha no demuestra acceso indebido. El puerto **42050** llamó la atención para comprobar su proceso propietario.
 
-### 8.3. Relación entre puerto 42050 y PID 2704 — captura 22
+### 8.3. Relación entre puerto 42050 y PID 2704
 
 ```powershell
 Get-NetTCPConnection -State Listen -LocalPort 42050 |
@@ -183,11 +183,11 @@ Get-Process -Id 2704 |
     Select-Object Id, ProcessName, Path
 ```
 
-![Captura 22: puerto 42050 asociado al PID 2704](capturas/22-identificacion-proceso-puerto-42050.png)
+![puerto 42050 asociado al PID 2704](capturas/22-identificacion-proceso-puerto-42050.png)
 
 El resultado vinculó **`::1:42050`** con el PID **2704**, pero el segundo comando no mostró el proceso en aquella salida. `::1` es la dirección de bucle local IPv6: esa escucha estaba limitada al propio equipo, no expuesta directamente a la red.
 
-### 8.4. Identificación del proceso y servicio — captura 23
+### 8.4. Identificación del proceso y servicio
 
 ```powershell
 Get-Process -Id 2704 -ErrorAction SilentlyContinue |
@@ -198,11 +198,11 @@ Get-CimInstance Win32_Service |
     Select-Object Name, DisplayName, State, ProcessId
 ```
 
-![Captura 23: identificación de OneDrive.Sync.Service](capturas/23-comprobacion-proceso-servicio-42050.png)
+![identificación de OneDrive.Sync.Service](capturas/23-comprobacion-proceso-servicio-42050.png)
 
 La nueva comprobación permitió identificar el proceso **`OneDrive.Sync.Service`**, con una ruta dentro de `C:\Users\ciberseguridad\AppData\Local\Microsoft\OneDrive\...`. No apareció una fila adicional de servicio de Windows en la consulta realizada; por tanto, **se identificó el proceso, no un servicio registrado mediante esa consulta**.
 
-### 8.5. Verificación de la firma digital — captura 24
+### 8.5. Verificación de la firma digital
 
 ```powershell
 $proceso = Get-Process -Id 2704 -ErrorAction SilentlyContinue
@@ -213,7 +213,7 @@ if ($proceso -and $proceso.Path) {
 }
 ```
 
-![Captura 24: firma digital válida de Microsoft Corporation](capturas/24-verificacion-firma-digital-onedrive.png)
+![firma digital válida de Microsoft Corporation](capturas/24-verificacion-firma-digital-onedrive.png)
 
 La firma del ejecutable mostró el estado **`Valid`** y el firmante **`Microsoft Corporation`**. Junto con la ruta observada y la escucha en `::1`, el conjunto es **compatible con un componente legítimo de OneDrive**. Una firma digital válida respalda la autenticidad e integridad del binario verificado, pero no garantiza que todo comportamiento de ese proceso o de su entorno sea seguro.
 
@@ -221,9 +221,9 @@ La firma del ejecutable mostró el estado **`Valid`** y el firmante **`Microsoft
 
 El análisis permitió seguir una secuencia útil de auditoría: **puerto → PID → proceso → ruta → firma digital**. No se encontró una conexión exterior sospechosa ni evidencias que relacionen el puerto 42050 con el phishing del escenario. El resultado se documenta como una comprobación real de un componente del equipo, sin atribuirle actividad maliciosa.
 
-## 9. Recursos compartidos SMB (capturas 25–27)
+## 9. Recursos compartidos SMB
 
-### 9.1. Recursos compartidos configurados — captura 25
+### 9.1. Recursos compartidos configurados
 
 ```powershell
 Get-SmbShare |
@@ -231,11 +231,11 @@ Get-SmbShare |
     Format-Table -AutoSize
 ```
 
-![Captura 25: recursos compartidos administrativos de Windows](capturas/25-recursos-compartidos-smb.png)
+![recursos compartidos administrativos de Windows](capturas/25-recursos-compartidos-smb.png)
 
 El resultado mostró los recursos administrativos habituales **`ADMIN$`** (ruta `C:\WINDOWS`), **`C$`** (ruta `C:\`) e **`IPC$`** (para comunicación entre procesos). No se observaron recursos compartidos adicionales en ese momento. Su presencia no demuestra accesos indebidos ni permite reconstruir sesiones anteriores.
 
-### 9.2. Sesiones SMB activas — captura 26
+### 9.2. Sesiones SMB activas
 
 ```powershell
 Get-SmbSession |
@@ -243,11 +243,11 @@ Get-SmbSession |
     Format-Table -AutoSize
 ```
 
-![Captura 26: consulta sin sesiones SMB activas](capturas/26-sesiones-smb-activas.png)
+![consulta sin sesiones SMB activas](capturas/26-sesiones-smb-activas.png)
 
 La consulta no devolvió filas. **No se observaron sesiones SMB activas en ese instante.** Este comando no recupera sesiones que ya finalizaron.
 
-### 9.3. Archivos abiertos mediante SMB — captura 27
+### 9.3. Archivos abiertos mediante SMB
 
 ```powershell
 Get-SmbOpenFile |
@@ -255,7 +255,7 @@ Get-SmbOpenFile |
     Format-Table -AutoSize
 ```
 
-![Captura 27: consulta sin archivos abiertos mediante SMB](capturas/27-archivos-smb-abiertos.png)
+![consulta sin archivos abiertos mediante SMB](capturas/27-archivos-smb-abiertos.png)
 
 Tampoco aparecieron resultados. Por tanto, **no se observaron archivos abiertos por clientes SMB** en ese momento.
 
@@ -263,11 +263,11 @@ Tampoco aparecieron resultados. Por tanto, **no se observaron archivos abiertos 
 
 Las consultas 25–27 aportan una imagen del estado actual del servicio de archivos: recursos administrativos presentes, sin sesiones ni archivos SMB abiertos observados. **No prueban ni descartan accesos históricos**, y no permiten concluir que los intentos de acceso a compartidos descritos en el escenario hayan ocurrido en nuestra máquina virtual. Para reconstruir accesos pasados harían falta eventos y registros adecuados de los equipos y servidores afectados, además de correlacionar usuarios y tiempos.
 
-## 10. Auditoría de recursos compartidos (capturas 28–29)
+## 10. Auditoría de recursos compartidos
 
 Tras comprobar que en el momento de la consulta no había sesiones ni archivos SMB abiertos, revisé si Windows estaba configurado para conservar registros de accesos a recursos compartidos. La comprobación se efectuó **sin cambiar las políticas de auditoría**.
 
-### 10.1. Estado de las subcategorías de auditoría — captura 28
+### 10.1. Estado de las subcategorías de auditoría
 
 Se intentó consultar la categoría mediante `auditpol /get /category:"Acceso a objetos"`, pero el sistema devolvió el error **0x00000057 (parámetro incorrecto)**. Para consultar la configuración real utilicé:
 
@@ -275,13 +275,13 @@ Se intentó consultar la categoría mediante `auditpol /get /category:"Acceso a 
 auditpol /get /category:*
 ```
 
-![Captura 28: configuración de auditoría de acceso a objetos](capturas/28-configuracion-auditoria-objetos.png)
+![configuración de auditoría de acceso a objetos](capturas/28-configuracion-auditoria-objetos.png)
 
-![Captura 28, continuación: restantes categorías de auditoría](capturas/28-configuracion-auditoria-continuacion.png)
+![Continuación: restantes categorías de auditoría](capturas/28-configuracion-auditoria-continuacion.png)
 
 Dentro de **Acceso a objetos**, las subcategorías **Sistema de archivos**, **Recurso compartido de archivos** y **Recurso compartido de archivos detallado** figuraban como `Sin auditoría`. Esto supone una limitación para reconstruir determinados accesos a recursos compartidos utilizando esos eventos.
 
-### 10.2. Consulta de eventos de acceso — captura 29
+### 10.2. Consulta de eventos de acceso
 
 ```powershell
 Get-WinEvent -FilterHashtable @{
@@ -292,7 +292,7 @@ Get-WinEvent -FilterHashtable @{
     Format-List
 ```
 
-![Captura 29: consulta sin eventos 5140 ni 5145](capturas/29-eventos-acceso-recursos-compartidos.png)
+![consulta sin eventos 5140 ni 5145](capturas/29-eventos-acceso-recursos-compartidos.png)
 
 La consulta no mostró eventos de los tipos **5140** (acceso a recurso compartido de red) ni **5145** (comprobación detallada de acceso). Dado que la auditoría correspondiente está desactivada, **la ausencia de estos eventos no demuestra que nunca hayan ocurrido accesos**. Solo indica que no se encontraron registros de esos identificadores en la consulta realizada.
 
@@ -334,11 +334,11 @@ Para asociar con fundamento la actividad de red a una exfiltración real harían
 
 ---
 
-## 13. Práctica complementaria: reconocimiento de red con Angry IP Scanner (capturas 33–35)
+## 13. Práctica complementaria: reconocimiento de red con Angry IP Scanner
 
 Esta práctica amplía la auditoría de red con **Angry IP Scanner**, una herramienta de reconocimiento que permite comprobar direcciones IP, respuestas de equipos y, si se configura para ello, determinados puertos. Se realizó en el laboratorio autorizado de VirtualBox, sin emplear malware ni intentar acceder a equipos ajenos. **No forma parte de las evidencias del incidente ficticio.**
 
-### 13.1. Configuración IP de Windows — captura 33
+### 13.1. Configuración IP de Windows
 
 En PowerShell de la máquina virtual `W11_Incidente` se consultó la configuración de red:
 
@@ -346,17 +346,17 @@ En PowerShell de la máquina virtual `W11_Incidente` se consultó la configuraci
 Get-NetIPConfiguration
 ```
 
-![Captura 33: configuración de red de Windows](capturas/33_configuracion_red_angry_ip_scanner.png)
+![configuración de red de Windows](capturas/33_configuracion_red_angry_ip_scanner.png)
 
 El adaptador `Ethernet` mostró la dirección IPv4 **`10.10.10.30`** y el perfil **«Red no identificada»**. No apareció una puerta de enlace IPv4 en la salida. Una consulta posterior de `Get-NetIPAddress` confirmó el prefijo **`/24`**; ese resultado se comprobó, aunque no se añadió como captura independiente.
 
-### 13.2. Red del laboratorio VirtualBox — captura 34
+### 13.2. Red del laboratorio VirtualBox
 
-![Captura 34: adaptador conectado a la red NAT PROYECTO](capturas/34_configuracion_red_virtualbox.png)
+![adaptador conectado a la red NAT PROYECTO](capturas/34_configuracion_red_virtualbox.png)
 
 En VirtualBox se comprobó que el **Adaptador 1** estaba habilitado, conectado a la **Red NAT `PROYECTO`** y con el cable virtual conectado. La configuración de redes NAT mostraba para `PROYECTO` el prefijo **`10.10.10.0/24`**. La red `RickLab` es distinta y no formó parte de la prueba.
 
-### 13.3. Escaneo de la dirección propia — captura 35
+### 13.3. Escaneo de la dirección propia
 
 Se instaló y ejecutó Angry IP Scanner dentro de `W11_Incidente`, limitando el rango de inicio y final a la misma dirección:
 
@@ -365,7 +365,7 @@ IP inicial: 10.10.10.30
 IP final:   10.10.10.30
 ```
 
-![Captura 35: resultado de Angry IP Scanner](capturas/35_resultado_escaneo_angry_ip_scanner.png)
+![resultado de Angry IP Scanner](capturas/35_resultado_escaneo_angry_ip_scanner.png)
 
 El resultado mostró la dirección **`10.10.10.30`**, el nombre de equipo **`fermentador`**, un ping indicado de **`0 ms`** y datos parciales de dirección MAC y fabricante. En el campo de puertos figuró **`[n/d]`**, por lo que **no se identificaron puertos abiertos mediante esta captura**. Tampoco se escaneó toda la subred ni se acreditó la presencia de otros equipos.
 
