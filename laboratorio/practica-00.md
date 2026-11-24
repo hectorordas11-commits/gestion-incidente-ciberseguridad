@@ -3,7 +3,7 @@
 ## Objetivo
 Antes de reproducir el incidente de phishing, preparé una máquina virtual con Windows 11 y comprobé qué información podía obtener con las herramientas que trae el propio sistema. La idea es conocer el estado inicial y no confundir los eventos anteriores con los hechos de la simulación.
 
-**Entorno:** VirtualBox, máquina `W11_Incidente`, Windows 11 Pro, PowerShell. Fecha de las pruebas: **17/11/2026**. Nombre mostrado por Windows: `FERMENTADOR`. En este momento no se ha documentado todavía la instalación de Ubuntu ni el aislamiento definitivo de la red.
+**Entorno:** VirtualBox, máquina `W11_Incidente`, Windows 11 Pro, PowerShell. Fecha de las pruebas: **17/11/2026**. Nombre mostrado por Windows: `FERMENTADOR`. Este documento registra la preparación inicial de noviembre. La simulación posterior de aislamiento y recuperación de red se documenta en el [apartado 4](../04-respuesta-recuperacion/README.md); no se ha documentado una instalación de Ubuntu en esta práctica.
 
 > **Capturas:** las imágenes originales ya están incorporadas en las carpetas de evidencias del repositorio y aparecen enlazadas junto a cada práctica.
 
@@ -117,6 +117,6 @@ Get-CimInstance Win32_Service | Where-Object {$_.ProcessId -eq 2692} |
 El PID observado **2692** correspondía a `svchost.exe` en `C:\WINDOWS\system32\` y al servicio **CDPSvc**, «Servicio de plataforma de dispositivos conectados», en ejecución. Los PID son temporales y pueden variar entre arranques.
 
 ## Conclusiones
-Esta práctica permitió comprobar que el sistema dispone de registros auditables y herramientas nativas para observar conexiones y procesos. Los eventos obtenidos reflejan el estado **previo** del laboratorio, no el ataque del caso. La configuración de Ubuntu, la red aislada y las pruebas entre máquinas siguen pendientes.
+Esta práctica permitió comprobar que el sistema dispone de registros auditables y herramientas nativas para observar conexiones y procesos. Los eventos obtenidos reflejan el estado **previo** del laboratorio, no el ataque del caso. Las pruebas entre varias máquinas y la configuración de Ubuntu no forman parte de esta práctica. El aislamiento temporal del adaptador de Windows se documenta por separado en el apartado 4.
 
 **Instantánea:** se creó `Windows-Estado-Inicial` en VirtualBox para facilitar la recuperación del laboratorio. No se incluye una captura adicional porque las evidencias principales se han centrado en resultados técnicos.
