@@ -1,41 +1,45 @@
 # Gestión de un incidente de ciberseguridad
 
-**Trabajo práctico individual · Caso simulado · Revisado el 24 de noviembre de 2026**
+**Trabajo práctico individual · Caso simulado · Noviembre de 2026**
 
-Este trabajo parte de un incidente ficticio en una empresa de aproximadamente cien empleados: una persona abre un archivo recibido en un correo que aparenta proceder de Recursos Humanos y después se identifican alertas antivirus, tráfico externo sospechoso, posibles accesos a recursos compartidos y la posibilidad de que se hayan visto expuestos datos personales de clientes.
+## Descripción del proyecto
 
-Para practicar los procedimientos he utilizado una máquina virtual Windows 11 Pro en VirtualBox, PowerShell, Microsoft Defender y registros de Windows. El correo y el archivo adjunto del laboratorio son **textos inocuos**, creados para reproducir un proceso de investigación sin utilizar malware real.
+El trabajo plantea un incidente ficticio en una empresa de unos 100 empleados. Un trabajador abre un archivo adjunto de un correo que aparenta ser de Recursos Humanos; después se producen alertas de seguridad, conexiones sospechosas, posibles intentos de acceso a carpetas compartidas y riesgo de filtración de datos personales.
 
-**Criterio fundamental:** los hechos del enunciado, las observaciones de laboratorio y las hipótesis se presentan por separado. No se inventan detecciones, accesos ni filtraciones.
+El objetivo es explicar cómo **prevenir, detectar, investigar, contener y gestionar** este incidente, combinando el análisis del caso con prácticas de laboratorio.
 
-## Índice principal — seis capítulos organizados
+## Entorno de laboratorio
 
-Los **seis apartados** están organizados para leerse de principio a fin desde el documento principal de cada carpeta: explicación, decisiones, herramientas o prácticas, resultados y conclusión. Las prácticas realmente realizadas incluyen sus **capturas PNG** en el lugar correspondiente.
+He utilizado una máquina virtual **Windows 11 Pro** en **VirtualBox**, llamada `W11_Incidente` (nombre de equipo `FERMENTADOR`), con **PowerShell**, Microsoft Defender y herramientas de análisis. Su red de laboratorio es `PROYECTO`, con la dirección `10.10.10.30`.
 
-| Apartado | Documento principal | Qué contiene | Estado |
-|---|---|---|---|
-| 1 | [Prevención, concienciación y criptografía](01-prevencion/README.md) | Principios, riesgos, plan de formación, guía y cartel, criptografía, Defender y firewall | Prevención, práctica CMS y cartel gráfico documentados |
-| 2 | [Detección y auditoría](02-deteccion-auditoria/README.md) | Clasificación, activos, eventos, conexiones, antivirus y ficha INC-2026-001 | Auditoría, consulta de registros, explicación OSINT y escaneo limitado con Angry IP Scanner |
-| 3 | [Investigación y evidencias](03-investigacion/README.md) | Correo simulado, adjunto, SHA-256, cadena de custodia, cronología y límites forenses | Correo simulado, integridad, custodia y recopilación forense con evidencias gráficas |
-| 4 | [Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Playbook de contención, erradicación, recuperación y ciberresiliencia | Procedimiento y simulación de aislamiento y recuperación de red documentados |
-| 5 | [Notificación y CERT/CSIRT](05-notificacion/README.md) | Aviso interno, criterios AEPD/RGPD, valoración de riesgo y equipos de respuesta | Criterios RGPD, borradores de aviso y CERT/CSIRT revisados; sin comunicaciones reales |
-| 6 | [Simulación de reunión](06-simulacion/README.md) | Roles, cuatro novedades, decisiones, responsables y acta | Ejercicio de mesa completo: cuatro novedades, acta, decisiones y evaluación |
+La [práctica 00 de laboratorio](laboratorio/practica-00.md) documenta la preparación inicial: identificación de Windows, estado del antivirus y firewall, registros de seguridad, conexiones y puertos, y una instantánea de VirtualBox. Es una preparación común para los demás apartados, **no un séptimo capítulo del enunciado**.
 
-**Organización de la entrega:** cada capítulo sigue una secuencia de objetivos, actuaciones, evidencias y conclusiones. En el **apartado 3** las seis tareas del enunciado aparecen expresamente en su orden original; la cronología, el análisis complementario y la recopilación forense con evidencias gráficas se conservan como anexos, sin sustituir las respuestas requeridas. En los demás capítulos también se diferencia el desarrollo del enunciado de las prácticas complementarias. El apartado 4 incorpora una simulación real de aislamiento y reactivación de red, sin presentarla como erradicación de malware.
+## Apartados del trabajo
 
-## Documentos complementarios y evidencias
+| Apartado | Resumen |
+|---|---|
+| **1. [Prevención y concienciación](01-prevencion/README.md)** | Riesgos, normas de seguridad, formación, guía y cartel antiphishing, criptografía y práctica de cifrado con certificado. |
+| **2. [Detección y auditoría](02-deteccion-auditoria/README.md)** | Clasificación del incidente, activos afectados, eventos de Windows, conexiones, antivirus y ficha de incidente. Incluye prácticas con SMB, Angry IP Scanner, Wayback Machine y Shodan. |
+| **3. [Investigación y evidencias](03-investigacion/README.md)** | Análisis de un correo simulado, preservación de pruebas, cálculo de SHA-256, cadena de custodia y recopilación de datos del sistema. |
+| **4. [Respuesta y recuperación](04-respuesta-recuperacion/README.md)** | Procedimiento de contención, erradicación y recuperación; práctica de aislamiento y reactivación de red en Windows y ciberresiliencia. |
+| **5. [Notificación](05-notificacion/README.md)** | Comunicación interna, valoración de una posible brecha de datos, criterios de la AEPD y funciones de CERT/CSIRT. |
+| **6. [Simulación de reunión](06-simulacion/README.md)** | Ejercicio escrito de toma de decisiones ante cuatro novedades del incidente, con roles, acuerdos y acta. |
 
-- [Laboratorio: preparación y auditoría inicial de Windows 11](laboratorio/practica-00.md), con capturas referenciadas.
-- [Cadena de custodia en CSV](03-investigacion/cadena-custodia.csv).
-- [Bibliografía y fuentes](FUENTES.md).
+## Prácticas y evidencias
+
+Las prácticas se explican dentro del apartado al que corresponden, con sus comandos, capturas y resultados. Se incluyen **44 evidencias numeradas (01–44)**, además del cartel antiphishing y una captura adicional de una comprobación.
+
+Entre las pruebas realizadas están la revisión de registros y servicios de Windows, el cálculo de **SHA-256**, el cifrado y descifrado de un mensaje, las consultas OSINT con **Wayback Machine y Shodan**, el reconocimiento limitado de la propia IP con **Angry IP Scanner** y el aislamiento temporal del adaptador de red.
+
+**Importante:** el incidente del enunciado es ficticio. Las comprobaciones del laboratorio son reales, pero **no se ha ejecutado malware ni confirmado un atacante o una filtración de datos**. Las IP públicas consultadas en OSINT son ejemplos educativos.
+
+## Documentación complementaria
+
+- [Preparación del laboratorio](laboratorio/practica-00.md).
+- [Registro de cadena de custodia (CSV)](03-investigacion/cadena-custodia.csv).
+- [Fuentes y bibliografía](FUENTES.md).
 - [Preparación del informe final en PDF](informe-final/README.md).
 
-Los capítulos reúnen todo el contenido; los archivos Markdown que duplicaban su contenido se han eliminado. Se conservan por separado únicamente las evidencias, los datos de custodia y la documentación técnica específica del laboratorio.
+## Estado del proyecto
 
-**Estado de las capturas:** están disponibles las evidencias numeradas **01–42**, con dos imágenes para la comprobación 28 y el cartel antiphishing adicional. Las imágenes están conservadas en sus carpetas `capturas/`, sin necesidad de renombrarlas.
-
-## Qué queda por hacer para entregar el proyecto
-
-La documentación está organizada como un informe, pero **no debe confundirse con todas las prácticas terminadas**: los apartados 1, 2 y 3 cuentan con prácticas y documentación, y los apartados 5 y 6 tienen los análisis y modelos educativos preparados, aunque no existe un indicador malicioso concreto con el que demostrar OSINT o exfiltración. Los seis apartados ya se han revisado y las pruebas están documentadas; falta preparar el PDF final para la entrega. Si se realizan pruebas adicionales, se documentarán en el capítulo que corresponda y con sus resultados reales.
-
-**Seguridad:** trabajar únicamente en máquinas virtuales y con archivos inocuos; no subir contraseñas, datos personales reales ni ejecutables peligrosos.
+Los **seis apartados** y sus prácticas están documentados en GitHub. **Queda preparar el informe final en PDF** para la entrega, manteniendo las explicaciones y evidencias ya organizadas.
