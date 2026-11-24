@@ -37,8 +37,7 @@ Entre las pruebas realizadas están la revisión de registros y servicios de Win
 
 - [Preparación del laboratorio](laboratorio/practica-00.md).
 - [Fuentes y bibliografía](FUENTES.md).
-- [Preparación del informe final en PDF](informe-final/README.md).
 
 ## Estado del proyecto
 
-Los **seis apartados** y sus prácticas están documentados en GitHub. **Queda preparar el informe final en PDF** para la entrega, manteniendo las explicaciones y evidencias ya organizadas.
+Los **seis apartados** y sus prácticas están documentados en este repositorio de GitHub, que constituye el trabajo presentado.
