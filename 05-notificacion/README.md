@@ -143,7 +143,7 @@ En este proyecto **no se han enviado correos, comunicaciones a afectados, avisos
 
 La obligación de comunicar no puede resolverse por intuición. Primero hay que determinar si existe brecha de datos personales, su alcance y el riesgo para los interesados, sin dejar transcurrir los plazos cuando proceda notificar. Este ejercicio presenta **modelos y análisis**, no notificaciones realizadas.
 
-**Estado del apartado:** documentación y modelos revisados y preparados para el informe final; no exige capturas de PowerShell ni acreditar notificaciones reales.
+**Estado del apartado:** documentación y modelos revisados e incluidos en el repositorio; no exige capturas de PowerShell ni acreditar notificaciones reales.
 
 **Referencia docente:** [intercambio de información, notificación y equipos de respuesta](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
 
