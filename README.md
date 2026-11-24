@@ -16,16 +16,16 @@ Los **seis apartados** están organizados para leerse de principio a fin desde e
 |---|---|---|---|
 | 1 | [Prevención, concienciación y criptografía](01-prevencion/README.md) | Principios, riesgos, plan de formación, guía y cartel, criptografía, Defender y firewall | Prevención, práctica CMS y cartel gráfico documentados |
 | 2 | [Detección y auditoría](02-deteccion-auditoria/README.md) | Clasificación, activos, eventos, conexiones, antivirus y ficha INC-2026-001 | Auditoría práctica y explicación de OSINT/tráfico integradas; no hay indicadores externos del caso |
-| 3 | [Investigación y evidencias](03-investigacion/README.md) | Correo simulado, adjunto, SHA-256, cadena de custodia, cronología y límites forenses | Correo simulado, integridad, custodia y recopilación forense con capturas 30–32 |
+| 3 | [Investigación y evidencias](03-investigacion/README.md) | Correo simulado, adjunto, SHA-256, cadena de custodia, cronología y límites forenses | Correo simulado, integridad, custodia y recopilación forense con evidencias gráficas |
 | 4 | [Respuesta y recuperación](04-respuesta-recuperacion/README.md) | Playbook de contención, erradicación, recuperación y ciberresiliencia | Procedimiento desarrollado; falta práctica técnica |
 | 5 | [Notificación y CERT/CSIRT](05-notificacion/README.md) | Aviso interno, criterios AEPD/RGPD, valoración de riesgo y equipos de respuesta | Criterios RGPD, borradores de aviso y CERT/CSIRT revisados; sin comunicaciones reales |
 | 6 | [Simulación de reunión](06-simulacion/README.md) | Roles, cuatro novedades, decisiones, responsables y acta | Ejercicio de mesa completo: cuatro novedades, acta, decisiones y evaluación |
 
-**Organización de la entrega:** cada capítulo sigue una secuencia de objetivos, actuaciones, evidencias y conclusiones. En el **apartado 3** las seis tareas del enunciado aparecen expresamente en su orden original; la cronología, el análisis complementario y la recopilación forense con capturas 30–32 se conservan como anexos, sin sustituir las respuestas requeridas. Los capítulos 1, 2 y 4–6 están ordenados por sus temas y fases de trabajo. El apartado 4 mantiene pendientes sus pruebas técnicas, que no se presentan como ejecutadas.
+**Organización de la entrega:** cada capítulo sigue una secuencia de objetivos, actuaciones, evidencias y conclusiones. En el **apartado 3** las seis tareas del enunciado aparecen expresamente en su orden original; la cronología, el análisis complementario y la recopilación forense con evidencias gráficas se conservan como anexos, sin sustituir las respuestas requeridas. Los capítulos 1, 2 y 4–6 están ordenados por sus temas y fases de trabajo. El apartado 4 mantiene pendientes sus pruebas técnicas, que no se presentan como ejecutadas.
 
 ## Documentos complementarios y evidencias
 
-- [Laboratorio: preparación y auditoría inicial de Windows 11](laboratorio/practica-00.md), con capturas 01–09 referenciadas.
+- [Laboratorio: preparación y auditoría inicial de Windows 11](laboratorio/practica-00.md), con capturas referenciadas.
 - [Cadena de custodia en CSV](03-investigacion/cadena-custodia.csv).
 - [Bibliografía y fuentes](FUENTES.md).
 - [Preparación del informe final en PDF](informe-final/README.md).
