@@ -27,11 +27,11 @@ La [práctica 00 de laboratorio](laboratorio/practica-00.md) documenta la prepar
 
 ## Prácticas y evidencias
 
-Las prácticas se explican dentro del apartado al que corresponden, con sus comandos, capturas y resultados. Se incluyen **43 evidencias numeradas (01–42 y 44)**, además del cartel antiphishing y una captura adicional de una comprobación.
+Las prácticas se explican dentro del apartado al que corresponden, con sus comandos, capturas y resultados. Se conservan **43 capturas numeradas (01–42 y 44)**, además del cartel antiphishing y una imagen adicional de auditoría. El número 43 quedó libre al retirar una práctica complementaria; se mantiene el 44 para no alterar la captura de Shodan ni sus enlaces.
 
 Entre las pruebas realizadas están la revisión de registros y servicios de Windows, el cálculo de **SHA-256**, el cifrado y descifrado de un mensaje, la consulta OSINT con **Shodan**, el reconocimiento limitado de la propia IP con **Angry IP Scanner** y el aislamiento temporal del adaptador de red.
 
-**Importante:** el incidente del enunciado es ficticio. Las comprobaciones del laboratorio son reales, pero **no se ha ejecutado malware ni confirmado un atacante o una filtración de datos**. Las IP públicas consultadas en OSINT son ejemplos educativos.
+**Importante:** el incidente del enunciado es ficticio. Las comprobaciones del laboratorio son reales, pero **no se ha ejecutado malware ni confirmado un atacante o una filtración de datos**. La IP pública consultada en Shodan es un ejemplo educativo.
 
 ## Documentación complementaria
 
@@ -40,4 +40,6 @@ Entre las pruebas realizadas están la revisión de registros y servicios de Win
 
 ## Estado del proyecto
 
-Los **seis apartados** y sus prácticas están documentados en este repositorio de GitHub, que constituye el trabajo presentado.
+Los **seis apartados** están desarrollados y documentados en este repositorio de GitHub, que constituye el trabajo presentado. Los apartados 5 y 6 son documentales y no requieren capturas técnicas.
+
+**Conclusión general:** el proyecto reúne un procedimiento completo de gestión del incidente planteado y varias comprobaciones reales en un entorno autorizado. La principal enseñanza es que prevenir, investigar y responder exige conservar evidencias, distinguir los hechos de las hipótesis y documentar cada decisión.
