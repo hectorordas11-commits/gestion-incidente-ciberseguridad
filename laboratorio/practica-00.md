@@ -1,7 +1,7 @@
 # Práctica 00 · Preparación y auditoría inicial de Windows 11
 
 ## Objetivo
-Antes de reproducir el incidente de phishing, preparé una máquina virtual con Windows 11 y comprobé qué información podía obtener con las herramientas que trae el propio sistema. La idea es conocer el estado inicial y no confundir los eventos anteriores con los hechos de la simulación.
+Antes de analizar el incidente de phishing planteado, preparé una máquina virtual con Windows 11 y comprobé qué información podía obtener con las herramientas que trae el propio sistema. La idea es conocer el estado inicial y no confundir los eventos anteriores con los hechos de la simulación.
 
 **Entorno:** VirtualBox, máquina `W11_Incidente`, Windows 11 Pro, PowerShell. Fecha de las pruebas: **17/11/2026**. Nombre mostrado por Windows: `FERMENTADOR`. Este documento registra la preparación inicial de noviembre. La simulación posterior de aislamiento y recuperación de red se documenta en el [apartado 4](../04-respuesta-recuperacion/README.md); no se ha documentado una instalación de Ubuntu en esta práctica.
 
