@@ -9,4 +9,4 @@ La entrega definitiva incluirá:
 6. Conclusiones.
 7. Bibliografía y anexos con vínculos al repositorio.
 
-**Estado:** pendiente. No existe todavía un informe final ni resultados verificados.
+**Estado:** pendiente de generar el PDF. Los resultados de laboratorio y sus capturas sí están documentados y revisados en los apartados correspondientes de GitHub.
