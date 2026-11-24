@@ -312,7 +312,7 @@ Para complementar la práctica del hash SHA-256, realicé una demostración de *
 
 La finalidad es distinguir **integridad mediante hash** de **confidencialidad mediante cifrado**. En esta práctica, CMS protege un mensaje para el certificado destinatario; no se trata de cifrar el disco, enviar un correo real ni desplegar una PKI corporativa.
 
-### 7.2. Comprobación de los comandos disponibles — captura 16
+### 7.2. Comprobación de los comandos disponibles
 
 ```powershell
 Get-Command Protect-CmsMessage, Unprotect-CmsMessage |
@@ -321,9 +321,9 @@ Get-Command Protect-CmsMessage, Unprotect-CmsMessage |
 
 **Resultado observado:** aparecieron `Protect-CmsMessage` y `Unprotect-CmsMessage` como comandos de tipo `Cmdlet`. Se comprobó su disponibilidad, no el funcionamiento del cifrado todavía.
 
-![Captura 16: Comandos de cifrado y descifrado disponibles](capturas/16-comprobacion-comandos-cifrado.png)
+![Comandos de cifrado y descifrado disponibles](capturas/16-comprobacion-comandos-cifrado.png)
 
-### 7.3. Creación del certificado — captura 17
+### 7.3. Creación del certificado
 
 ```powershell
 $cert = New-SelfSignedCertificate `
@@ -339,9 +339,9 @@ $cert | Select-Object Subject, Thumbprint, NotAfter
 
 **Resultado observado:** se creó el certificado `CN=Laboratorio-Cifrado`, con clave RSA de 2048 bits y caducidad **17/11/2027**. Se almacenó en el almacén de certificados personal del usuario actual. Un certificado autofirmado sirve para este laboratorio, pero no equivale a un certificado de confianza pública.
 
-![Captura 17: Certificado autofirmado RSA de laboratorio](capturas/17-creacion-certificado-cifrado.png)
+![Certificado autofirmado RSA de laboratorio](capturas/17-creacion-certificado-cifrado.png)
 
-### 7.4. Cifrado del mensaje con CMS — captura 18
+### 7.4. Cifrado del mensaje con CMS
 
 ```powershell
 $mensaje = "Documento confidencial de prueba. Practica de cifrado del incidente."
@@ -354,9 +354,9 @@ Get-Content "C:\Laboratorio\mensaje_cifrado.txt"
 
 **Resultado observado:** se generó un bloque con las marcas `-----BEGIN CMS-----` y `-----END CMS-----`, almacenado en el fichero `C:\Laboratorio\mensaje_cifrado.txt`. Su contenido no muestra el texto original directamente. No se publica el bloque completo, porque no hace falta para explicar el procedimiento.
 
-![Captura 18: Mensaje cifrado en formato CMS](capturas/18-mensaje-cifrado-cms.png)
+![Mensaje cifrado en formato CMS](capturas/18-mensaje-cifrado-cms.png)
 
-### 7.5. Descifrado y verificación — captura 19
+### 7.5. Descifrado y verificación
 
 ```powershell
 $descifrado = Unprotect-CmsMessage -Path "C:\Laboratorio\mensaje_cifrado.txt"
@@ -375,13 +375,13 @@ True
 
 La comparación `True` demuestra que se recuperó el **mismo texto original** al descifrar el mensaje con las credenciales criptográficas disponibles en el equipo. No demuestra por sí sola la seguridad de toda una infraestructura de correo ni la identidad de usuarios remotos.
 
-![Captura 19: Descifrado del mensaje y comparación correcta](capturas/19-descifrado-mensaje-cms.png)
+![Descifrado del mensaje y comparación correcta](capturas/19-descifrado-mensaje-cms.png)
 
 ### 7.6. Resultado y aprendizaje
 
 La operación de cifrado y descifrado ha funcionado en el laboratorio. A diferencia de SHA-256, que produce una huella para verificar integridad, el cifrado permite recuperar el texto original si se dispone del material criptográfico adecuado. El certificado y su clave privada deben protegerse; en un caso real sería necesario aplicar políticas de emisión, custodia, renovación y revocación.
 
-**Evidencias:** las capturas 16 a 19 están incorporadas a `01-prevencion/capturas/` y muestran la salida real de los comandos.
+**Evidencias:** las evidencias gráficas están incorporadas a `01-prevencion/capturas/` y muestran la salida real de los comandos.
 
 ## 8. Conclusión del apartado
 
