@@ -22,7 +22,7 @@ En una investigación real recogería las fuentes autorizadas priorizando la inf
 
 Para no modificar innecesariamente los originales, primero documentaría su ubicación, origen, propietario y fechas; obtendría una copia controlada cuando proceda, registraría el responsable de la recogida y calcularía un hash criptográfico de cada fichero relevante.
 
-En la práctica se copió el adjunto inocuo `C:\Laboratorio\Actualizacion_RRHH.txt` a `C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt`. Calculamos SHA-256 del original y de la copia y **coincidieron**; la demostración detallada y las capturas 12–13 están en el [punto 6](#6-calcular-el-hash-sha-256-y-explicar-su-utilidad). El registro de identificación y custodia figura en el [punto 5](#5-documentar-la-cadena-de-custodia).
+En la práctica se copió el adjunto inocuo `C:\Laboratorio\Actualizacion_RRHH.txt` a `C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt`. Calculamos SHA-256 del original y de la copia y **coincidieron**; la demostración detallada y las evidencias gráficas están en el [punto 6](#6-calcular-el-hash-sha-256-y-explicar-su-utilidad). El registro de identificación y custodia figura en el [punto 5](#5-documentar-la-cadena-de-custodia).
 
 La integridad no se obtiene solo por calcular una huella: también se requieren almacenamiento protegido, controles de acceso, fechas fiables, trazabilidad de transferencias y un procedimiento para no alterar los originales. En esta práctica educativa solo se verificó el contenido comparado del archivo de prueba, no se certificó una adquisición forense judicial.
 
@@ -253,11 +253,11 @@ El temario de investigación distingue **recopilación**, **preservación**, **a
 
 Antes de alterar o eliminar información, el investigador debe identificar la fuente, anotar quién la recopila y cuándo, conservar una copia cuando corresponda, calcular su hash y registrar cada acceso o transferencia. Las fuentes más volátiles (procesos y conexiones activas) pueden cambiar rápidamente. La prioridad de preservar evidencias debe coordinarse con la contención cuando exista riesgo para la organización.
 
-## Anexo C. Recopilación automatizada de evidencias (capturas 30–32)
+## Anexo C. Recopilación automatizada de evidencias
 
 Para complementar la preservación del adjunto, ejecuté en la máquina virtual Windows 11 un script de recopilación forense basado en la práctica de los apuntes. Este ejercicio documenta **información del estado del equipo**, no una adquisición forense completa ni evidencias de que el phishing del escenario se haya producido realmente.
 
-### C.1. Ejecución y ubicación — captura 30
+### C.1. Ejecución y ubicación
 
 El archivo `C:\Laboratorio\recopilacion_forense_profesor.ps1` estaba presente. PowerShell bloqueó inicialmente su ejecución por la política de ejecución de scripts. Para realizar la práctica se usó `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force`, que modifica la política **solo para la sesión actual**, y se ejecutó el script desde `C:\Laboratorio`.
 
@@ -266,13 +266,13 @@ Set-Location "C:\Laboratorio"
 .\recopilacion_forense_profesor.ps1
 ```
 
-![Captura 30: ejecución del script de recopilación](capturas/30-recopilacion-forense-powershell.png)
+![ejecución del script de recopilación](capturas/30-recopilacion-forense-powershell.png)
 
 La consola mostró los diez pasos previstos: sistema, usuarios, procesos, conexiones TCP, puertos UDP, servicios, interfaces, caché DNS, eventos de seguridad y cálculo SHA-256. Terminó con el mensaje **«Investigación terminada»** e indicó la carpeta `C:\Laboratorio\Evidencias_20261117_124707`.
 
 El mensaje de finalización confirma que el script llegó al final, pero por sí solo no garantiza que cada fuente contenga registros.
 
-### C.2. Verificación de los archivos generados — captura 31
+### C.2. Verificación de los archivos generados
 
 ```powershell
 Get-ChildItem "C:\Laboratorio\Evidencias_20261117_124707" -File |
@@ -280,7 +280,7 @@ Get-ChildItem "C:\Laboratorio\Evidencias_20261117_124707" -File |
     Format-Table -AutoSize
 ```
 
-![Captura 31: archivos creados y tamaños](capturas/31-archivos-recopilacion-forense.png)
+![archivos creados y tamaños](capturas/31-archivos-recopilacion-forense.png)
 
 | Archivo | Tamaño observado |
 |---|---:|
@@ -297,13 +297,13 @@ Get-ChildItem "C:\Laboratorio\Evidencias_20261117_124707" -File |
 
 Se generaron **diez archivos**. Nueve tenían contenido y `dns.csv` estaba vacío. `hashes.txt` fue creado y tiene contenido, pero **no se han examinado individualmente ni vuelto a calcular los hashes** para comprobarlos de forma independiente.
 
-### C.3. Comprobación de la caché DNS — captura 32
+### C.3. Comprobación de la caché DNS
 
 ```powershell
 Get-DnsClientCache | Measure-Object
 ```
 
-![Captura 32: la consulta de caché DNS devuelve cero entradas](capturas/32-comprobacion-cache-dns.png)
+![la consulta de caché DNS devuelve cero entradas](capturas/32-comprobacion-cache-dns.png)
 
 La salida mostró `Count : 0`. Por tanto, en la **consulta de comprobación** no había entradas devueltas por la caché DNS, lo que es coherente con el tamaño cero del CSV. No permite asegurar que la caché estuviera vacía en todo momento ni que el equipo nunca haya resuelto dominios.
 
