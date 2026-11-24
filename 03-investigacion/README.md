@@ -22,7 +22,7 @@ En una investigación real recogería las fuentes autorizadas priorizando la inf
 
 Para no modificar innecesariamente los originales, primero documentaría su ubicación, origen, propietario y fechas; obtendría una copia controlada cuando proceda, registraría el responsable de la recogida y calcularía un hash criptográfico de cada fichero relevante.
 
-En la práctica se copió el adjunto inocuo `C:\Laboratorio\Actualizacion_RRHH.txt` a `C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt`. Calculamos SHA-256 del original y de la copia y **coincidieron**; la demostración detallada y las evidencias gráficas están en el [punto 6](#6-calcular-el-hash-sha-256-y-explicar-su-utilidad). El registro de identificación y custodia figura en el [punto 5](#5-documentar-la-cadena-de-custodia).
+En la práctica se copió el adjunto inocuo `C:\Laboratorio\Actualizacion_RRHH.txt` a `C:\Laboratorio\Evidencias\Actualizacion_RRHH_copia.txt`. Calculé SHA-256 del original y de la copia y **coincidieron**; la demostración detallada y las evidencias gráficas están en el [punto 6](#6-calcular-el-hash-sha-256-y-explicar-su-utilidad). El registro de identificación y custodia figura en el [punto 5](#5-documentar-la-cadena-de-custodia).
 
 La integridad no se obtiene solo por calcular una huella: también se requieren almacenamiento protegido, controles de acceso, fechas fiables, trazabilidad de transferencias y un procedimiento para no alterar los originales. En esta práctica educativa solo se verificó el contenido comparado del archivo de prueba, no se certificó una adquisición forense judicial.
 
