@@ -334,6 +334,45 @@ Para asociar con fundamento la actividad de red a una exfiltración real harían
 
 ---
 
-## 13. Conclusión del apartado
+## 13. Práctica complementaria: reconocimiento de red con Angry IP Scanner (capturas 33–35)
+
+Esta práctica amplía la auditoría de red con **Angry IP Scanner**, una herramienta de reconocimiento que permite comprobar direcciones IP, respuestas de equipos y, si se configura para ello, determinados puertos. Se realizó en el laboratorio autorizado de VirtualBox, sin emplear malware ni intentar acceder a equipos ajenos. **No forma parte de las evidencias del incidente ficticio.**
+
+### 13.1. Configuración IP de Windows — captura 33
+
+En PowerShell de la máquina virtual `W11_Incidente` se consultó la configuración de red:
+
+```powershell
+Get-NetIPConfiguration
+```
+
+![Captura 33: configuración de red de Windows](capturas/33_configuracion_red_angry_ip_scanner.png)
+
+El adaptador `Ethernet` mostró la dirección IPv4 **`10.10.10.30`** y el perfil **«Red no identificada»**. No apareció una puerta de enlace IPv4 en la salida. Una consulta posterior de `Get-NetIPAddress` confirmó el prefijo **`/24`**; ese resultado se comprobó, aunque no se añadió como captura independiente.
+
+### 13.2. Red del laboratorio VirtualBox — captura 34
+
+![Captura 34: adaptador conectado a la red NAT PROYECTO](capturas/34_configuracion_red_virtualbox.png)
+
+En VirtualBox se comprobó que el **Adaptador 1** estaba habilitado, conectado a la **Red NAT `PROYECTO`** y con el cable virtual conectado. La configuración de redes NAT mostraba para `PROYECTO` el prefijo **`10.10.10.0/24`**. La red `RickLab` es distinta y no formó parte de la prueba.
+
+### 13.3. Escaneo de la dirección propia — captura 35
+
+Se instaló y ejecutó Angry IP Scanner dentro de `W11_Incidente`, limitando el rango de inicio y final a la misma dirección:
+
+```text
+IP inicial: 10.10.10.30
+IP final:   10.10.10.30
+```
+
+![Captura 35: resultado de Angry IP Scanner](capturas/35_resultado_escaneo_angry_ip_scanner.png)
+
+El resultado mostró la dirección **`10.10.10.30`**, el nombre de equipo **`fermentador`**, un ping indicado de **`0 ms`** y datos parciales de dirección MAC y fabricante. En el campo de puertos figuró **`[n/d]`**, por lo que **no se identificaron puertos abiertos mediante esta captura**. Tampoco se escaneó toda la subred ni se acreditó la presencia de otros equipos.
+
+### 13.4. Valoración y límites
+
+La prueba verifica el uso básico de una herramienta de reconocimiento sobre **la propia IP del laboratorio**. Es útil para introducir el descubrimiento de dispositivos y las comprobaciones de conectividad, pero **no acredita una infección, un atacante, movimiento lateral ni exfiltración de datos**. Los hechos del enunciado permanecen separados de las observaciones obtenidas realmente en la máquina virtual.
+
+## 14. Conclusión del apartado
 La auditoría permitió comprobar autenticaciones, procesos, puertos, firmas digitales y configuración de auditoría de los recursos compartidos. He preparado también la ficha de clasificación y severidad provisional INC-2026-001. En conjunto, los resultados constituyen una **línea base del laboratorio** y no demuestran por sí solos una infección ni una fuga de información. La ausencia de un indicador externo verificable limita la aplicación práctica de OSINT y el análisis retrospectivo del tráfico; estas limitaciones quedan documentadas en lugar de inventar hallazgos.
 
