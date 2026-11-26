@@ -325,3 +325,5 @@ La recopilación constituye una **instantánea parcial** del sistema; los comand
 En conclusión, se completó un **ejercicio educativo de análisis de correo, preservación, integridad, custodia inicial y recopilación automatizada de datos del sistema**, con cronología y valoración de límites. El propósito no era ejecutar malware ni fabricar una fuga de datos. La adquisición forense completa, el análisis de memoria y la captura de paquetes se explican como técnicas que podrían utilizarse **si el incidente real lo justificase**, no como actividades ejecutadas o exigencias pendientes de esta simulación.
 
 **Material de clase utilizado:** «3. Investigación de los incidentes de ciberseguridad»: recopilación de evidencias digitales, físicas y externas, cadena de custodia, análisis de logs, disco, memoria y red, y construcción de la línea temporal. [Temario](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/) · [Bibliografía](../FUENTES.md).
+
+Apuntes de clase sobre recogida de pruebas y cadena de custodia: [2 de noviembre · Investigación y evidencias](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-11-02.md).
