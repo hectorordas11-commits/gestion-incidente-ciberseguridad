@@ -4,7 +4,9 @@
 
 ## Descripción del proyecto
 
-El trabajo plantea un incidente ficticio en una empresa de unos 100 empleados. Un trabajador abre un archivo adjunto de un correo que aparenta ser de Recursos Humanos; después se producen alertas de seguridad, conexiones sospechosas, posibles intentos de acceso a carpetas compartidas y riesgo de filtración de datos personales.
+El trabajo plantea un incidente ficticio en una empresa de unos 100 empleados. Varios empleados reciben un correo que suplanta a Recursos Humanos. Uno de ellos abre el adjunto y ejecuta el archivo malicioso. Después se detectan alertas del antivirus, conexiones externas sospechosas e intentos de acceso a carpetas compartidas. También se sospecha que han podido salir datos personales de clientes. Una de las primeras tareas sería revisar a quién llegó el mensaje y comprobar si alguien más abrió el adjunto.
+
+[3 de noviembre · Enunciado y criterios de evaluación](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-11-03.md).
 
 El objetivo es explicar cómo **prevenir, detectar, investigar, contener y gestionar** este incidente, combinando el análisis del caso con prácticas de laboratorio.
 
