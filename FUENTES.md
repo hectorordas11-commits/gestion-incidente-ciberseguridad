@@ -8,6 +8,15 @@
 - Jesús Niño Camazón, [Incidentes de ciberseguridad](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/), material docente.
 - Jesús Niño Camazón, [Qué hacer frente a un incidente de seguridad](https://www.jesusninoc.com/06/05/que-hacer-frente-a-un-incidente-de-seguridad/), lectura de apoyo.
 
+### Sesiones de clase utilizadas
+
+- [5 de octubre · PowerShell](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-05.md)
+- [12 de octubre · Prevención y concienciación](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-12.md)
+- [19 de octubre · Criptografía y certificados](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-19.md)
+- [26 de octubre · Auditoría de incidentes](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-26.md)
+- [2 de noviembre · Investigación y evidencias](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-11-02.md)
+- [3 de noviembre · Enunciado y criterios de evaluación](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-11-03.md)
+
 ## Normativa y fuentes oficiales para el apartado 5
 
 1. Unión Europea. [Reglamento (UE) 2016/679 (RGPD), artículos 33 y 34](https://eur-lex.europa.eu/eli/reg/2016/679/oj/spa). Normativa de notificación a la autoridad y comunicación a interesados.
