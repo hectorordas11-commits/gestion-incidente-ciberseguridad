@@ -399,3 +399,7 @@ Shodan mostró información indexada sobre esa dirección, como nombres de host,
 ### E.2. Conclusión de la consulta OSINT
 
 Con esta práctica he comprobado cómo consultar la información pública que Shodan tiene indexada sobre una IP. En un incidente real aplicaría esta técnica a indicadores obtenidos previamente de registros y evidencias, contrastaría las fuentes y documentaría sus fechas y límites. Aquí la consulta solo demuestra el manejo de la herramienta, no la identificación del responsable del incidente.
+
+Para relacionar la IP del anexo con un dominio, la [consulta pública de los registros A de dns.google](https://dns.google/resolve?name=dns.google&type=A) del 26/11/2026 devolvió dos direcciones: `8.8.8.8` y `8.8.4.4`. La primera coincide con la IP de la captura de Shodan. El DNS permite ver a qué direcciones apunta el nombre y Shodan aporta información sobre los servicios observados en una de ellas. Aquí se usa Google Public DNS como ejemplo conocido para practicar el contraste de fuentes.
+
+Apuntes de clase: [26 de octubre · Auditoría de incidentes](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-26.md).
