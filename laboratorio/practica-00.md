@@ -120,3 +120,5 @@ El PID observado **2692** correspondía a `svchost.exe` en `C:\WINDOWS\system32\
 Esta práctica permitió comprobar que el sistema dispone de registros auditables y herramientas nativas para observar conexiones y procesos. Los eventos obtenidos reflejan el estado **previo** del laboratorio, no el ataque del caso. Las pruebas entre varias máquinas y la configuración de Ubuntu no forman parte de esta práctica. El aislamiento temporal del adaptador de Windows se documenta por separado en el apartado 4.
 
 **Instantánea:** se creó `Windows-Estado-Inicial` en VirtualBox para facilitar la recuperación del laboratorio. No se incluye una captura adicional porque las evidencias principales se han centrado en resultados técnicos.
+
+Apuntes de clase sobre los comandos utilizados: [5 de octubre · PowerShell](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-05.md).
