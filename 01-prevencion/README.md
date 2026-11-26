@@ -381,3 +381,5 @@ El cartel incluido en el punto 4 es un material diseñado para este caso; no se 
 
 - [Material docente de incidentes de ciberseguridad](https://www.jesusninoc.com/09/30/incidentes-de-ciberseguridad/).
 - [Fuentes del proyecto](../FUENTES.md).
+
+Clases relacionadas con este apartado: [12 de octubre · Prevención y concienciación](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-12.md) y [19 de octubre · Criptografía y certificados](https://github.com/jesusninoc/ClasesMasterCiberseguridad/blob/main/2026/2026-10-19.md).
